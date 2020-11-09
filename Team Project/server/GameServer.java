@@ -10,9 +10,11 @@ import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
 
 public class GameServer extends AbstractServer {
+	private static UserManager userManager;
 	
-	
-	
+	public static void main(String[] args) {
+		userManager = new UserManager(new GameServer());
+	}
 	
 	
 	
@@ -44,14 +46,17 @@ public class GameServer extends AbstractServer {
 		  //stuff for usermanager
 		  if(arg0 instanceof LoginData) {
 			  //Send Data To UserManager for login data
+			  userManager.VerifyLogin((LoginData)arg0, arg1);
 		  }
 		  else if(arg0 instanceof CreateAccountData) {
 			//Send Data To UserManager for Creating and account
+			  userManager.VerifyCreateAccount((CreateAccountData)arg0, arg1);
 		  }
 			  
 	  
 
 	  }
+	  
 	  
 	  protected void listeningException(Throwable exception) 
 	  {
