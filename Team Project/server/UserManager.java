@@ -1,39 +1,48 @@
 package server;
 
 
+import java.io.IOException;
+
 import ocsf.server.ConnectionToClient;
 
 public class UserManager {
 
 	private GameServer gameServer;
-	private DatabaseFile db;
+	private Database db;
 
 	public UserManager(GameServer gameServer) {
 		this.gameServer = gameServer;
-		db = new DatabaseFile();
+		db = new Database();
 	}
 
-	public void VerifyLogin(LoginData loginData, ConnectionToClient arg1) {
-	 //Search Database with Login Data query on username
-		if(db.query(loginData.getUsername()) == null) {
+	public void VerifyLogin(LoginData loginData, ConnectionToClient arg1) throws IOException 
+	{
+		//Search Database with Login Data query on username
+		if(db.verifyAccount(loginData.getUsername(), loginData.getPassword()) == false) 
+		{
 		 	arg1.sendToClient("Incorrect Username/Password");
 	 	}
-	 	If(loginData.getPassword() == db)}
+		else 
+	    {
+			arg1.sendToClient("Login Successful");
+	    }
+	 	
+	}
 
+	public void VerifyCreateAccount(CreateAccountData createAccountData, ConnectionToClient arg1) throws IOException 
+	{
+		
+		//Search Database with Login Data query on username
+		if(db.createNewAccount(createAccountData.getUsername(), createAccountData.getPassword()) == false) 
 		{
-			.sendToClient("Login Successful");
-		//update db to know what most recent connection id this username is using.
+			arg1.sendToClient("Username Already Taken");
 		}
-	}
-
-	public void VerifyCreateAccount(CreateAccountData loginData, ConnectionToClient arg1)
-	//Search Database with Login Data query on username
-	 if(db.query(loginData.getUsername()) != null) {
-		 arg1.sendToClient("Username Already Taken");
-	 }
-    else
-	 arg1.sendToClient("Account Created");
-	}
+	    else 
+	    {
+	   	 	arg1.sendToClient("Account Created");
+	    }
+	
+		}
 
 	public void UpdateTotalGames(ConnectionToClient arg1) {
 		//increase total number of games for recieved user
