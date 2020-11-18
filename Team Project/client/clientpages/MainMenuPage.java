@@ -1,9 +1,12 @@
-package client;
+package client.clientpages;
 
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.*;
 import javax.swing.*;
+
+import client.clientcontrollers.MainMenuController;
+
 import java.awt.event.*;
 
 public class MainMenuPage extends JPanel {

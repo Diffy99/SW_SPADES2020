@@ -1,9 +1,11 @@
-package client;
+package client.clientpages;
 
 
 import java.awt.*;
 
 import javax.swing.*;
+
+import client.clientcontrollers.WaitingForGamePageController;
 
 public class WaitingForGamePage extends JPanel {
 	

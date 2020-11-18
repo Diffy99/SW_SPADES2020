@@ -1,6 +1,9 @@
-package client;
+package client.clientpages;
 
 import javax.swing.*;
+
+import client.clientcontrollers.PostGameController;
+
 import java.awt.event.*;
 
 public class PostGamePage extends JPanel {

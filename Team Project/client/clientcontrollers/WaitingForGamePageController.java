@@ -1,6 +1,8 @@
-package client;
+package client.clientcontrollers;
 
 import javax.swing.JPanel;
+
+import client.GameClient;
 
 public class WaitingForGamePageController {
 	

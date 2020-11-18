@@ -23,6 +23,7 @@ public class UserManager {
 
 	public void VerifyLogin(LoginData loginData, ConnectionToClient arg1) throws IOException 
 	{
+		System.out.println("Database recieved: " + loginData.getPassword());
 		//Search Database with Login Data query on username
 		if(!db.verifyAccount(loginData.getUsername(), loginData.getPassword())) 
 		{
@@ -30,6 +31,7 @@ public class UserManager {
 	 	}
 		else 
 	    {
+			System.out.println("Login Successful");
 			arg1.sendToClient("Login Successful");
 			// create a user object with the data from the database along with the recieved connection id
 			UserData tempuser = new UserData();

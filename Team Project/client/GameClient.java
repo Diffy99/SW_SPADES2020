@@ -1,5 +1,12 @@
 package client;
 
+import client.clientcontrollers.AdminController;
+import client.clientcontrollers.CreateAccountController;
+import client.clientcontrollers.GameBoardController;
+import client.clientcontrollers.LoginController;
+import client.clientcontrollers.MainMenuController;
+import client.clientcontrollers.PostGameController;
+import client.clientcontrollers.WaitingForGamePageController;
 import ocsf.client.AbstractClient;
 
 public class GameClient extends AbstractClient

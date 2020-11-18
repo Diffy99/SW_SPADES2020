@@ -1,9 +1,11 @@
-package client;
+package client.clientcontrollers;
 
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JPanel;
+
+import client.GameClient;
 
 public class AdminController {
 

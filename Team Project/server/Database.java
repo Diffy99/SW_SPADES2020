@@ -94,8 +94,9 @@ public class Database
   //Method for verifying a username and password.
   public boolean verifyAccount(String username, String password)
   {
-	 String command = String.format("select aes_decrypt(password,'key') from user where username = '%s'", username);
-   
+	  System.out.println("searching database for account");
+	 String command = String.format("select password from users where username = '%s'", username);
+   System.out.println(command);
    // Stop if this account doesn't exist.
    if (query(command).isEmpty())
      return false;
@@ -110,8 +111,8 @@ public class Database
   //Method for creating a new account.
   public boolean createNewAccount(String username, String password)
   {
-	  String command1 = String.format("select username from user where username = '%s'", username);
-	  String command2 = String.format("insert into user values('%s', aes_encrypt('%s','key'))", username, password);
+	  String command1 = String.format("select username from users where username = '%s'", username);
+	  String command2 = String.format("insert into user values('%s', '%s'", username, password);
 	  
 	  // Stop if this account already exists.
 	  if (!query(command1).isEmpty()) 

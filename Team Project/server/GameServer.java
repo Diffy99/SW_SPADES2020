@@ -44,6 +44,7 @@ public class GameServer extends AbstractServer {
 	  @Override
 	  protected void handleMessageFromClient(Object arg0, ConnectionToClient arg1)
 	  {
+		  log.append("Messgage from Client: " + arg1.getId()+"\n");
 		  try {
 		  //stuff for game manager
 		  if(arg0 instanceof BoredGameData) {
@@ -59,8 +60,6 @@ public class GameServer extends AbstractServer {
 		  if(arg0 instanceof LoginData) {
 			  //Send Data To UserManager for login data
 				userManager.VerifyLogin((LoginData)arg0, arg1);
-				LoginData foroutput = (LoginData)arg0;
-				log.append(foroutput.getUsername() + " " + foroutput.getPassword());
 				CheckConnectedUsers();
 		  }
 		  else if(arg0 instanceof CreateAccountData) {
