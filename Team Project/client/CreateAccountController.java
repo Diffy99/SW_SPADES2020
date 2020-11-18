@@ -37,7 +37,7 @@ public class CreateAccountController  implements ActionListener  {
 	    {
 	      // Get the username and password the user entered.
 	      CreateAccountPage capanel = (CreateAccountPage)container.getComponent(1);
-	      data = new CreateAccountData(capanel.getUsername(), capanel.getPassword(),capanel.getverifiedpassword());
+	      CreateAccountData data = new CreateAccountData(capanel.getUsername(), capanel.getPassword());
 	      
 	      // Check the validity of the information locally first.
 	      if (data.getUsername().equals("") || data.getPassword().equals("") || data.getVarifeidPassword().equals(""))
