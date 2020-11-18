@@ -35,7 +35,6 @@ public class GameClient extends AbstractClient
     super("71.129.97.242",8300);
   }
 
-  @Override
   public void handleMessageFromServer(Object arg0)
   {
 	 
