@@ -29,7 +29,7 @@ public class MainMenuController implements ActionListener
   {
     // Get the name of the button clicked.
     String command = ae.getActionCommand();
-    LoginData data = new LoginData(loginPage.getUsername(), loginPage.getPassword());
+  //  LoginData data = new LoginData(loginPage.getUsername(), loginPage.getPassword());
     // The logout button takes the user back to the login panel.
     if (command == "Logout")
     {
@@ -45,7 +45,7 @@ public class MainMenuController implements ActionListener
     }
     
     //The admin button takes the user to the admin page
-    else if (command == "Admin Page" && data.getUsername().equals("Username") && data.getPassword().equals("password"))
+    else if (command == "Admin Page")
     {
     	
     	CardLayout cardLayout = (CardLayout)container.getLayout();

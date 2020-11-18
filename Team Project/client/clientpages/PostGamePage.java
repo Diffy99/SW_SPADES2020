@@ -22,6 +22,8 @@ public class PostGamePage extends JPanel {
 		JLabel oppScore = new JLabel("Opponents Score");
 		JLabel actUserScore= new JLabel("");
 		JLabel actOppScore = new JLabel("");
+		JLabel winner = new JLabel("");
+		JLabel nextAction = new JLabel("Play again or Return To Main Menu");
 		
 		
 		

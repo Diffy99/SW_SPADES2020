@@ -2,6 +2,9 @@ package client;
 
 import java.awt.*;
 import javax.swing.*;
+
+import client.GameClient;
+
 import java.awt.event.*;
 import java.io.IOException;
 

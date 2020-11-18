@@ -49,7 +49,7 @@ public class CreateAccountController  implements ActionListener  {
 	      {
 	        displayError("You must enter a username and password.");
 	        return;
-	      } else if(data.getPassword() != capanel.getverifiedpassword()) {
+	      } else if(data.getUsername() != data.getPassword()) {
 	    	  displayError("Your Password field and verified password fields must match");
 	      }
 	      else
