@@ -10,6 +10,11 @@ import javax.swing.JTextArea;
 
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
+import server.serverdata.BoredGameData;
+import server.serverdata.CreateAccountData;
+import server.serverdata.LoginData;
+import server.serverdata.PostGameData;
+import server.serverdata.UserData;
 
 public class GameServer extends AbstractServer {
 	private static UserManager userManager;

@@ -1,4 +1,4 @@
-package server;
+package server.serverdata;
 
 public class PostGameData {
 
