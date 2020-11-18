@@ -15,7 +15,10 @@ public class UserManager {
 
 	public UserManager(GameServer gameServer) {
 		this.gameServer = gameServer;
-		db = new Database();
+	}
+	
+	public void setDatabase(Database db) {
+		this.db = db;
 	}
 
 	public void VerifyLogin(LoginData loginData, ConnectionToClient arg1) throws IOException 
