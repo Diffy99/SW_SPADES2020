@@ -21,11 +21,8 @@ public class GameServer extends AbstractServer {
 	private static ArrayList<UserData> connectedUsers;
 	private static ArrayList<UserData> waitingForGame;
 	
-	public static void main(String[] args) {
-		userManager = new UserManager(new GameServer());
-	}
-	
-	
+	private JLabel status;
+	private JTextArea log;
 	
 	  public GameServer() {
 		  super(8300);
@@ -36,6 +33,9 @@ public class GameServer extends AbstractServer {
 		  super(port);	
 	}
 
+	  public void setUserManager(UserManager userManager) {
+		  this.userManager = userManager;
+	  }
 	
 	 
 	  
@@ -59,6 +59,8 @@ public class GameServer extends AbstractServer {
 		  if(arg0 instanceof LoginData) {
 			  //Send Data To UserManager for login data
 				userManager.VerifyLogin((LoginData)arg0, arg1);
+				LoginData foroutput = (LoginData)arg0;
+				log.append(foroutput.getUsername() + " " + foroutput.getPassword());
 				CheckConnectedUsers();
 		  }
 		  else if(arg0 instanceof CreateAccountData) {
@@ -84,6 +86,9 @@ public class GameServer extends AbstractServer {
 	  
 	  	public void serverStarted() {
 			System.out.println("Server Started");
+			log.append("Server Started\n");
+			status.setText("Server Started");
+			status.setForeground(Color.GREEN);
 		}
 		
 	  
@@ -97,6 +102,7 @@ public class GameServer extends AbstractServer {
 		
 		public void clientConnected(ConnectionToClient client) {
 			System.out.println("Client connected and given connection ID: " + client.getId());
+			log.append("Client connected and given connection ID: " + client.getId()+"\n");
 
 		}
 
@@ -116,5 +122,15 @@ public class GameServer extends AbstractServer {
 				}
 				
 			} 
+		}
+		public void setStatus(JLabel status) {
+			// TODO Auto-generated method stub
+			this.status = status;
+			
+		}
+		public void setLog(JTextArea log) {
+			// TODO Auto-generated method stub
+			this.log = log;
+			
 		}
 }
