@@ -2,12 +2,16 @@ package game_Manager;
 
 import java.util.ArrayList;
 
+import server.GameServer;
+import server.serverdata.BoredGameData;
+import server.serverdata.UserData;
+
 public class GameManager {
 
-	//ArrayList<User> players = ArrayList<User>();
-	//GameServer server = new GameServer();
+	GameServer server = new GameServer();
 	private int CurrentRound = 0;
 	private  final int MaxRounds = 7;
+	private ArrayList<UserData> players;
 	private ArrayList<Integer> PlayerScores;
 	private String FirstPlayerMove = new String();
 	private String SecondPlayerMove = new String();
@@ -26,20 +30,20 @@ public class GameManager {
 	private final Integer maxTurns = 13;
 	private Integer currentTurn = 0;	
 	
-	public GameManager(/*User player1, User player2, GameServer server*/)
+	public GameManager(UserData player1, UserData player2, GameServer server)
 	{
 		//Basic constructor that allows for the game manager to know the players and the server
 		// while setting up the basic information needed for containing a round
 		
-		//players.add(player1);
-		//players.add(player2);
-		//this.server = server;
+		players.add(player1);
+		players.add(player2);
+		this.server = server;
 		CurrentRound = 0;
 		PlayerScores = new ArrayList<Integer>();
 		currentTurn = 0; 
 	}
 	
-	public void ReceiveMove(/*User player, BoardGameData data*/)
+	public void ReceiveMove(UserData player, BoredGameData data)
 	{
 		
 		//Essentially a two way setter for the moves of the players,
@@ -76,7 +80,7 @@ public class GameManager {
 			return "ERROR: NO PLAYER MOVES HAVE BEEN STORED!!!";
 	}
 	
-	public void receiveBet(/*BoardGameData data*/)
+	public void receiveBet(BoredGameData data)
 	{
 		//Similar to the receiving of a move, the boardGameData will hold the players current
 		//bet regardless of whose turn it is. However, due to the fact that a new round has a new
@@ -114,10 +118,10 @@ public class GameManager {
 	//WE HAVE RECEIVE PLAYERS HERE, BUT I FIGURE THAT WE CAN JUST HAVE A CONSTRUCTOR THAT INTAKES
 	// PLAYERS AS IT WOULD MAKE MORE SENSE, SINCE IT WOULD NOT BE A GAMEMANAGER BUT SERVER WHO WOULD DO MATCHMAKING? 
 	
-	/*public String SendScoreRoundEnd()
+	public String SendScoreRoundEnd()
 	{
-		return players[0] + " 's Score: " + player1Score + ", " + players[1] + "'s Score: " + player2Score;
-	}*/
+		return players.get(0).getUsername() + " 's Score: " + player1Score + ", " + players.get(1).getUsername() + "'s Score: " + player2Score;
+	}
 	
 	public void StartRound()
 	{
@@ -130,7 +134,7 @@ public class GameManager {
 		player2turnscore = null;
 		
 		
-		//Here is where we would reques the 
+		//Here is where we would request the 
 		// bet from first player1, and then player2
 		
 		
@@ -164,7 +168,7 @@ public class GameManager {
 			}else if(!firstSuit.contentEquals(secondSuit))
 			{ // This is the not so tricky part. if there is a spade in the values of the suit then i must determine who played the spade
 				
-				if(secondSuit.contentEquals("spade"))
+				if(secondSuit.contentEquals("S"))
 				{
 					player2turnscore++;
 				}else
@@ -222,11 +226,11 @@ public class GameManager {
 		// the winner of the game
 		if(player1Score > player2Score)
 		{
-//			return player[0].username + " WINS!";
+			return players.get(0).getUsername() + " WINS!";
 		}else if( player1Score < player2Score)
 		{
-//			return player[1].username + " WINS!";
-		}else if (player1Score == player2Score)
+			return players.get(1).getUsername() + " WINS!";
+		}else 
 		{
 			return "IT'S A DRAW!";
 		}
