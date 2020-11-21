@@ -38,6 +38,7 @@ public class WaitingForGamePageController implements ActionListener {
 	      CardLayout cardLayout = (CardLayout)container.getLayout();
 	      cardLayout.show(container, "3");
 	    }
+	   
 	  }
 	
 	
