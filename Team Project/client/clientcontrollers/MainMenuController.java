@@ -4,6 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import client.GameClient;
+import client.clientpages.LoginPage;
 
 import java.awt.event.*;
 import java.io.IOException;
