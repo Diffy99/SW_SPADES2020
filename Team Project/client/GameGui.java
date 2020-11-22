@@ -5,6 +5,7 @@ import javax.swing.*;
 import client.clientcontrollers.AdminController;
 import client.clientcontrollers.CreateAccountController;
 import client.clientcontrollers.GameBoardController;
+import client.clientcontrollers.InitialPageController;
 import client.clientcontrollers.LoginController;
 import client.clientcontrollers.MainMenuController;
 import client.clientcontrollers.PostGameController;
@@ -12,6 +13,7 @@ import client.clientcontrollers.WaitingForGamePageController;
 import client.clientpages.AdminPage;
 import client.clientpages.CreateAccountPage;
 import client.clientpages.GameBoardPage;
+import client.clientpages.InitialPage;
 import client.clientpages.LoginPage;
 import client.clientpages.MainMenuPage;
 import client.clientpages.PostGamePage;
@@ -55,7 +57,9 @@ public class GameGui extends JFrame
     WaitingForGamePageController wfgpc = new WaitingForGamePageController(container,gameClient);
     GameBoardController gbc = new GameBoardController(container,gameClient);
     PostGameController pgc = new PostGameController(container,gameClient);
+    InitialPageController ipc = new InitialPageController(container,gameClient);
     // Create the four views. (need the controller to register with the Panels
+    JPanel view0 = new InitialPage(ipc);
     JPanel view1 = new LoginPage(lc);
     JPanel view2 = new CreateAccountPage(cac);
     JPanel view3 = new MainMenuPage(mmc);
@@ -64,6 +68,7 @@ public class GameGui extends JFrame
     JPanel view6 = new GameBoardPage(gbc);
     JPanel view7 = new PostGamePage(pgc);
     // Add the views to the card layout container.
+    container.add(view0,"0");
     container.add(view1, "1");
     container.add(view2, "2");
     container.add(view3,"3");
@@ -71,11 +76,11 @@ public class GameGui extends JFrame
     container.add(view5,"5");
     container.add(view6,"6");
     container.add(view7,"7");
-    gameClient.setPanels(lc, cac, mmc, apc, wfgpc, gbc, pgc);
+    gameClient.setPanels(ipc,lc, cac, mmc, apc, wfgpc, gbc, pgc);
    
     
     // Show the initial view in the card layout.
-    cardLayout.show(container, "1");
+    cardLayout.show(container, "0");
     
     // Add the card layout container to the JFrame.
     this.add(container, BorderLayout.CENTER);

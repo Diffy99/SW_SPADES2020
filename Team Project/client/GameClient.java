@@ -3,6 +3,7 @@ package client;
 import client.clientcontrollers.AdminController;
 import client.clientcontrollers.CreateAccountController;
 import client.clientcontrollers.GameBoardController;
+import client.clientcontrollers.InitialPageController;
 import client.clientcontrollers.LoginController;
 import client.clientcontrollers.MainMenuController;
 import client.clientcontrollers.PostGameController;
@@ -18,9 +19,10 @@ public class GameClient extends AbstractClient
     WaitingForGamePageController wfgpc;
     GameBoardController gbc;
     PostGameController pgc;
+    InitialPageController ipc;
     
     
-   public void setPanels(LoginController lc,CreateAccountController cac, MainMenuController mmc,AdminController apc, WaitingForGamePageController wfgpc,GameBoardController gbc, PostGameController pgc) {
+   public void setPanels(InitialPageController ipc, LoginController lc,CreateAccountController cac, MainMenuController mmc,AdminController apc, WaitingForGamePageController wfgpc,GameBoardController gbc, PostGameController pgc) {
 	   this.lc = lc;
 	   this.cac = cac;
 	   this.mmc = mmc;
@@ -28,6 +30,7 @@ public class GameClient extends AbstractClient
 	   this.wfgpc = wfgpc;
 	   this.gbc = gbc;
 	   this.pgc = pgc;
+	   this.ipc = ipc;
    }
   
   public GameClient()

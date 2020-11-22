@@ -19,7 +19,7 @@ public class AdminPage extends JPanel {
 		
 		returntoMainMenu.addActionListener(apc);
 		
-		admin.add(returntoMainMenu,BorderLayout.CENTER);
+		admin.add(returntoMainMenu,BorderLayout.SOUTH);
 		
 		
 		
