@@ -11,6 +11,7 @@ import javax.swing.SwingUtilities;
 import client.GameClient;
 import client.GameGui;
 import client.clientpages.CreateAccountPage;
+import server.User;
 import server.serverdata.CreateAccountData;
 
 public class CreateAccountController  implements ActionListener  {
@@ -71,7 +72,6 @@ public class CreateAccountController  implements ActionListener  {
 	  {
 		  CreateAccountPage createAccountPage = (CreateAccountPage)container.getComponent(1);
 		    GameGui gameGUI = (GameGui)SwingUtilities.getWindowAncestor(createAccountPage);
-		    //clientGUI.setUser(new User(createAccountPanel.getUsername(), createAccountPanel.getPassword()));
 		    CardLayout cardLayout = (CardLayout)container.getLayout();
 		    cardLayout.show(container, "1");
 	  }
