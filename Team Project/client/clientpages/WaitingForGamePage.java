@@ -1,10 +1,12 @@
-package client;
+package client.clientpages;
 
 
 import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
+
+import client.clientcontrollers.WaitingForGamePageController;
 
 
 

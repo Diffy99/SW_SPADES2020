@@ -1,6 +1,9 @@
-package client;
+package client.clientcontrollers;
 
 import javax.swing.JPanel;
+
+import client.GameClient;
+
 import java.awt.event.*;
 
 public class GameBoardController implements ActionListener{

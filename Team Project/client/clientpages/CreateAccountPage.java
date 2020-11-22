@@ -1,4 +1,4 @@
-package client;
+package client.clientpages;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import client.clientcontrollers.CreateAccountController;
 
 public class CreateAccountPage extends JPanel {
 	

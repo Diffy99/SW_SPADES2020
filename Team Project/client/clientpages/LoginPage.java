@@ -1,7 +1,10 @@
-package client;
+package client.clientpages;
 
 import java.awt.*;
 import javax.swing.*;
+
+import client.clientcontrollers.LoginController;
+
 import java.awt.event.*;
 
 public class LoginPage extends JPanel
@@ -18,9 +21,10 @@ public class LoginPage extends JPanel
   }
   
   // Getter for the text in the password field.
-  public String getPassword()
+public String getPassword()
   {
-    return new String(passwordField.getPassword());
+	String holder = String.valueOf(passwordField.getPassword());
+    return holder;
   }
   
   // Setter for the error text.
@@ -47,9 +51,9 @@ public class LoginPage extends JPanel
     // Create a panel for the login information form.
     JPanel loginPanel = new JPanel(new GridLayout(3, 2, 5, 5));
     JLabel usernameLabel = new JLabel("Username:", JLabel.RIGHT);
-    usernameField = new JTextField(10);
+    usernameField = new JTextField(25);
     JLabel passwordLabel = new JLabel("Password:", JLabel.RIGHT);
-    passwordField = new JPasswordField(10);
+    passwordField = new JPasswordField(25);
     JLabel createaccountLabel = new JLabel("CreateAccount", JLabel.RIGHT);
     JButton createaccountbutton = new JButton("Create Account");
     createaccountbutton.addActionListener(lc);

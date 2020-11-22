@@ -1,6 +1,22 @@
 package client;
 
 import javax.swing.*;
+
+import client.clientcontrollers.AdminController;
+import client.clientcontrollers.CreateAccountController;
+import client.clientcontrollers.GameBoardController;
+import client.clientcontrollers.LoginController;
+import client.clientcontrollers.MainMenuController;
+import client.clientcontrollers.PostGameController;
+import client.clientcontrollers.WaitingForGamePageController;
+import client.clientpages.AdminPage;
+import client.clientpages.CreateAccountPage;
+import client.clientpages.GameBoardPage;
+import client.clientpages.LoginPage;
+import client.clientpages.MainMenuPage;
+import client.clientpages.PostGamePage;
+import client.clientpages.WaitingForGamePage;
+
 import java.awt.*;
 import java.io.IOException;
 

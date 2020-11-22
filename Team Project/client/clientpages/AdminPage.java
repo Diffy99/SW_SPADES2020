@@ -1,8 +1,10 @@
-package client;
+package client.clientpages;
 
 import java.awt.BorderLayout;
 
 import javax.swing.*;
+
+import client.clientcontrollers.AdminController;
 
 
 public class AdminPage extends JPanel {

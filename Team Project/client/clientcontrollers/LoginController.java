@@ -1,7 +1,12 @@
-package client;
+package client.clientcontrollers;
 
 import java.awt.*;
 import javax.swing.*;
+
+import client.GameClient;
+import client.clientpages.LoginPage;
+import server.serverdata.LoginData;
+
 import java.awt.event.*;
 import java.io.IOException;
 
@@ -35,8 +40,10 @@ public class LoginController implements ActionListener
     // The Submit button submits the login information to the server.
     else if (command == "Submit")
     {
+    	
       // Get the username and password the user entered.
       LoginPage loginPage = (LoginPage)container.getComponent(0);
+      System.out.println("in login controller:" + loginPage.getPassword());
       LoginData data = new LoginData(loginPage.getUsername(), loginPage.getPassword());
       
       // Check the validity of the information locally first.

@@ -1,4 +1,4 @@
-package client;
+package client.clientcontrollers;
 
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -7,6 +7,11 @@ import java.io.IOException;
 
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+
+import client.GameClient;
+import client.GameGui;
+import client.clientpages.CreateAccountPage;
+import server.serverdata.CreateAccountData;
 
 public class CreateAccountController  implements ActionListener  {
 	private JPanel container;
@@ -40,11 +45,11 @@ public class CreateAccountController  implements ActionListener  {
 	      CreateAccountData data = new CreateAccountData(capanel.getUsername(), capanel.getPassword());
 	      
 	      // Check the validity of the information locally first.
-	      if (data.getUsername().equals("") || data.getPassword().equals("") || data.getVarifeidPassword().equals(""))
+	      if (data.getUsername().equals("") || data.getPassword().equals(""))
 	      {
 	        displayError("You must enter a username and password.");
 	        return;
-	      } else if(data.getUsername() != data.getVarifeidPassword()) {
+	      } else if(data.getUsername() != data.getPassword()) {
 	    	  displayError("Your Password field and verified password fields must match");
 	      }
 	      else
