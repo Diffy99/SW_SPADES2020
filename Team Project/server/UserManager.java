@@ -4,6 +4,9 @@ package server;
 import java.io.IOException;
 
 import ocsf.server.ConnectionToClient;
+import server.serverdata.CreateAccountData;
+import server.serverdata.LoginData;
+import server.serverdata.UserData;
 
 public class UserManager {
 
@@ -12,19 +15,31 @@ public class UserManager {
 
 	public UserManager(GameServer gameServer) {
 		this.gameServer = gameServer;
-		db = new Database();
+	}
+	
+	public void setDatabase(Database db) {
+		this.db = db;
 	}
 
 	public void VerifyLogin(LoginData loginData, ConnectionToClient arg1) throws IOException 
 	{
+		System.out.println("Database recieved: " + loginData.getPassword());
 		//Search Database with Login Data query on username
-		if(db.verifyAccount(loginData.getUsername(), loginData.getPassword()) == false) 
+		if(!db.verifyAccount(loginData.getUsername(), loginData.getPassword())) 
 		{
+			System.out.println("Usermanager: Incorrect Username/Password");
 		 	arg1.sendToClient("Incorrect Username/Password");
 	 	}
 		else 
 	    {
+			System.out.println("UserData: Login Successful");
 			arg1.sendToClient("Login Successful");
+			// create a user object with the data from the database along with the recieved connection id
+			UserData tempuser = new UserData();
+			tempuser.newUser(loginData.getUsername(), arg1);
+			System.out.println(tempuser.getUsername());
+			GameServer.addConnectedUsers(tempuser);
+			
 	    }
 	 	
 	}
@@ -33,7 +48,7 @@ public class UserManager {
 	{
 		
 		//Search Database with Login Data query on username
-		if(db.createNewAccount(createAccountData.getUsername(), createAccountData.getPassword()) == false) 
+		if(!db.createNewAccount(createAccountData.getUsername(), createAccountData.getPassword())) 
 		{
 			arg1.sendToClient("Username Already Taken");
 		}
@@ -45,9 +60,9 @@ public class UserManager {
 		}
 
 	public void UpdateTotalGames(ConnectionToClient arg1) {
-		//increase total number of games for recieved user
+		//increase total number of games for recieved user in database
 	}
 	public void UpdateWins(ConnectionToClient arg1) {
-		//increase win number of games for recieved user
+		//increase win number of games for recieved user in database
 	}
 }

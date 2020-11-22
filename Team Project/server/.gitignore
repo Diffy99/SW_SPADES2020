@@ -3,3 +3,8 @@
 /LoginData.class
 /Database.class
 /CreateAccountData.class
+/UserData.class
+/BoredGameData.class
+/PostGameData.class
+/ServerGUI$EventHandler.class
+/ServerGUI.class
