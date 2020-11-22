@@ -3,7 +3,7 @@ package game_Manager;
 import java.util.ArrayList;
 
 import server.GameServer;
-import server.serverdata.BoredGameData;
+import server.serverdata.BoardGameData;
 import server.serverdata.UserData;
 
 public class GameManager {
@@ -43,7 +43,7 @@ public class GameManager {
 		currentTurn = 0; 
 	}
 	
-	public void ReceiveMove(UserData player, BoredGameData data)
+	public void ReceiveMove(UserData player, BoardGameData data)
 	{
 		
 		//Essentially a two way setter for the moves of the players,
@@ -80,7 +80,7 @@ public class GameManager {
 			return "ERROR: NO PLAYER MOVES HAVE BEEN STORED!!!";
 	}
 	
-	public void receiveBet(BoredGameData data)
+	public void receiveBet(BoardGameData data)
 	{
 		//Similar to the receiving of a move, the boardGameData will hold the players current
 		//bet regardless of whose turn it is. However, due to the fact that a new round has a new
