@@ -116,6 +116,7 @@ public class GameServer extends AbstractServer {
 		public static void CheckConnectedUsers() {
 			for (Iterator iterator = connectedUsers.iterator(); iterator.hasNext();) {
 				UserData userData = (UserData) iterator.next();
+				System.out.println("Client " + userData.getUsername() + "Is Connected: " + !userData.getConn().isAlive());
 				if(!userData.getConn().isAlive()) {
 					connectedUsers.remove(userData);
 				}

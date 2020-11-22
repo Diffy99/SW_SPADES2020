@@ -76,7 +76,8 @@ public class LoginController implements ActionListener
   // After the login is successful take user to main menu
   public void loginSuccess()
   {
-	    LoginPage loginPage = (LoginPage)container.getComponent(0);
+	    
+	  	LoginPage loginPage = (LoginPage)container.getComponent(0);
 	    
 	    CardLayout cardLayout = (CardLayout)container.getLayout();
 	    cardLayout.show(container, "3");
@@ -91,8 +92,8 @@ public class LoginController implements ActionListener
   // Method that displays a message in the error 
   public void displayError(String error)
   {
-    LoginPage loginPage = (LoginPage)container.getComponent(0);
-    loginPage.setError(error);
+	  	LoginPage loginPage = (LoginPage)container.getComponent(0);
+	    loginPage.setError(error);
     
   }
 }

@@ -71,7 +71,7 @@ public class GameGui extends JFrame
     container.add(view5,"5");
     container.add(view6,"6");
     container.add(view7,"7");
-    
+    gameClient.setPanels(lc, cac, mmc, apc, wfgpc, gbc, pgc);
    
     
     // Show the initial view in the card layout.

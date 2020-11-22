@@ -27,15 +27,17 @@ public class UserManager {
 		//Search Database with Login Data query on username
 		if(!db.verifyAccount(loginData.getUsername(), loginData.getPassword())) 
 		{
+			System.out.println("Usermanager: Incorrect Username/Password");
 		 	arg1.sendToClient("Incorrect Username/Password");
 	 	}
 		else 
 	    {
-			System.out.println("Login Successful");
+			System.out.println("UserData: Login Successful");
 			arg1.sendToClient("Login Successful");
 			// create a user object with the data from the database along with the recieved connection id
 			UserData tempuser = new UserData();
 			tempuser.newUser(loginData.getUsername(), arg1);
+			System.out.println(tempuser.getUsername());
 			GameServer.addConnectedUsers(tempuser);
 			
 	    }

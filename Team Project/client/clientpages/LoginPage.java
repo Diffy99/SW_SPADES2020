@@ -51,9 +51,9 @@ public String getPassword()
     // Create a panel for the login information form.
     JPanel loginPanel = new JPanel(new GridLayout(3, 2, 5, 5));
     JLabel usernameLabel = new JLabel("Username:", JLabel.RIGHT);
-    usernameField = new JTextField(25);
+    usernameField = new JTextField();
     JLabel passwordLabel = new JLabel("Password:", JLabel.RIGHT);
-    passwordField = new JPasswordField(25);
+    passwordField = new JPasswordField();
     JLabel createaccountLabel = new JLabel("CreateAccount", JLabel.RIGHT);
     JButton createaccountbutton = new JButton("Create Account");
     createaccountbutton.addActionListener(lc);
