@@ -28,12 +28,12 @@ public class GameBoardPage extends JPanel {
 	public void showOppMove() {
 		
 	}
-	public int getUserBet() {
-		return UserBet;
-	}
-	public void setUserBet(int UserBet) {
-		this.UserBet = UserBet;
-	}
+	//public int getUserBet() {
+	//	return UserBet;
+	//}
+//	public void setUserBet(int UserBet) {
+	//	this.UserBet = UserBet;
+	//}
 	public int getOppBet() {
 		return OppBet;
 	}

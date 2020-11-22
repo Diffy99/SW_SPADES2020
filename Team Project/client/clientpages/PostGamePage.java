@@ -24,20 +24,20 @@ public class PostGamePage extends JPanel {
 		quit.addActionListener(pgc);
 		JLabel userScore = new JLabel("Your Score");
 		JLabel oppScore = new JLabel("Opponents Score");
-		JLabel actUserScore= new JLabel(PostGameData.getScore());
-		JLabel actOppScore = new JLabel(PostGameData.getOpponentScore());
-		JLabel winnerlabel = new JLabel("The Winner is ");
-		JLabel winner = new JLabel(PostGameData.getWinner());
+		//JLabel actUserScore= new JLabel(PostGameData.getScore());
+		//JLabel actOppScore = new JLabel(PostGameData.getOpponentScore());
+		//JLabel winnerlabel = new JLabel("The Winner is ");
+		//JLabel winner = new JLabel(PostGameData.getWinner());
 		
 		
 		page.setLayout(new GridLayout(2,1,5,5));
 		gameinfo.setLayout(new GridLayout(3,2,5,5));
 		gameinfo.add(userScore);
-		gameinfo.add(actUserScore);
+	//	gameinfo.add(actUserScore);
 		gameinfo.add(oppScore);
-		gameinfo.add(actOppScore);
-		gameinfo.add(winnerlabel);
-		gameinfo.add(winner);
+		//gameinfo.add(actOppScore);
+		//gameinfo.add(winnerlabel);
+		//gameinfo.add(winner);
 		page.add(gameinfo);
 		
 		next.setLayout(new GridLayout(1,2,5,5));
