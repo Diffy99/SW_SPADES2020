@@ -11,7 +11,7 @@ import javax.swing.SwingUtilities;
 import client.GameClient;
 import client.GameGui;
 import client.clientpages.CreateAccountPage;
-import server.User;
+import server.serverdata.UserData;
 import server.serverdata.CreateAccountData;
 
 public class CreateAccountController  implements ActionListener  {
