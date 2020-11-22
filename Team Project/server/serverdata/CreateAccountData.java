@@ -40,10 +40,18 @@ public class CreateAccountData implements Serializable
   }
   
   // Constructor that initializes the username and password.
+  public CreateAccountData(String username, String password)
+  {
+    setUsername(username);
+    setPassword(password);
+  }
+  
+  // Constructor that initializes the username and password.
   public CreateAccountData(String username, String password, String password2)
   {
     setUsername(username);
     setPassword(password);
     setPassword2(password2);
   }
+  
 }
