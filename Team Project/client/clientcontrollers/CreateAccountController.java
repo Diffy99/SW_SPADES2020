@@ -12,6 +12,7 @@ import client.GameClient;
 import client.GameGui;
 import client.clientpages.CreateAccountPage;
 import server.serverdata.CreateAccountData;
+import server.serverdata.LoginData;
 
 public class CreateAccountController  implements ActionListener  {
 	private JPanel container;
@@ -42,7 +43,7 @@ public class CreateAccountController  implements ActionListener  {
 	    {
 	      // Get the username and password the user entered.
 	      CreateAccountPage capanel = (CreateAccountPage)container.getComponent(1);
-	      CreateAccountData data = new CreateAccountData(capanel.getUsername(), capanel.getPassword());
+	      LoginData data = new LoginData(capanel.getUsername(), capanel.getPassword());
 	      
 	      // Check the validity of the information locally first.
 	      if (data.getUsername().equals("") || data.getPassword().equals(""))
@@ -73,7 +74,7 @@ public class CreateAccountController  implements ActionListener  {
 		    GameGui gameGUI = (GameGui)SwingUtilities.getWindowAncestor(createAccountPage);
 		    //clientGUI.setUser(new User(createAccountPanel.getUsername(), createAccountPanel.getPassword()));
 		    CardLayout cardLayout = (CardLayout)container.getLayout();
-		    cardLayout.show(container, "3");
+		    cardLayout.show(container, "1");
 	  }
 	  
 	  public void createaccountfailure() {

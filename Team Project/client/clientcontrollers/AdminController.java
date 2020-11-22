@@ -2,12 +2,13 @@ package client.clientcontrollers;
 
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
 import client.GameClient;
 
-public class AdminController {
+public class AdminController  implements ActionListener {
 
 	  private JPanel container;
 	  private GameClient gameClient;
