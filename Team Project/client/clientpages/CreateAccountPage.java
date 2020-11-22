@@ -30,10 +30,10 @@ public class CreateAccountPage extends JPanel {
 		  // Getter for the text in the password field.
 		  public String getPassword()
 		  {
-		    return new String(passwordField.getPassword());
+		    return String.valueOf(passwordField.getPassword());
 		  }
 		  public String getverifiedpassword() {
-			  return new String(verifiedpasswordField.getPassword());
+			  return String.valueOf(verifiedpasswordField.getPassword());
 		  }
 		  // Setter for the error text.
 		  public void setError(String error)

@@ -112,8 +112,8 @@ public class Database
   public boolean createNewAccount(String username, String password)
   {
 	  String command1 = String.format("select username from users where username = '%s'", username);
-	  String command2 = String.format("insert into user values('%s', '%s'", username, password);
-	  
+	  String command2 = String.format("INSERT INTO users(username, password, admin) VALUES ('%s','%s',0)", username, password);
+	  System.out.println(command2);
 	  // Stop if this account already exists.
 	  if (!query(command1).isEmpty()) 
 	  {
