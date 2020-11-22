@@ -10,7 +10,7 @@ import javax.swing.JTextArea;
 
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
-import server.serverdata.BoredGameData;
+import server.serverdata.BoardGameData;
 import server.serverdata.CreateAccountData;
 import server.serverdata.LoginData;
 import server.serverdata.PostGameData;
@@ -47,7 +47,7 @@ public class GameServer extends AbstractServer {
 		  log.append("Messgage from Client: " + arg1.getId()+"\n");
 		  try {
 		  //stuff for game manager
-		  if(arg0 instanceof BoredGameData) {
+		  if(arg0 instanceof BoardGameData) {
 				//Send Data To Game Manager
 			}
 		  else if(arg0 instanceof PostGameData) {

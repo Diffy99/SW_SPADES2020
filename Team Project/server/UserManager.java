@@ -46,7 +46,7 @@ public class UserManager {
 
 	public void VerifyCreateAccount(CreateAccountData createAccountData, ConnectionToClient arg1) throws IOException 
 	{
-		
+		System.out.println("Create Account info recieved");
 		//Search Database with Login Data query on username
 		if(!db.createNewAccount(createAccountData.getUsername(), createAccountData.getPassword())) 
 		{
