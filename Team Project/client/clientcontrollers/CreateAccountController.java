@@ -69,7 +69,7 @@ public class CreateAccountController  implements ActionListener  {
 	
 	  public void createaccountsucess()
 	  {
-		  CreateAccountPage createAccountPage = (CreateAccountPage)container.getComponent(2);
+		  CreateAccountPage createAccountPage = (CreateAccountPage)container.getComponent(1);
 		    GameGui gameGUI = (GameGui)SwingUtilities.getWindowAncestor(createAccountPage);
 		    //clientGUI.setUser(new User(createAccountPanel.getUsername(), createAccountPanel.getPassword()));
 		    CardLayout cardLayout = (CardLayout)container.getLayout();
