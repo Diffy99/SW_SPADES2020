@@ -23,6 +23,8 @@ public class WaitingForGamePage extends JPanel {
 		cancel.addActionListener(wfgpc);
 		status.add(waiting,BorderLayout.CENTER);
 		
+		this.add(status);
+		
 		
 	}
 

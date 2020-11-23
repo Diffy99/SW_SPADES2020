@@ -20,6 +20,7 @@ public class InitialPage extends JPanel {
 		start.addActionListener(ipc);
 		
 		page.add(start);
+		this.add(page);
 		
 		
 		
