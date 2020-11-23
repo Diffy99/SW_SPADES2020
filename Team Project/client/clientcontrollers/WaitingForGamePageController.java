@@ -1,5 +1,6 @@
 package client.clientcontrollers;
 
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,8 +21,14 @@ public class WaitingForGamePageController implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent ae) {
+		
+		 String command = ae.getActionCommand();
+		 
+		 if(command == "cancel") {
+			 CardLayout cardLayout = (CardLayout)container.getLayout();
+	         cardLayout.show(container, "3");
+		 }
 		
 	}
 	
