@@ -69,6 +69,7 @@ public class GameServer extends AbstractServer {
 			  UserData temp = (UserData)arg0;
 			  if(temp.getPurpose().equals("Logout")) {
 				  //do something on logout
+				  System.out.println("Logout recieved for " + temp.getUsername());
 			  }
 		  }
 			  
