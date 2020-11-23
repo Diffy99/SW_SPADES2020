@@ -7,15 +7,16 @@ import ocsf.server.ConnectionToClient;
 public class UserData implements Serializable
 {
 	private String username;
-	private ConnectionToClient conn;
 	private int wins;
 	private int totalGames;
 	private String Purpose;
+	private Long connectionID;
 	
-	public void newUser(String Username, ConnectionToClient conn) 
+	public void newUser(String Username, long ID) 
 	{
 		this.username = Username;
-		this.conn = conn;
+		this.connectionID = ID;
+		
 	}
 	
 	public void setUsername(String username) 
@@ -37,15 +38,9 @@ public class UserData implements Serializable
 		return this.username;
 	}
 	
-	public ConnectionToClient getConn() 
-	{
-		return conn;
-	}
+
 	
-	public void setConn(ConnectionToClient conn) 
-	{
-		this.conn = conn;
-	}
+
 	
 	public void setWins(int wins) 
 	{
@@ -73,5 +68,13 @@ public class UserData implements Serializable
 
 	public void setPurpose(String purpose) {
 		Purpose = purpose;
+	}
+
+	public Long getConnectionID() {
+		return connectionID;
+	}
+
+	public void setConnectionID(Long connectionID) {
+		this.connectionID = connectionID;
 	}
 }

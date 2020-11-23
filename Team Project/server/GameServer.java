@@ -18,6 +18,7 @@ import server.serverdata.UserData;
 
 public class GameServer extends AbstractServer {
 	private static UserManager userManager;
+	private static ArrayList<ConnectionToClient> connectedClients;
 	private static ArrayList<UserData> waitingForGame;
 	
 	private JLabel status;
@@ -26,17 +27,18 @@ public class GameServer extends AbstractServer {
 	  public GameServer() {
 		  super(8300);
 		  waitingForGame = new ArrayList<UserData>();
+		  connectedClients = new ArrayList<ConnectionToClient>();
 	}
 	  public GameServer(int port) {
 		  super(port);	
+		  waitingForGame = new ArrayList<UserData>();
+		  connectedClients = new ArrayList<ConnectionToClient>();
 	}
 
 	  public void setUserManager(UserManager userManager) {
 		  this.userManager = userManager;
 	  }
 	
-	 
-	  
 	  
 	  
 	  @Override
@@ -111,6 +113,24 @@ public class GameServer extends AbstractServer {
 
 		}
 
+		public void addConnection(ConnectionToClient conn) {
+			if(connectedClients.isEmpty()) {
+				connectedClients.add(conn);	
+				System.out.println("Connected User added " + conn.getId());
+				log.append("Connected User added "  + conn.getId()+"\n");
+			}
+			else if(!connectedClients.contains(conn)) {
+				connectedClients.add(conn);	
+				System.out.println("Connected User added " + conn.getId());
+				log.append("Connected User added "  + conn.getId()+"\n");
+			}
+			else {
+				connectedClients.remove(conn);
+				connectedClients.add(conn);
+				System.out.println("Connected User removed then added " + conn.getId());
+				log.append("Connected User removed then added "  + conn.getId()+"\n");
+			}
+			}
 
 		public void setStatus(JLabel status) {
 			// TODO Auto-generated method stub

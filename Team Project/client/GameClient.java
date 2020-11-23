@@ -62,7 +62,9 @@ public class GameClient extends AbstractClient
     	}
     	
     if (arg0 instanceof UserData) {
+    	System.out.println("UserData Set");
     	userData = (UserData)arg0;
+    	
     }
     }
 
