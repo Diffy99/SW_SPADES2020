@@ -41,7 +41,7 @@ public class CreateAccountController  implements ActionListener  {
 	    else if (command == "Submit")
 	    {
 	      // Get the username and password the user entered.
-	      CreateAccountPage capanel = (CreateAccountPage)container.getComponent(1);
+	      CreateAccountPage capanel = (CreateAccountPage)container.getComponent(2);
 	      CreateAccountData data = new CreateAccountData(capanel.getUsername(), capanel.getPassword());
 	      
 	      // Check the validity of the information locally first.
@@ -69,7 +69,7 @@ public class CreateAccountController  implements ActionListener  {
 	
 	  public void createaccountsucess()
 	  {
-		  CreateAccountPage createAccountPage = (CreateAccountPage)container.getComponent(1);
+		  CreateAccountPage createAccountPage = (CreateAccountPage)container.getComponent(2);
 		    GameGui gameGUI = (GameGui)SwingUtilities.getWindowAncestor(createAccountPage);
 		    CardLayout cardLayout = (CardLayout)container.getLayout();
 		    cardLayout.show(container, "1");
@@ -82,7 +82,7 @@ public class CreateAccountController  implements ActionListener  {
 	  // Method that displays a message in the error 
 	  public void displayError(String error)
 	  {
-	    CreateAccountPage createaccountpage = (CreateAccountPage)container.getComponent(1);
+	    CreateAccountPage createaccountpage = (CreateAccountPage)container.getComponent(2);
 	    createaccountpage.setError(error);
 	    
 	  }
