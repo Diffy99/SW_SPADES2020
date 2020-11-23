@@ -91,11 +91,13 @@ public class GameManager {
 	{
 		FirstPlayerBet = data.getCurrentBet();
 		System.out.println("First Player's Bet Received");
+		sendBet();
 		
 	}else if(FirstPlayerMove != null)
 	{
 		SecondPlayerBet = data.getCurrentBet();
 		System.out.println("Second Player's Bet Received");
+		sendBet();
 	}
 	}
 	
