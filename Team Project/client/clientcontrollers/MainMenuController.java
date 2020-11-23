@@ -6,7 +6,7 @@ import javax.swing.*;
 
 import client.GameClient;
 import client.clientpages.LoginPage;
-
+import server.serverdata.UserData;
 
 import java.awt.event.*;
 import java.io.IOException;
@@ -37,9 +37,10 @@ public class MainMenuController implements ActionListener
     // The logout button takes the user back to the login panel.
     if (command == "Logout")
     {
-   
+    	UserData temp = gameClient.getUser();
+    	temp.setPurpose("Logout");
       try {
-		gameClient.sendToServer(gameClient.getUser().setPurpose("Logout"));
+		gameClient.sendToServer(temp);
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
