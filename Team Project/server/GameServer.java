@@ -8,6 +8,7 @@ import java.util.Iterator;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
+import game_Manager.GameManager;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
 import server.serverdata.BoardGameData;
@@ -18,21 +19,22 @@ import server.serverdata.UserData;
 
 public class GameServer extends AbstractServer {
 	private static UserManager userManager;
-	private static ArrayList<ConnectionToClient> connectedClients;
-	private static ArrayList<UserData> waitingForGame;
+	private static ArrayList<UserData> connectedClients;
+	private static ArrayList<ConnectionToClient> waitingForGame;
+	private ArrayList<GameManager> activeGames;
 	
 	private JLabel status;
 	private JTextArea log;
 	
 	  public GameServer() {
 		  super(8300);
-		  waitingForGame = new ArrayList<UserData>();
-		  connectedClients = new ArrayList<ConnectionToClient>();
+		  waitingForGame = new ArrayList<ConnectionToClient>();
+		  connectedClients = new ArrayList<UserData>();
 	}
 	  public GameServer(int port) {
 		  super(port);	
-		  waitingForGame = new ArrayList<UserData>();
-		  connectedClients = new ArrayList<ConnectionToClient>();
+		  waitingForGame = new ArrayList<ConnectionToClient>();
+		  connectedClients = new ArrayList<UserData>();
 	}
 
 	  public void setUserManager(UserManager userManager) {
@@ -73,6 +75,11 @@ public class GameServer extends AbstractServer {
 				  //do something on logout
 				  System.out.println("Logout recieved for " + arg1.getId());
 			  }
+			  else if(temp.equals("Waiting for game")) {
+				  System.out.println(arg1.getId() + " Is waiting for a game");
+				  addToWait(arg1);
+				  
+			  }
 		  }
 			  
 		  } catch (IOException e) {
@@ -82,7 +89,38 @@ public class GameServer extends AbstractServer {
 	  }
 	  
 	  
-	  protected void listeningException(Throwable exception) 
+	  private void addToWait(ConnectionToClient arg1) {
+		// TODO Auto-generated method stub
+		  UserData temp1 = null;
+		  UserData temp2 = null;
+		  if(waitingForGame.isEmpty()) {
+			  System.out.println("User added to wait list");
+			  waitingForGame.add(arg1);
+		  }
+		  else {
+			  System.out.println("Creating Game");
+			  for (UserData clients : connectedClients) {
+				  if(clients.getConnectionID() == arg1.getId()) {
+					  temp1 = clients;
+			  		}
+			  	else if(clients.getConnectionID() == waitingForGame.get(0).getId()) {
+			  		temp2 = clients;
+			  	}
+			  }
+			  GameManager tempgame = new GameManager(temp1,temp2,arg1,waitingForGame.get(0));
+			  activeGames.add(tempgame);
+			  try {
+				waitingForGame.get(0).sendToClient("Game Index:"+ activeGames.indexOf(tempgame));
+				arg1.sendToClient("Game Index:"+ activeGames.indexOf(tempgame));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			  waitingForGame.remove(0);
+			  
+		  }
+	  }
+	protected void listeningException(Throwable exception) 
 	  {
 	    //Display info about the exception
 	    System.out.println("Listening Exception:" + exception);
@@ -113,22 +151,22 @@ public class GameServer extends AbstractServer {
 
 		}
 
-		public void addConnection(ConnectionToClient conn) {
+		public void addConnection(UserData conn) {
 			if(connectedClients.isEmpty()) {
 				connectedClients.add(conn);	
-				System.out.println("Connected User added " + conn.getId());
-				log.append("Connected User added "  + conn.getId()+"\n");
+				System.out.println("Connected User added " + conn.getUsername());
+				log.append("Connected User added "  + conn.getUsername()+"\n");
 			}
 			else if(!connectedClients.contains(conn)) {
 				connectedClients.add(conn);	
-				System.out.println("Connected User added " + conn.getId());
-				log.append("Connected User added "  + conn.getId()+"\n");
+				System.out.println("Connected User added " + conn.getUsername());
+				log.append("Connected User added "  + conn.getUsername()+"\n");
 			}
 			else {
 				connectedClients.remove(conn);
 				connectedClients.add(conn);
-				System.out.println("Connected User removed then added " + conn.getId());
-				log.append("Connected User removed then added "  + conn.getId()+"\n");
+				System.out.println("Connected User removed then added " + conn.getUsername());
+				log.append("Connected User removed then added "  + conn.getUsername()+"\n");
 			}
 			}
 
