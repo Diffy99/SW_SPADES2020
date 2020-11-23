@@ -19,8 +19,7 @@ public class AdminController  implements ActionListener {
 	
 	public AdminController(JPanel container, GameClient gameClient) {
 		this.container = container;
-		this.gameClient = gameClient;
-		
+		this.gameClient = gameClient;	
 	}
 	
 	public void actionPerformed(ActionEvent ae)
@@ -49,11 +48,11 @@ public class AdminController  implements ActionListener {
 	public void setAdminData() 
 	{
     	//Set admin data from server
-		AdminPage adminPage = (AdminPage)container.getComponent(0);
-		adminPage.setGamesPlayed("1");
-		adminPage.setCurrentGames("2");
-		adminPage.setTotalUsers("3");
-		adminPage.setOnlineUsers("4");
+		// AdminPage adminPage = 
+		//adminPage.setGamesPlayed("1");
+		//adminPage.setCurrentGames("2");
+		//adminPage.setTotalUsers("3");
+		//adminPage.setOnlineUsers("4");
 	}
 
 }
