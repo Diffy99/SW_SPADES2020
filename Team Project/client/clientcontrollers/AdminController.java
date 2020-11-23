@@ -3,10 +3,13 @@ package client.clientcontrollers;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 
 import client.GameClient;
+import client.clientpages.AdminPage;
+import client.clientpages.LoginPage;
 
 public class AdminController  implements ActionListener {
 
@@ -24,11 +27,33 @@ public class AdminController  implements ActionListener {
 	  {
 	    // Get the name of the button clicked.
 	    String command = ae.getActionCommand();
+	    System.out.println(command);
 	    if(command == "Main Menu")
 	    {
 	    	CardLayout cardLayout = (CardLayout)container.getLayout();
 	        cardLayout.show(container, "3");
 	    }
+	    else if(command == "Refresh") 
+	    {
+	    	// Submit the data request to server
+	        try {
+	        	gameClient.sendToServer("Admin Data");
+	        } catch (IOException e) {
+		  		// TODO Auto-generated catch block
+		  		e.printStackTrace();
+	        }
+
+	    }
 	  }
+	
+	public void setAdminData() 
+	{
+    	//Set admin data from server
+		AdminPage adminPage = (AdminPage)container.getComponent(0);
+		adminPage.setGamesPlayed("1");
+		adminPage.setCurrentGames("2");
+		adminPage.setTotalUsers("3");
+		adminPage.setOnlineUsers("4");
+	}
 
 }
