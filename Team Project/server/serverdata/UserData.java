@@ -8,6 +8,7 @@ public class UserData
 	private ConnectionToClient conn;
 	private int wins;
 	private int totalGames;
+	private String Purpose;
 	
 	public void newUser(String Username, ConnectionToClient conn) 
 	{
@@ -62,5 +63,13 @@ public class UserData
 	public int getTotalGames() 
 	{
 		return this.totalGames;
+	}
+
+	public String getPurpose() {
+		return Purpose;
+	}
+
+	public void setPurpose(String purpose) {
+		Purpose = purpose;
 	}
 }
