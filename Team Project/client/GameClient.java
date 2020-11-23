@@ -75,6 +75,12 @@ public class GameClient extends AbstractClient
   public void connectionEstablished()
   {
 	  
+  }
+	  
+	 public UserData getUser() {
+		 return userData;
+	 }
+	  
   
-}
+
 }
