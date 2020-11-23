@@ -89,12 +89,12 @@ public class GameManager {
 	
 		if(FirstPlayerBet == null)
 	{
-		//FirstPlayerBet = data.currentBet;
+		FirstPlayerBet = data.getCurrentBet();
 		System.out.println("First Player's Bet Received");
 		
 	}else if(FirstPlayerMove != null)
 	{
-		//SecondPlayerBet = data.currentBet;
+		SecondPlayerBet = data.getCurrentBet();
 		System.out.println("Second Player's Bet Received");
 	}
 	}
