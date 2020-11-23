@@ -63,6 +63,14 @@ public class GameServer extends AbstractServer {
 			//Send Data To UserManager for Creating and account
 			  userManager.VerifyCreateAccount((CreateAccountData)arg0, arg1);
 		  }
+		  
+		  
+		  if(arg0 instanceof UserData) {
+			  UserData temp = (UserData)arg0;
+			  if(temp.getPurpose().equals("Logout")) {
+				  //do something on logout
+			  }
+		  }
 			  
 		  } catch (IOException e) {
 				// TODO Auto-generated catch block
