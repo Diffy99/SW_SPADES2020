@@ -37,10 +37,9 @@ public class MainMenuController implements ActionListener
     // The logout button takes the user back to the login panel.
     if (command == "Logout")
     {
-    	UserData temp = gameClient.getUser();
-    	temp.setPurpose("Logout");
+    	
       try {
-		gameClient.sendToServer(temp);
+		gameClient.sendToServer("Logging out");
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

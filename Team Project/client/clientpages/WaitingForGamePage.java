@@ -22,6 +22,7 @@ public class WaitingForGamePage extends JPanel {
 		JButton cancel = new JButton("Cancel");
 		cancel.addActionListener(wfgpc);
 		status.add(waiting,BorderLayout.CENTER);
+		status.add(cancel,BorderLayout.SOUTH);
 		
 		this.add(status);
 		
