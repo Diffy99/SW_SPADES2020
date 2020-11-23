@@ -30,11 +30,13 @@ public class GameServer extends AbstractServer {
 		  super(8300);
 		  waitingForGame = new ArrayList<ConnectionToClient>();
 		  connectedClients = new ArrayList<UserData>();
+		  activeGames = new ArrayList<GameManager>();
 	}
 	  public GameServer(int port) {
 		  super(port);	
 		  waitingForGame = new ArrayList<ConnectionToClient>();
 		  connectedClients = new ArrayList<UserData>();
+		  activeGames = new ArrayList<GameManager>();
 	}
 
 	  public void setUserManager(UserManager userManager) {
@@ -110,8 +112,8 @@ public class GameServer extends AbstractServer {
 			  GameManager tempgame = new GameManager(temp1,temp2,arg1,waitingForGame.get(0));
 			  activeGames.add(tempgame);
 			  try {
-				waitingForGame.get(0).sendToClient("Game Index:"+ activeGames.indexOf(tempgame));
 				arg1.sendToClient("Game Index:"+ activeGames.indexOf(tempgame));
+				waitingForGame.get(0).sendToClient("Game Index:"+ activeGames.indexOf(tempgame));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

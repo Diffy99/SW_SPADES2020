@@ -63,11 +63,13 @@ public class GameClient extends AbstractClient
     	else if(message.equals("Admin Data")) {
     		apc.setAdminData();
     	}
-    	else if (arg0 instanceof UserData) {
+    	else if (message.contains("Game Index:")){
+    		System.out.println(message);
+    	}
+    }
+    if (arg0 instanceof UserData) {
     	System.out.println("UserData Set");
     	userData = (UserData)arg0;
-    	
-    }
     }
 
   }
