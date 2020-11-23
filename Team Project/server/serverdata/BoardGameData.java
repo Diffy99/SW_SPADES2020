@@ -1,19 +1,15 @@
 package server.serverdata;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class BoardGameData implements Serializable
 {
-	//currentHand
-	//currentMove 
+	ArrayList<String> currentHand = new ArrayList<String>();
+	private String currentMove;
 	private int currentBet;
 	private int score;
 	
-	public BoardGameData()
-	{
-		currentBet = 0;
-		score = 0;
-	}
 	
 	public void setScore(int score) 
 	{
@@ -36,4 +32,24 @@ public class BoardGameData implements Serializable
 	}
 
 
+	public void setCurrentMove(String currentMove) 
+	{
+		this.currentMove = currentMove;
+	}
+
+	public String getCurrentMove() 
+	{
+		return currentMove;
+	}
+
+	public void setCurrentHand(ArrayList<String> currentHand) 
+	{
+		this.currentHand = currentHand;
+	}
+
+	public ArrayList<String> getCurrentHand()
+	{
+		return currentHand;
+	}
+	
 }
