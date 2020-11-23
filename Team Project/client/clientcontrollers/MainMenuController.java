@@ -53,6 +53,13 @@ public class MainMenuController implements ActionListener
     {
     	 CardLayout cardLayout = (CardLayout)container.getLayout();
          cardLayout.show(container, "5");
+         
+         try {
+			gameClient.sendToServer("Waiting for game");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     //The admin button takes the user to the admin page

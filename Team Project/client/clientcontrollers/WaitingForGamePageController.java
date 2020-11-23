@@ -3,6 +3,7 @@ package client.clientcontrollers;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 
@@ -26,6 +27,12 @@ public class WaitingForGamePageController implements ActionListener {
 		 String command = ae.getActionCommand();
 		 
 		 if(command == "Cancel") {
+			 try {
+				gameClient.sendToServer("Stop looking for game");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			 CardLayout cardLayout = (CardLayout)container.getLayout();
 	         cardLayout.show(container, "3");
 		 }
