@@ -34,7 +34,7 @@ public class LoginController implements ActionListener
     if (command == "Cancel")
     {
       CardLayout cardLayout = (CardLayout)container.getLayout();
-      cardLayout.show(container, "1");
+      cardLayout.show(container, "0");
     }
 
     // The Submit button submits the login information to the server.
@@ -42,7 +42,7 @@ public class LoginController implements ActionListener
     {
     	
       // Get the username and password the user entered.
-      LoginPage loginPage = (LoginPage)container.getComponent(0);
+      LoginPage loginPage = (LoginPage)container.getComponent(1);
       System.out.println("in login controller:" + loginPage.getPassword());
       LoginData data = new LoginData(loginPage.getUsername(), loginPage.getPassword());
       
@@ -77,7 +77,7 @@ public class LoginController implements ActionListener
   public void loginSuccess()
   {
 	    
-	  	LoginPage loginPage = (LoginPage)container.getComponent(0);
+	  	LoginPage loginPage = (LoginPage)container.getComponent(1);
 	    
 	    CardLayout cardLayout = (CardLayout)container.getLayout();
 	    cardLayout.show(container, "3");
@@ -92,7 +92,7 @@ public class LoginController implements ActionListener
   // Method that displays a message in the error 
   public void displayError(String error)
   {
-	  	LoginPage loginPage = (LoginPage)container.getComponent(0);
+	  	LoginPage loginPage = (LoginPage)container.getComponent(1);
 	    loginPage.setError(error);
     
   }

@@ -21,6 +21,8 @@ public class AdminPage extends JPanel {
 		
 		admin.add(returntoMainMenu,BorderLayout.SOUTH);
 		
+		this.add(admin);
+		
 		
 		
 		

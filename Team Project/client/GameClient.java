@@ -9,6 +9,7 @@ import client.clientcontrollers.MainMenuController;
 import client.clientcontrollers.PostGameController;
 import client.clientcontrollers.WaitingForGamePageController;
 import ocsf.client.AbstractClient;
+import server.serverdata.UserData;
 
 public class GameClient extends AbstractClient
 {
@@ -20,6 +21,7 @@ public class GameClient extends AbstractClient
     GameBoardController gbc;
     PostGameController pgc;
     InitialPageController ipc;
+    UserData userData;
     
     
    public void setPanels(InitialPageController ipc, LoginController lc,CreateAccountController cac, MainMenuController mmc,AdminController apc, WaitingForGamePageController wfgpc,GameBoardController gbc, PostGameController pgc) {
@@ -58,6 +60,10 @@ public class GameClient extends AbstractClient
     	else if(message.equals("Username Already Taken")) {
     		cac.createaccountfailure();
     	}
+    	
+    if (arg0 instanceof UserData) {
+    	userData = (UserData)arg0;
+    }
     }
 
   }
@@ -69,6 +75,12 @@ public class GameClient extends AbstractClient
   public void connectionEstablished()
   {
 	  
+  }
+	  
+	 public UserData getUser() {
+		 return userData;
+	 }
+	  
   
-}
+
 }
