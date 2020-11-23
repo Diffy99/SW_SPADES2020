@@ -60,7 +60,6 @@ public class GameServer extends AbstractServer {
 		  if(arg0 instanceof LoginData) {
 			  //Send Data To UserManager for login data
 				userManager.VerifyLogin((LoginData)arg0, arg1);
-				arg1.sendToClient(new UserData("",arg1.getId()));
 		  }
 		  else if(arg0 instanceof CreateAccountData) {
 			//Send Data To UserManager for Creating and account
@@ -68,11 +67,11 @@ public class GameServer extends AbstractServer {
 		  }
 		  
 		  
-		  if(arg0 instanceof UserData) {
-			  UserData temp = (UserData)arg0;
-			  if(temp.getPurpose().equals("Logout")) {
+		  if(arg0 instanceof String) {
+			  String temp = (String)arg0;
+			  if(temp.equals("Logout")) {
 				  //do something on logout
-				  System.out.println("Logout recieved for " + temp.getUsername());
+				  System.out.println("Logout recieved for " + arg1.getId());
 			  }
 		  }
 			  
