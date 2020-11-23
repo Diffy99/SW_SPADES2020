@@ -18,7 +18,6 @@ import server.serverdata.UserData;
 
 public class GameServer extends AbstractServer {
 	private static UserManager userManager;
-	private static ArrayList<UserData> connectedUsers;
 	private static ArrayList<UserData> waitingForGame;
 	
 	private JLabel status;
@@ -26,7 +25,6 @@ public class GameServer extends AbstractServer {
 	
 	  public GameServer() {
 		  super(8300);
-		  connectedUsers = new ArrayList<UserData>();
 		  waitingForGame = new ArrayList<UserData>();
 	}
 	  public GameServer(int port) {
@@ -60,7 +58,6 @@ public class GameServer extends AbstractServer {
 		  if(arg0 instanceof LoginData) {
 			  //Send Data To UserManager for login data
 				userManager.VerifyLogin((LoginData)arg0, arg1);
-				CheckConnectedUsers();
 		  }
 		  else if(arg0 instanceof CreateAccountData) {
 			//Send Data To UserManager for Creating and account
@@ -106,23 +103,6 @@ public class GameServer extends AbstractServer {
 		}
 
 
-
-		public static ArrayList<UserData> getConnectedUsers() {
-			return connectedUsers;
-		}
-		public static void addConnectedUsers(UserData connectedUser) {
-			connectedUsers.add(connectedUser);
-		}
-		public static void CheckConnectedUsers() {
-			for (Iterator iterator = connectedUsers.iterator(); iterator.hasNext();) {
-				UserData userData = (UserData) iterator.next();
-				System.out.println("Client " + userData.getUsername() + "Is Connected: " + !userData.getConn().isAlive());
-				if(!userData.getConn().isAlive()) {
-					connectedUsers.remove(userData);
-				}
-				
-			} 
-		}
 		public void setStatus(JLabel status) {
 			// TODO Auto-generated method stub
 			this.status = status;

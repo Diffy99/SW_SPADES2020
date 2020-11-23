@@ -38,8 +38,7 @@ public class UserManager {
 			UserData tempuser = new UserData();
 			tempuser.newUser(loginData.getUsername(), arg1);
 			System.out.println(tempuser.getUsername());
-			GameServer.addConnectedUsers(tempuser);
-			
+			arg1.sendToClient(tempuser);
 	    }
 	 	
 	}
