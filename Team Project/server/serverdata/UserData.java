@@ -1,8 +1,10 @@
 package server.serverdata;
 
+import java.io.Serializable;
+
 import ocsf.server.ConnectionToClient;
 
-public class UserData 
+public class UserData implements Serializable
 {
 	private String username;
 	private ConnectionToClient conn;
@@ -69,8 +71,7 @@ public class UserData
 		return Purpose;
 	}
 
-	public UserData setPurpose(String purpose) {
+	public void setPurpose(String purpose) {
 		Purpose = purpose;
-		return this;
 	}
 }

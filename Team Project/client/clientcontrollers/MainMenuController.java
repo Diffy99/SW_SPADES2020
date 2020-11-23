@@ -1,10 +1,12 @@
 package client.clientcontrollers;
 
 import java.awt.*;
+import java.lang.*;
 import javax.swing.*;
 
 import client.GameClient;
 import client.clientpages.LoginPage;
+import server.serverdata.UserData;
 
 import java.awt.event.*;
 import java.io.IOException;
@@ -14,6 +16,7 @@ public class MainMenuController implements ActionListener
   // Private data fields for the container and game client.
   private JPanel container;
   private GameClient gameClient;
+ 
 
   
   // Constructor for the main menu controller.
@@ -34,8 +37,16 @@ public class MainMenuController implements ActionListener
     // The logout button takes the user back to the login panel.
     if (command == "Logout")
     {
-      CardLayout cardLayout = (CardLayout)container.getLayout();
-      cardLayout.show(container, "1");
+    	UserData temp = gameClient.getUser();
+    	temp.setPurpose("Logout");
+      try {
+		gameClient.sendToServer(temp);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+      System.exit(0);
+      
     }
 
     // The play button takes user to waiting for game page
