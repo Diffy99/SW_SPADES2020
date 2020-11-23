@@ -17,6 +17,8 @@ public class GameManager {
 	private String SecondPlayerMove = new String();
 	private Integer FirstPlayerBet = null;
 	private Integer SecondPlayerBet = null;
+	private UserData player1 = null;
+	private UserData player2 = null;
 	private Integer player1Score = null; // these are the overall scores
 	private Integer player2Score = null;
 	
@@ -35,15 +37,15 @@ public class GameManager {
 		//Basic constructor that allows for the game manager to know the players and the server
 		// while setting up the basic information needed for containing a round
 		
-		players.add(player1);
-		players.add(player2);
+		this.player1 = player1;
+		this.player2 = player2;
 		this.server = server;
 		CurrentRound = 0;
 		PlayerScores = new ArrayList<Integer>();
 		currentTurn = 0; 
 	}
 	
-	public void ReceiveMove(UserData player, BoardGameData data)
+	public void ReceiveMove(BoardGameData data)
 	{
 		
 		//Essentially a two way setter for the moves of the players,
@@ -53,13 +55,16 @@ public class GameManager {
 		
 		if(FirstPlayerMove == null)
 		{
-			//FirstPlayerMove = data.ChosenMove;
+			FirstPlayerMove = data.getCurrentMove();
 			System.out.println("First Player's Move Received");
+			SendMove();
 			
 		}else if(FirstPlayerMove != null)
 		{
-			//SecondPlayerMove = data.ChosenMove;
+			SecondPlayerMove = data.getCurrentMove();
 			System.out.println("Second Player's Move Received");
+			SendMove();
+			calculateTurnEnd();
 		}
 	}
 	
@@ -89,13 +94,15 @@ public class GameManager {
 	
 		if(FirstPlayerBet == null)
 	{
-		//FirstPlayerBet = data.currentBet;
+		FirstPlayerBet = data.getCurrentBet();
 		System.out.println("First Player's Bet Received");
+		sendBet();
 		
 	}else if(FirstPlayerMove != null)
 	{
-		//SecondPlayerBet = data.currentBet;
+		SecondPlayerBet = data.getCurrentBet();
 		System.out.println("Second Player's Bet Received");
+		sendBet();
 	}
 	}
 	
@@ -236,6 +243,24 @@ public class GameManager {
 		}
 	
 		
+	}
+	
+	
+	public void receiveData(BoardGameData data)
+	{
+	
+		/*
+		String purpose = data.getPurpose();
+		
+		if(purpose.contentEquals("play")
+		{
+			this.ReceiveMove(data);
+		}
+		else if (purpose.contentEquals("bet")
+		{
+			this.ReceiveBet(data);
+		}
+		*/
 	}
 	
 	
