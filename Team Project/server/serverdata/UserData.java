@@ -69,7 +69,8 @@ public class UserData
 		return Purpose;
 	}
 
-	public void setPurpose(String purpose) {
+	public UserData setPurpose(String purpose) {
 		Purpose = purpose;
+		return this;
 	}
 }
