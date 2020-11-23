@@ -1,8 +1,10 @@
 package server.serverdata;
 
+import java.io.Serializable;
+
 import ocsf.server.ConnectionToClient;
 
-public class UserData 
+public class UserData implements Serializable
 {
 	private String username;
 	private ConnectionToClient conn;
