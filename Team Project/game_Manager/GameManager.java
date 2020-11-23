@@ -2,6 +2,7 @@ package game_Manager;
 
 import java.util.ArrayList;
 
+import ocsf.server.ConnectionToClient;
 import server.GameServer;
 import server.serverdata.BoardGameData;
 import server.serverdata.UserData;
@@ -12,6 +13,8 @@ public class GameManager {
 	private int CurrentRound = 0;
 	private  final int MaxRounds = 7;
 	private ArrayList<UserData> players;
+	private ConnectionToClient player1connection = null;
+	private ConnectionToClient player2connection = null;
 	private ArrayList<Integer> PlayerScores;
 	private String FirstPlayerMove = new String();
 	private String SecondPlayerMove = new String();
@@ -32,14 +35,14 @@ public class GameManager {
 	private final Integer maxTurns = 13;
 	private Integer currentTurn = 0;	
 	
-	public GameManager(UserData player1, UserData player2, GameServer server)
+	public GameManager(UserData player1, UserData player2, ConnectionToClient player1connection, ConnectionToClient player2connection )
 	{
 		//Basic constructor that allows for the game manager to know the players and the server
 		// while setting up the basic information needed for containing a round
 		
 		this.player1 = player1;
+		
 		this.player2 = player2;
-		this.server = server;
 		CurrentRound = 0;
 		PlayerScores = new ArrayList<Integer>();
 		currentTurn = 0; 
@@ -127,7 +130,7 @@ public class GameManager {
 	
 	public String SendScoreRoundEnd()
 	{
-		return players.get(0).getUsername() + " 's Score: " + player1Score + ", " + players.get(1).getUsername() + "'s Score: " + player2Score;
+		return player1.getUsername() + " 's Score: " + player1Score + ", " + player2.getUsername() + "'s Score: " + player2Score;
 	}
 	
 	public void StartRound()
