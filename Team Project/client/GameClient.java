@@ -60,8 +60,7 @@ public class GameClient extends AbstractClient
     	else if(message.equals("Username Already Taken")) {
     		cac.createaccountfailure();
     	}
-    	
-    if (arg0 instanceof UserData) {
+    	else if (arg0 instanceof UserData) {
     	System.out.println("UserData Set");
     	userData = (UserData)arg0;
     	

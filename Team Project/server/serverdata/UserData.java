@@ -12,6 +12,21 @@ public class UserData implements Serializable
 	private String Purpose;
 	private Long connectionID;
 	
+	public UserData(String Username, long id) {
+		// TODO Auto-generated constructor stub
+		this.username = Username;
+		this.connectionID = id;
+	}
+
+	public UserData() {
+		// TODO Auto-generated constructor stub
+		username = "";
+		wins = 0;
+		totalGames = 0;
+		Purpose = "";
+		connectionID = null;
+	}
+
 	public void newUser(String Username, long ID) 
 	{
 		this.username = Username;

@@ -36,10 +36,10 @@ public class UserManager {
 			arg1.sendToClient("Login Successful");
 			gameServer.addConnection(arg1);
 			// create a user object with the data from the database along with the recieved connection id
-			UserData tempuser = new UserData();
-			tempuser.newUser(loginData.getUsername(), arg1.getId());
-			System.out.println(tempuser.getUsername());
-			arg1.sendToClient(tempuser);
+			//UserData tempuser = new UserData();
+			//tempuser.newUser(loginData.getUsername(), arg1.getId());
+			//System.out.println(tempuser.getUsername());
+			//arg1.sendToClient(tempuser);
 	    }
 	 	
 	}

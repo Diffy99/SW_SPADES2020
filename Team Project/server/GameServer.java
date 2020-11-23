@@ -60,6 +60,7 @@ public class GameServer extends AbstractServer {
 		  if(arg0 instanceof LoginData) {
 			  //Send Data To UserManager for login data
 				userManager.VerifyLogin((LoginData)arg0, arg1);
+				arg1.sendToClient(new UserData("",arg1.getId()));
 		  }
 		  else if(arg0 instanceof CreateAccountData) {
 			//Send Data To UserManager for Creating and account
