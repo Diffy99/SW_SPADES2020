@@ -25,7 +25,7 @@ public class WaitingForGamePageController implements ActionListener {
 		
 		 String command = ae.getActionCommand();
 		 
-		 if(command == "cancel") {
+		 if(command == "Cancel") {
 			 CardLayout cardLayout = (CardLayout)container.getLayout();
 	         cardLayout.show(container, "3");
 		 }
