@@ -19,7 +19,7 @@ public class InitialPage extends JPanel {
 		JButton start = new JButton("Start");
 		start.addActionListener(ipc);
 		
-		page.add(start);
+		page.add(start,BorderLayout.CENTER);
 		
 		
 		
