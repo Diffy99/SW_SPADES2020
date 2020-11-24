@@ -77,10 +77,7 @@ public class GameClient extends AbstractClient
     }
 
   }
-  
-  public void startqueue() {
-	  wfgpc.waitingforgame();
-  }
+ 
   
   public void connectionException (Throwable exception) 
   {
