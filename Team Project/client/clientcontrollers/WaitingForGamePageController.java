@@ -52,24 +52,6 @@ public class WaitingForGamePageController implements ActionListener {
 	}
 	
 	
-	public void waitingforgame() {
-		
-		while(!gamefound) {
-			try {
-				Thread.sleep(500);
-				gameClient.sendToServer("In Queue");
-				Thread.sleep(250);
-			} catch (IOException | InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
-			
-		}
-		
-	}
-	
 	
 
 }

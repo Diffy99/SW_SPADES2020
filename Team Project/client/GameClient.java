@@ -69,7 +69,7 @@ public class GameClient extends AbstractClient
     	}
     	else if(message.equals("Game Created")) {
     		System.out.println(message);
-    		wfgpc.waitingforgame();
+    		
     	}
     	else if(message.equals("Game not found yet")) {
     		System.out.println(message);
