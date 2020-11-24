@@ -65,6 +65,7 @@ public class GameClient extends AbstractClient
     	}
     	else if (message.contains("Game Index:")){
     		System.out.println(message);
+    		wfgpc.setGamefound(true);
     	}
     }
     if (arg0 instanceof UserData) {
