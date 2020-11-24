@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import client.GameClient;
 
+import java.awt.CardLayout;
 import java.awt.event.*;
 
 public class GameBoardController implements ActionListener{
@@ -19,4 +20,10 @@ public class GameBoardController implements ActionListener{
 	 public void actionPerformed(ActionEvent ae) {
 		 
 	 }
+	 
+	 public void display() {
+		 CardLayout cardLayout = (CardLayout)container.getLayout();
+         cardLayout.show(container, "6");
+	
+	}
 }

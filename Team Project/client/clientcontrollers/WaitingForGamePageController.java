@@ -50,7 +50,11 @@ public class WaitingForGamePageController implements ActionListener {
 		 
 		
 	}
+	public void display() {
+		 CardLayout cardLayout = (CardLayout)container.getLayout();
+         cardLayout.show(container, "5");
 	
+	}
 	
 	
 

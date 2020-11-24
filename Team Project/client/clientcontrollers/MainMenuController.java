@@ -33,7 +33,7 @@ public class MainMenuController implements ActionListener
   {
     // Get the name of the button clicked.
     String command = ae.getActionCommand();
-  //  LoginData data = new LoginData(loginPage.getUsername(), loginPage.getPassword());
+  
     // The logout button takes the user back to the login panel.
     if (command == "Logout")
     {
@@ -51,8 +51,7 @@ public class MainMenuController implements ActionListener
     // The play button takes user to waiting for game page
     else if (command == "Play")
     {
-    	 CardLayout cardLayout = (CardLayout)container.getLayout();
-         cardLayout.show(container, "5");
+    	
          
          try {
 			gameClient.sendToServer("Waiting for game");
