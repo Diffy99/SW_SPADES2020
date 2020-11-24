@@ -55,10 +55,11 @@ public class MainMenuController implements ActionListener
          cardLayout.show(container, "5");
          
          try {
+        	Thread.sleep(250);
 			gameClient.sendToServer("Waiting for game");
 			gameClient.startqueue();
 			
-		} catch (IOException e) {
+		} catch (IOException | InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -22,6 +22,7 @@ public class GameServer extends AbstractServer {
 	private static ArrayList<UserData> connectedClients;
 	private static ArrayList<ConnectionToClient> waitingForGame;
 	private ArrayList<GameManager> activeGames;
+	private static boolean gameready;
 	
 	private JLabel status;
 	private JTextArea log;
@@ -79,8 +80,15 @@ public class GameServer extends AbstractServer {
 			  }
 			  else if(temp.equals("Waiting for game")) {
 				  System.out.println(arg1.getId() + " Is waiting for a game");
-				  addToWait(arg1);
-				  
+				  addToWait(arg1);  
+			  }
+			  else if(temp.equals("In Queue")) {
+				  System.out.println("Player in Queue");
+				   for (GameManager gameManager : activeGames) {
+					   if(gameManager.getPlayer1() == arg1.getId() || gameManager.getPlayer2() == arg1.getId()) {
+						   arg1.sendToClient("Game Index:" + activeGames.indexOf(gameManager));
+					   }
+				}
 			  }
 		  }
 			  
@@ -109,18 +117,11 @@ public class GameServer extends AbstractServer {
 			  		temp2 = clients;
 			  	}
 			  }
-			  GameManager tempgame = new GameManager(temp1,temp2,arg1,waitingForGame.get(0));
+			  GameManager tempgame = new GameManager(temp1,temp2);
 			  activeGames.add(tempgame);
-			  try {
-				arg1.sendToClient("Game Index:"+ activeGames.indexOf(tempgame));
-				waitingForGame.get(0).sendToClient("Game Index:"+ activeGames.indexOf(tempgame));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			  waitingForGame.remove(0);
-			  
 		  }
+				
+			
 	  }
 	protected void listeningException(Throwable exception) 
 	  {
