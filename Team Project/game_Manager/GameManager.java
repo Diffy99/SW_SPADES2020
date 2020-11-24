@@ -35,18 +35,22 @@ public class GameManager {
 	private final Integer maxTurns = 13;
 	private Integer currentTurn = 0;	
 	
-	public GameManager(UserData player1, UserData player2)
+	public GameManager(UserData player1)
 	{
 		//Basic constructor that allows for the game manager to know the players and the server
 		// while setting up the basic information needed for containing a round
 		
 		this.player1 = player1;
 		
-		this.player2 = player2;
+		//this.player2 = player2;
 		
 		CurrentRound = 0;
 		PlayerScores = new ArrayList<Integer>();
 		currentTurn = 0; 
+	}
+	public void setPlayer2(UserData player2)
+	{
+		this.player2 = player2;
 	}
 	
 	public long getPlayer1()

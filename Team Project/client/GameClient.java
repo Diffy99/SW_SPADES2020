@@ -63,9 +63,12 @@ public class GameClient extends AbstractClient
     	else if(message.equals("Admin Data")) {
     		apc.setAdminData();
     	}
-    	else if (message.contains("Game Index:")){
+    	else if (message.contains("Game is ready to join")){
     		System.out.println(message);
     		wfgpc.setGamefound(true);
+    	}
+    	else if(message.equals("Game Created")) {
+    		wfgpc.waitingforgame();
     	}
     }
     if (arg0 instanceof UserData) {

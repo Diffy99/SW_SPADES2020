@@ -20,24 +20,30 @@ import server.serverdata.UserData;
 public class GameServer extends AbstractServer {
 	private static UserManager userManager;
 	private static ArrayList<UserData> connectedClients;
-	private static ArrayList<ConnectionToClient> waitingForGame;
+	private static ArrayList<Long> waitingForGame;
 	private static ArrayList<GameManager> activeGames;
+	private static GameManager activegame;
+	private static boolean player2present;
 
 	private JLabel status;
 	private JTextArea log;
 
 	public GameServer() {
 		super(8300);
-		waitingForGame = new ArrayList<ConnectionToClient>();
+		waitingForGame = new ArrayList<Long>();
 		connectedClients = new ArrayList<UserData>();
 		activeGames = new ArrayList<GameManager>();
+		activegame = null;
+		player2present = false;
 	}
 
 	public GameServer(int port) {
 		super(port);
-		waitingForGame = new ArrayList<ConnectionToClient>();
+		waitingForGame = new ArrayList<Long>();
 		connectedClients = new ArrayList<UserData>();
 		activeGames = new ArrayList<GameManager>();
+		activegame = null;
+		player2present = false;
 	}
 
 	public void setUserManager(UserManager userManager) {
@@ -71,48 +77,51 @@ public class GameServer extends AbstractServer {
 					// do something on logout
 					System.out.println("Logout recieved for " + arg1.getId());
 				} else if (temp.equals("Waiting for game")) {
+					UserData temp1 = null;
 					System.out.println(arg1.getId() + " Is waiting for a game");
-					addToWait(arg1);
+					for (UserData connecteduser : connectedClients) {
+						if (connecteduser.getConnectionID() == arg1.getId()) {
+							temp1 = connecteduser;
+						}
+					}
+					if (activegame == null) {
+						GameManager game = new GameManager(temp1);
+						activegame = game;
+						arg1.sendToClient("Game Created");
+						System.out.println("Game Created for" + arg1.getId());
+					} else {
+						arg1.sendToClient("Game is ready to join" + arg1.getId());
+						player2present = true;
+					}
 				} else if (temp.equals("In Queue")) {
 					System.out.println("Player in Queue");
-					for (GameManager gameManager : activeGames) {
-						if (gameManager.getPlayer1() == arg1.getId() || gameManager.getPlayer2() == arg1.getId()) {
-							// arg1.sendToClient("Game Index:" + activeGames.indexOf(gameManager));
-							System.out.println("Game Index:" + activeGames.indexOf(gameManager) + " ID: " + arg1.getId());
-						}
+					if (player2present) {
+						arg1.sendToClient("Game is ready to join" + arg1.getId());
 					}
 				}
 			}
-
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	private void addToWait(ConnectionToClient arg1) {
-		// TODO Auto-generated method stub
-		UserData temp1 = null;
-		UserData temp2 = null;
-		if (waitingForGame.isEmpty()) {
-			System.out.println("User added to wait list");
-			waitingForGame.add(arg1);
-		} else {
-			System.out.println("Creating Game");
-			for (UserData clients : connectedClients) {
-				if (clients.getConnectionID() == arg1.getId()) {
-					temp1 = clients;
-				} else if (clients.getConnectionID() == waitingForGame.get(0).getId()) {
-					temp2 = clients;
-				}
-			}
-			GameManager tempgame = new GameManager(temp1, temp2);
-			activeGames.add(tempgame);
-			waitingForGame.remove(0);
-		}
-
-	}
-
+	/*
+	 * private void addToWait(ConnectionToClient arg1) { // TODO Auto-generated
+	 * method stub UserData temp1 = null; UserData temp2 = null; if
+	 * (waitingForGame.isEmpty()) { System.out.println("User added to wait list");
+	 * waitingForGame.add(arg1.getId()); } else {
+	 * System.out.println("Creating Game"); for (UserData clients :
+	 * connectedClients) { if (clients.getConnectionID() == arg1.getId()) { temp1 =
+	 * clients; } else if (clients.getConnectionID() == waitingForGame.get(0)) {
+	 * temp2 = clients; } } GameManager tempgame = new GameManager(temp1, temp2);
+	 * activeGames.add(tempgame); waitingForGame.remove(0); try {
+	 * arg1.sendToClient("Game Ready"); System.out.println("Game Ready Sent to " +
+	 * arg1.getId()); } catch (IOException e) { // TODO Auto-generated catch block
+	 * e.printStackTrace(); } }
+	 * 
+	 * }
+	 */
 	protected void listeningException(Throwable exception) {
 		// Display info about the exception
 		System.out.println("Listening Exception:" + exception);
