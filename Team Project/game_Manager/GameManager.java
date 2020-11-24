@@ -49,6 +49,16 @@ public class GameManager {
 		currentTurn = 0; 
 	}
 	
+	public long getPlayer1()
+	{
+		return player1.getConnectionID();
+	}
+	
+	public long getPlayer2()
+	{
+		return player2.getConnectionID();
+	}
+	
 	public void ReceiveMove(BoardGameData data)
 	{
 		
