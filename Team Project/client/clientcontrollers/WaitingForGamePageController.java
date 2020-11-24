@@ -64,6 +64,8 @@ public class WaitingForGamePageController implements ActionListener {
 				e.printStackTrace();
 			}
 			
+			gamefound = false;
+			
 		}
 		
 	}
