@@ -35,7 +35,7 @@ public class GameManager {
 	private final Integer maxTurns = 13;
 	private Integer currentTurn = 0;	
 	
-	public GameManager(UserData player1, UserData player2, ConnectionToClient player1connection, ConnectionToClient player2connection )
+	public GameManager(UserData player1, UserData player2)
 	{
 		//Basic constructor that allows for the game manager to know the players and the server
 		// while setting up the basic information needed for containing a round
@@ -43,6 +43,7 @@ public class GameManager {
 		this.player1 = player1;
 		
 		this.player2 = player2;
+		
 		CurrentRound = 0;
 		PlayerScores = new ArrayList<Integer>();
 		currentTurn = 0; 
@@ -96,17 +97,17 @@ public class GameManager {
 		// at the beginning of each round and associate the first player bet with that player
 	
 		if(FirstPlayerBet == null)
-	{
-		FirstPlayerBet = data.getCurrentBet();
-		System.out.println("First Player's Bet Received");
-		sendBet();
+		{
+			FirstPlayerBet = data.getCurrentBet();
+			System.out.println("First Player's Bet Received");
+			sendBet();
 		
-	}else if(FirstPlayerMove != null)
-	{
-		SecondPlayerBet = data.getCurrentBet();
-		System.out.println("Second Player's Bet Received");
-		sendBet();
-	}
+		}else if(FirstPlayerMove != null)
+		{
+			SecondPlayerBet = data.getCurrentBet();
+			System.out.println("Second Player's Bet Received");
+			sendBet();
+		}
 	}
 	
 	
