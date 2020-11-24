@@ -90,13 +90,14 @@ public class GameServer extends AbstractServer {
 						arg1.sendToClient("Game Created");
 						System.out.println("Game Created for" + arg1.getId());
 					} else {
-						arg1.sendToClient("Game is ready to join" + arg1.getId());
+						arg1.sendToClient("Game is ready to join " + arg1.getId());
 						player2present = true;
 					}
 				} else if (temp.equals("In Queue")) {
 					System.out.println("Player in Queue");
+					System.out.println(player2present);
 					if (player2present) {
-						arg1.sendToClient("Game is ready to join" + arg1.getId());
+						arg1.sendToClient("Game is ready to join " + arg1.getId());
 					}
 				}
 			}
