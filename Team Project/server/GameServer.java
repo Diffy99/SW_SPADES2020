@@ -99,6 +99,9 @@ public class GameServer extends AbstractServer {
 					if (player2present) {
 						arg1.sendToClient("Game is ready to join " + arg1.getId());
 					}
+					else {
+						arg1.sendToClient("Game not found yet");
+					}
 				}
 			}
 		} catch (IOException e) {

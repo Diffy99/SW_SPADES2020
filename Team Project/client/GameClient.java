@@ -71,6 +71,9 @@ public class GameClient extends AbstractClient
     		System.out.println(message);
     		wfgpc.waitingforgame();
     	}
+    	else if(message.equals("Game not found yet")) {
+    		System.out.println(message);
+    	}
     }
     if (arg0 instanceof UserData) {
     	System.out.println("UserData Set");
