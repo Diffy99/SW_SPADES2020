@@ -66,12 +66,11 @@ public class GameClient extends AbstractClient
     	else if (message.contains("Game is ready to join")){
     		System.out.println(message);
     		gbc.display();
-    	
-    		
     	}
     	else if(message.equals("Game Created")) {
     		System.out.println(message);
     		wfgpc.display();
+    		gbc.setMakefirstmove(true);
     		
     	}
     	else if(message.equals("Game not found yet")) {

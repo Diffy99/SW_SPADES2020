@@ -57,6 +57,8 @@ public class GameServer extends AbstractServer {
 			// stuff for game manager
 			if (arg0 instanceof BoardGameData) {
 				// Send Data To Game Manager
+				activegame.ReceiveMove((BoardGameData)arg0);
+				
 			} else if (arg0 instanceof PostGameData) {
 				// Send Data To GameManager
 				// possible send to User manager to update database
@@ -79,32 +81,31 @@ public class GameServer extends AbstractServer {
 				} else if (temp.equals("Waiting for game")) {
 					UserData temp1 = null;
 					System.out.println(arg1.getId() + " Is waiting for a game");
+					// Determine the connected user data based on connection id
 					for (UserData connecteduser : connectedClients) {
 						if (connecteduser.getConnectionID() == arg1.getId()) {
 							temp1 = connecteduser;
 						}
 					}
+					// checking if there is a active game if not create one
 					if (activegame == null) {
 						GameManager game = new GameManager(temp1);
 						activegame = game;
 						arg1.sendToClient("Game Created");
-						System.out.println("Game Created for" + arg1.getId());
+						System.out.println("Game Created");
 					} else {
-						arg1.sendToClient("Game is ready to join " + arg1.getId());
-						player2present = true;
+						// if there is a active game inform both players game is ready to play
+						this.sendToAllClients("Game is ready to join");
+						activegame.setPlayer2(temp1);
+						// Start round in game manager or something
+						
 					}
-				} else if (temp.equals("In Queue")) {
-					System.out.println("Player in Queue");
-					System.out.println(player2present);
-					if (player2present) {
-						arg1.sendToClient("Game is ready to join " + arg1.getId());
-					}
-					else {
-						arg1.sendToClient("Game not found yet");
-					}
+
 				}
 			}
-		} catch (IOException e) {
+		} catch (
+
+		IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
