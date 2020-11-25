@@ -46,7 +46,7 @@ public class GameBoardPage extends JPanel {
 	}
 
 	public GameBoardPage(GameBoardController gbc) {
-		
+		hand = new ArrayList<JButton>();
 		
 		JPanel board = new JPanel();
 		board.setLayout(new BorderLayout());
