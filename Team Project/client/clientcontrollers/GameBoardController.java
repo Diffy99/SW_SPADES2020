@@ -27,7 +27,7 @@ public class GameBoardController implements ActionListener{
 	 public void display() {
 		 CardLayout cardLayout = (CardLayout)container.getLayout();
          cardLayout.show(container, "6");
-         GameBoardPage gameBoardPage = (GameBoardPage)container.getComponent(5);
+         GameBoardPage gameBoardPage = (GameBoardPage)container.getComponent(6);
          if(makefirstmove) {
         	 gameBoardPage.setSeverinstructions("You are Player 1");
         	 //whatever the first move us
