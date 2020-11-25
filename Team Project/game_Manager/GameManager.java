@@ -35,6 +35,7 @@ public class GameManager {
 	private final Integer maxTurns = 13;
 	private Integer currentTurn = 0;	
 	
+	
 	public GameManager(UserData player1)
 	{
 		//Basic constructor that allows for the game manager to know the players and the server
