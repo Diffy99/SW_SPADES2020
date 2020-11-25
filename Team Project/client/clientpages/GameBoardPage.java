@@ -212,7 +212,7 @@ public class GameBoardPage extends JPanel {
 	}
 	
 	public void setCards(ArrayList<String> cards) {
-		for (int i = 1; i < 14;i++) {
+		for (int i = 0; i < 13;i++) {
 			hand.get(i).setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/"+cards.get(i) + ".png")));	
 		}
 	}
