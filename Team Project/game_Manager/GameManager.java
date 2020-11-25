@@ -1,6 +1,8 @@
 package game_Manager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import ocsf.server.ConnectionToClient;
 import server.GameServer;
@@ -10,6 +12,13 @@ import server.serverdata.UserData;
 public class GameManager {
 
 	GameServer server = new GameServer();
+	
+	
+	private final ArrayList<String> OGDeck = new ArrayList<String>( Arrays.asList("C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10", "C11", "C12", "C13", "C14", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "D11", "D12", "D13", "D14"
+			,"H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12", "H13", "H14", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10", "S11", "S12", "S13", "S14") );
+	 
+	private ArrayList<String> playingDeck = new ArrayList<String>();
+	
 	private int CurrentRound = 0;
 	private  final int MaxRounds = 7;
 	private ArrayList<UserData> players;
@@ -24,6 +33,13 @@ public class GameManager {
 	private UserData player2 = null;
 	private Integer player1Score = null; // these are the overall scores
 	private Integer player2Score = null;
+	
+	
+	//below are the blank players hands
+	private ArrayList<String> player1Hand = new ArrayList<String>();
+	private ArrayList<String> player2Hand = new ArrayList<String>();
+	
+	
 	
 	//below are the turn scores, AKA: how many bids are won
 	private Integer player1turnscore = null;
@@ -158,6 +174,23 @@ public class GameManager {
 		SecondPlayerBet = null;
 		SecondPlayerMove = null;
 		player2turnscore = null;
+		playingDeck.clear();
+		for(String s : OGDeck)
+		{
+			playingDeck.add(s);
+		}
+		Collections.shuffle(playingDeck);
+		
+		for(int i = 0; i < 12; i++)
+		{
+		  player1Hand.add(playingDeck.get(i));
+		  
+		}
+		for(int i = 13; i < 26; i++)
+		{
+			player2Hand.add(playingDeck.get(i));
+		}
+		
 		
 		
 		//Here is where we would request the 
