@@ -63,7 +63,7 @@ public class GameClient extends AbstractClient
     	else if(message.equals("Admin Data")) {
     		apc.setAdminData();
     	}
-    	else if (message.contains("Game is ready to join")){
+    	else if (message.equals("Game is ready to join")){
     		System.out.println(message);
     		gbc.display();
     	}

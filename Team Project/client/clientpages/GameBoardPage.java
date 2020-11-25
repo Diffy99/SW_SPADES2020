@@ -31,8 +31,6 @@ public class GameBoardPage extends JPanel {
 	private JButton Card11;
 	private JButton Card12;
 	private JButton Card13;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
 	private JLabel player1Played;
 	private JLabel player2Played;
 	
@@ -163,7 +161,7 @@ public class GameBoardPage extends JPanel {
 		handArea.add(player1Played);
 		handArea.add(player2Played);
 		playArea.add(displayArea);
-		
+		this.add(board);
 		
 	}
 	
