@@ -22,6 +22,7 @@ public class GameClient extends AbstractClient
     PostGameController pgc;
     InitialPageController ipc;
     UserData userData;
+    GameGui gameGui;
     
     
    public void setPanels(InitialPageController ipc, LoginController lc,CreateAccountController cac, MainMenuController mmc,AdminController apc, WaitingForGamePageController wfgpc,GameBoardController gbc, PostGameController pgc) {
@@ -35,9 +36,10 @@ public class GameClient extends AbstractClient
 	   this.ipc = ipc;
    }
   
-  public GameClient()
+  public GameClient(GameGui gameGui)
   {
     super("71.129.97.242",8300);
+    this.gameGui = gameGui;
   }
 
   public void handleMessageFromServer(Object arg0)
@@ -66,6 +68,7 @@ public class GameClient extends AbstractClient
     	else if (message.equals("Game is ready to join")){
     		System.out.println(message);
     		gbc.display();
+    		gameGui.pack();
     	}
     	else if(message.equals("Game Created")) {
     		System.out.println(message);

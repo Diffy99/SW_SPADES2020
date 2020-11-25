@@ -29,7 +29,7 @@ public class GameGui extends JFrame
   // Constructor that creates the client GUI.
   public GameGui()
   {
-	gameClient = new GameClient();
+	gameClient = new GameClient(this);
     gameClient.setHost("71.129.97.242");
     gameClient.setPort(8300);
     try {
@@ -86,8 +86,8 @@ public class GameGui extends JFrame
     this.add(container, BorderLayout.CENTER);
 
     // Show the JFrame.
+    this.setSize(500, 300);
     this.setVisible(true);
-    this.pack();
    
   }
 

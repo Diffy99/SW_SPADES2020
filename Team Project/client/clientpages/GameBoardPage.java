@@ -35,8 +35,17 @@ public class GameBoardPage extends JPanel {
 	private JButton Card13;
 	private JLabel player1Played;
 	private JLabel player2Played;
+	private JLabel Severinstructions;
 	
 	
+	public JLabel getSeverinstructions() {
+		return Severinstructions;
+	}
+
+	public void setSeverinstructions(String severinstructions) {
+		Severinstructions.setText(severinstructions);
+	}
+
 	public GameBoardPage(GameBoardController gbc) {
 		
 		
@@ -46,7 +55,7 @@ public class GameBoardPage extends JPanel {
 		Scoreboard.setLayout(new GridLayout(1,2));
 		JLabel Playersscore = new JLabel("Player 1: 0 | Player 2: 0 ");
 		Playersscore.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		JLabel Severinstructions = new JLabel("Game Starting");
+		Severinstructions = new JLabel("Game Starting");
 		Severinstructions.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Scoreboard.add(Playersscore);
 		Scoreboard.add(Severinstructions);
