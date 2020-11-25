@@ -11,7 +11,7 @@ import server.serverdata.UserData;
 
 public class GameManager {
 
-	GameServer server = new GameServer();
+	GameServer server = null;
 	
 	
 	private final ArrayList<String> OGDeck = new ArrayList<String>( Arrays.asList("C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10", "C11", "C12", "C13", "C14", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "D11", "D12", "D13", "D14"
@@ -52,11 +52,11 @@ public class GameManager {
 	private Integer currentTurn = 0;	
 	
 	
-	public GameManager(UserData player1)
+	public GameManager( GameServer server , UserData player1)
 	{
 		//Basic constructor that allows for the game manager to know the players and the server
 		// while setting up the basic information needed for containing a round
-		
+		this.server = server; 
 		this.player1 = player1;
 		
 		//this.player2 = player2;
@@ -65,6 +65,7 @@ public class GameManager {
 		PlayerScores = new ArrayList<Integer>();
 		currentTurn = 0; 
 	}
+	
 	public void setPlayer2(UserData player2)
 	{
 		this.player2 = player2;
@@ -165,7 +166,7 @@ public class GameManager {
 		return player1.getUsername() + " 's Score: " + player1Score + ", " + player2.getUsername() + "'s Score: " + player2Score;
 	}
 	
-	public ArrayList<ArrayList<String>> StartRound()
+	public void StartRound()
 	{
 		CurrentRound++;
 		FirstPlayerBet = null;
@@ -199,7 +200,13 @@ public class GameManager {
 		hands.add(player1Hand);
 		hands.add(player2Hand);
 		
-		return hands;
+		
+		server.sendToAllClients(hands);
+		
+		
+		
+		
+		//return hands;
 		//Here is where we would request the 
 		// bet from first player1, and then player2
 		
