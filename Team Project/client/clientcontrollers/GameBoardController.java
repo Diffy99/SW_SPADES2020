@@ -8,38 +8,50 @@ import client.clientpages.LoginPage;
 
 import java.awt.CardLayout;
 import java.awt.event.*;
+import java.util.ArrayList;
 
-public class GameBoardController implements ActionListener{
+public class GameBoardController implements ActionListener {
 
-	private  boolean makefirstmove;
+	private boolean makefirstmove;
 	private JPanel container;
 	private GameClient gameClient;
-	
+
 	public GameBoardController(JPanel container, GameClient gameClient) {
 		this.container = container;
 		this.gameClient = gameClient;
 		makefirstmove = false;
 	}
-	 public void actionPerformed(ActionEvent ae) {
-		 
-	 }
-	 
-	 public void display() {
-		 CardLayout cardLayout = (CardLayout)container.getLayout();
-         cardLayout.show(container, "6");
-         GameBoardPage gameBoardPage = (GameBoardPage)container.getComponent(6);
-         if(makefirstmove) {
-        	 gameBoardPage.setSeverinstructions("You are Player 1");
-        	 //whatever the first move us
-         }
-         else {
-        	 gameBoardPage.setSeverinstructions("You are Player 2");
-         }
+
+	public void actionPerformed(ActionEvent ae) {
+
 	}
+
+	public void display() {
+		CardLayout cardLayout = (CardLayout) container.getLayout();
+		cardLayout.show(container, "6");
+		GameBoardPage gameBoardPage = (GameBoardPage) container.getComponent(6);
+		if (makefirstmove) {
+			gameBoardPage.setSeverinstructions("You are Player 1");
+			// whatever the first move us
+		} else {
+			gameBoardPage.setSeverinstructions("You are Player 2");
+		}
+	}
+
 	public boolean isMakefirstmove() {
 		return makefirstmove;
 	}
+
 	public void setMakefirstmove(boolean makefirstmove) {
 		this.makefirstmove = makefirstmove;
+	}
+
+	public void setHand(ArrayList<ArrayList<String>> temp) {
+		GameBoardPage gameBoardPage = (GameBoardPage) container.getComponent(6);
+		if (makefirstmove) {
+			gameBoardPage.setCards(temp.get(0));
+		} else {
+			gameBoardPage.setCards(temp.get(1));
+		}
 	}
 }

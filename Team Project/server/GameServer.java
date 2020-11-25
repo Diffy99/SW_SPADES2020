@@ -20,8 +20,6 @@ import server.serverdata.UserData;
 public class GameServer extends AbstractServer {
 	private static UserManager userManager;
 	private static ArrayList<UserData> connectedClients;
-	private static ArrayList<Long> waitingForGame;
-	private static ArrayList<GameManager> activeGames;
 	private static GameManager activegame;
 	private static boolean player2present;
 
@@ -30,18 +28,14 @@ public class GameServer extends AbstractServer {
 
 	public GameServer() {
 		super(8300);
-		waitingForGame = new ArrayList<Long>();
 		connectedClients = new ArrayList<UserData>();
-		activeGames = new ArrayList<GameManager>();
 		activegame = null;
 		player2present = false;
 	}
 
 	public GameServer(int port) {
 		super(port);
-		waitingForGame = new ArrayList<Long>();
 		connectedClients = new ArrayList<UserData>();
-		activeGames = new ArrayList<GameManager>();
 		activegame = null;
 		player2present = false;
 	}
@@ -89,7 +83,7 @@ public class GameServer extends AbstractServer {
 					}
 					// checking if there is a active game if not create one
 					if (activegame == null) {
-						GameManager game = new GameManager(temp1);
+						GameManager game = new GameManager(this,temp1);
 						activegame = game;
 						arg1.sendToClient("Game Created");
 						System.out.println("Game Created");

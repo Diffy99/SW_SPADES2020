@@ -31,6 +31,7 @@ public class GameBoardPage extends JPanel {
 	private JButton Card11;
 	private JButton Card12;
 	private JButton Card13;
+	private ArrayList<JButton> hand;
 	private JLabel player1Played;
 	private JLabel player2Played;
 	private JLabel Severinstructions;
@@ -129,6 +130,7 @@ public class GameBoardPage extends JPanel {
 		Card13 = new JButton();
 		displayArea.add(Card13);
 		
+		
 		player1Played = new JLabel();
 		player1Played.setHorizontalAlignment(JLabel.CENTER);
 		player2Played = new JLabel();
@@ -150,7 +152,21 @@ public class GameBoardPage extends JPanel {
 		Card12.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
 		Card13.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
 		
-		
+			hand.add(Card1);
+			hand.add(Card2);
+			hand.add(Card3);
+			hand.add(Card4);
+			hand.add(Card5);
+			hand.add(Card6);
+			hand.add(Card7);
+			hand.add(Card8);
+			hand.add(Card9);
+			hand.add(Card10);
+			hand.add(Card11);
+			hand.add(Card12);
+			hand.add(Card13);
+			
+
 		
 		
 		
@@ -196,5 +212,8 @@ public class GameBoardPage extends JPanel {
 	}
 	
 	public void setCards(ArrayList<String> cards) {
+		for (int i = 1; i < 14;i++) {
+			hand.get(i).setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/"+cards.get(i) + ".png")));	
+		}
 	}
 }
