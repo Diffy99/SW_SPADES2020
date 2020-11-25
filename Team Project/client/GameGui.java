@@ -86,7 +86,7 @@ public class GameGui extends JFrame
     this.add(container, BorderLayout.CENTER);
 
     // Show the JFrame.
-    this.setSize(550, 350);
+    this.setSize(925, 550);
     this.setVisible(true);
   }
 
