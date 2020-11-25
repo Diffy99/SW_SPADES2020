@@ -86,8 +86,9 @@ public class GameGui extends JFrame
     this.add(container, BorderLayout.CENTER);
 
     // Show the JFrame.
-    this.setSize(925, 550);
     this.setVisible(true);
+    this.pack();
+   
   }
 
   // Main function that creates the game GUI when the program is started.

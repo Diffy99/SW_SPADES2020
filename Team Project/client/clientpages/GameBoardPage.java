@@ -12,6 +12,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
@@ -40,11 +41,9 @@ public class GameBoardPage extends JPanel {
 		
 		
 		JPanel board = new JPanel();
-		board.setSize(925, 500);
 		board.setLayout(new BorderLayout());
 		JPanel Scoreboard = new JPanel();
 		Scoreboard.setLayout(new GridLayout(1,2));
-		
 		JLabel Playersscore = new JLabel("Player 1: 0 | Player 2: 0 ");
 		Playersscore.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		JLabel Severinstructions = new JLabel("Game Starting");
@@ -53,6 +52,7 @@ public class GameBoardPage extends JPanel {
 		Scoreboard.add(Severinstructions);
 		JPanel betPanel = new JPanel();
 		Scoreboard.setLayout(new GridLayout(1,2));
+		betPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 	
 		
 		JLabel placebetLabel = new JLabel("Place Bet");
@@ -60,6 +60,7 @@ public class GameBoardPage extends JPanel {
 		betPanel.add(placebetLabel);
 		JSlider betSlider = new JSlider();
 		betSlider.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		betSlider.setPaintLabels(true);
 		betSlider.setBackground(Color.LIGHT_GRAY);
 		betSlider.setPaintTicks(true);
 		betSlider.setToolTipText("Set Bet");
@@ -67,7 +68,7 @@ public class GameBoardPage extends JPanel {
 		betSlider.setMaximum(13);
 		betSlider.setValue(0);
 		betSlider.setSnapToTicks(true);
-		betSlider.setPaintLabels(true);
+		
 		betPanel.add(betSlider);
 		JButton confirmBetButton = new JButton("Confirm Bet");
 		confirmBetButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -163,7 +164,7 @@ public class GameBoardPage extends JPanel {
 		handArea.add(player2Played);
 		playArea.add(displayArea);
 		this.add(board);
-	
+		
 	}
 	
 	public void showUserMove() {
