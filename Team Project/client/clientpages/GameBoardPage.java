@@ -3,6 +3,7 @@ package client.clientpages;
 import javax.swing.*;
 
 import com.sun.prism.Image;
+import com.sun.xml.internal.ws.api.server.Container;
 
 import client.clientcontrollers.GameBoardController;
 import game_Manager.GameManager;
@@ -162,7 +163,7 @@ public class GameBoardPage extends JPanel {
 		handArea.add(player2Played);
 		playArea.add(displayArea);
 		this.add(board);
-		
+	
 	}
 	
 	public void showUserMove() {

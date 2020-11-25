@@ -25,6 +25,7 @@ public class GameBoardController implements ActionListener{
 	 public void display() {
 		 CardLayout cardLayout = (CardLayout)container.getLayout();
          cardLayout.show(container, "6");
+         container.setSize(925, 500);
          if(makefirstmove) {
         	 //whatever the first move us
          }
