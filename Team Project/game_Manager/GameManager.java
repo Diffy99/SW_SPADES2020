@@ -165,7 +165,7 @@ public class GameManager {
 		return player1.getUsername() + " 's Score: " + player1Score + ", " + player2.getUsername() + "'s Score: " + player2Score;
 	}
 	
-	public void StartRound()
+	public ArrayList<ArrayList<String>> StartRound()
 	{
 		CurrentRound++;
 		FirstPlayerBet = null;
@@ -174,25 +174,32 @@ public class GameManager {
 		SecondPlayerBet = null;
 		SecondPlayerMove = null;
 		player2turnscore = null;
+		
+		if(playingDeck.size() > 0)
+		{
 		playingDeck.clear();
+		}
 		for(String s : OGDeck)
 		{
 			playingDeck.add(s);
 		}
 		Collections.shuffle(playingDeck);
 		
-		for(int i = 0; i < 12; i++)
+		for(int i = 0; i <= 12; i++)
 		{
 		  player1Hand.add(playingDeck.get(i));
 		  
 		}
-		for(int i = 13; i < 26; i++)
+		for(int i = 13; i <= 26; i++)
 		{
 			player2Hand.add(playingDeck.get(i));
 		}
 		
+		ArrayList<ArrayList<String>> hands = new ArrayList<ArrayList<String>>();
+		hands.add(player1Hand);
+		hands.add(player2Hand);
 		
-		
+		return hands;
 		//Here is where we would request the 
 		// bet from first player1, and then player2
 		
