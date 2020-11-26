@@ -95,6 +95,7 @@ public class GameManager {
 			FirstPlayerMove = temp;
 			System.out.println("First Player's Move Received");
 			server.sendToAllClients("Player1 Wait : Player2 Display move " + SendMove());
+			server.sendToAllClients("Player1 Wait : Player2 Turn");
 			
 			
 		}else if(temp.contains("Player2Card"))
@@ -103,6 +104,7 @@ public class GameManager {
 			SecondPlayerMove = temp;
 			System.out.println("Second Player's Move Received");
 			server.sendToAllClients("Player1 Display move " + SendMove()+ "  : Player2 Wait");
+			server.sendToAllClients("Player1 Wait : Player2 Turn");
 			calculateTurnEnd();
 		}
 	}
