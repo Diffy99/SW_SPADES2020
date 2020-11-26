@@ -25,7 +25,7 @@ public class GameBoardController implements ActionListener {
 	private JLabel player2played;
 	private ArrayList<String> currentHand;
 	private boolean isTurn;
-	private GameBoardPage gameBoardPage;
+ 
 
 	public JSlider getBetSlider() {
 		return betSlider;
@@ -39,6 +39,7 @@ public class GameBoardController implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent ae) {
+		GameBoardPage gameBoardPage =(GameBoardPage) container.getComponent(6);
 		try {
 			String command = ae.getActionCommand();
 			if (isTurn) {
@@ -70,6 +71,7 @@ public class GameBoardController implements ActionListener {
 	}
 
 	public void display() {
+		GameBoardPage gameBoardPage =(GameBoardPage) container.getComponent(6);
 		CardLayout cardLayout = (CardLayout) container.getLayout();
 		cardLayout.show(container, "6");
 		if (makefirstmove) {
@@ -82,7 +84,7 @@ public class GameBoardController implements ActionListener {
 		player1played = gameBoardPage.getPlayer1Played();
 		player2played = gameBoardPage.getPlayer2Played();
 		ArrayList<String> currentHand = new ArrayList<String>();
-		gameBoardPage = (GameBoardPage) container.getComponent(6);
+		
 	}
 
 	public boolean isMakefirstmove() {
@@ -94,6 +96,7 @@ public class GameBoardController implements ActionListener {
 	}
 
 	public void setHand(ArrayList<ArrayList<String>> temp) {
+		GameBoardPage gameBoardPage =(GameBoardPage) container.getComponent(6);
 		if (makefirstmove) {
 			gameBoardPage.setCards(temp.get(0));
 			currentHand = temp.get(0);
@@ -105,6 +108,7 @@ public class GameBoardController implements ActionListener {
 	}
 
 	public void recieveCommand(String message) {
+		GameBoardPage gameBoardPage =(GameBoardPage) container.getComponent(6);
 		// TODO Auto-generated method stub
 		String[] command = message.split("|");
 		String action;
