@@ -39,10 +39,10 @@ public class GameBoardController implements ActionListener {
 			command = command.substring(4);
 			if (makefirstmove) {
 				player1played.setIcon(new ImageIcon(GameBoardPage.class
-						.getResource("/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(command)) + ".png")));
+						.getResource("/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(command)-1) + ".png")));
 			} else {
 				player2played.setIcon(new ImageIcon(GameBoardPage.class
-						.getResource("/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(command)) + ".png")));
+						.getResource("/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(command)-1) + ".png")));
 			}
 
 		}
