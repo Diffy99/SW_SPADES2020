@@ -51,6 +51,8 @@ public class GameManager {
 	private final Integer maxTurns = 13;
 	private Integer currentTurn = 0;	
 	
+	//Determines who is to go first in the turn
+	private boolean player1First = true; 
 	
 	public GameManager( GameServer server , UserData player1)
 	{
@@ -89,7 +91,7 @@ public class GameManager {
 		// if firstplayermove is null and this is called then obviously 
 		// it is the first players move and if not null, then it is obviously the second players 
 		
-		if(temp.contains("Player1Card"))
+		if(temp.contains("Player1Card") && FirstPlayerMove == null)
 		{
 			temp = temp.substring(11);
 			FirstPlayerMove = temp;
@@ -98,14 +100,24 @@ public class GameManager {
 			server.sendToAllClients("Player1 Wait : Player2 Turn");
 			
 			
-		}else if(temp.contains("Player2Card"))
+		}else if(temp.contains("Player2Card")&& SecondPlayerMove == null)
 		{
 			temp = temp.substring(11);
 			SecondPlayerMove = temp;
 			System.out.println("Second Player's Move Received");
 			server.sendToAllClients("Player1 Display move " + SendMove()+ "  : Player2 Wait");
 			server.sendToAllClients("Player1 Wait : Player2 Turn");
-			calculateTurnEnd();
+			//determineTurnWinner();
+		}else 
+		{
+			server.sendToAllClients("Player1 Wait : Player2 Wait");
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			determineTurnWinner();
 		}
 	}
 	
@@ -181,6 +193,7 @@ public class GameManager {
 		SecondPlayerMove = null;
 		player2turnscore = null;
 		
+		
 		if(playingDeck.size() > 0)
 		{
 		playingDeck.clear();
@@ -213,7 +226,11 @@ public class GameManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		server.sendToAllClients("Player1 Turn : Player2 Wait");
+		
+		if(CurrentRound == 0 )
+		{
+			server.sendToAllClients("Player1 Turn : Player2 Wait");
+		}
 		
 		
 		
@@ -225,7 +242,7 @@ public class GameManager {
 		
 	}
 	
-	private void calculateTurnEnd()
+	private void determineTurnWinner()
 	{
 		//calculate that the current turn has come to an end and increment
 		currentTurn++;
@@ -237,41 +254,63 @@ public class GameManager {
 		
 		if(FirstPlayerMove != null && SecondPlayerMove != null)
 		{
-			String firstSuit = "suit of first player";
-			String firstValue = "value of first player";
-			String secondSuit = "suit of second player";
-			String secondValue = "value of second player";
+			char firstSuit = FirstPlayerMove.charAt(0);
+			String firstValue = FirstPlayerMove.substring(1);
+			char secondSuit = SecondPlayerMove.charAt(0);
+			String secondValue = SecondPlayerMove.substring(1);
 			
-			if(firstSuit.contentEquals(secondSuit))
+			if(firstSuit == secondSuit)
 			{
 				//If they are both the same suit, high card
 				if(Integer.parseInt(firstValue) > Integer.parseInt(secondValue))
 				{
 					player1turnscore++;
+					server.sendToAllClients("Player1 TurnWin : Player2 TurnLoss");
 				}else
-					player2turnscore++;
-			}else if(!firstSuit.contentEquals(secondSuit))
-			{ // This is the not so tricky part. if there is a spade in the values of the suit then i must determine who played the spade
-				
-				if(secondSuit.contentEquals("S"))
 				{
 					player2turnscore++;
+					server.sendToAllClients("Player1 TurnLoss : Player2 TurnWin");
+				}
+			}else if(firstSuit != secondSuit)
+			{ // This is the not so tricky part. if there is a spade in the values of the suit then i must determine who played the spade
+				
+				if(secondSuit == 'S')
+				{
+					player2turnscore++;
+					server.sendToAllClients("Player1 TurnLoss : Player2 TurnWin");
 				}else
 					player1turnscore++;
+					server.sendToAllClients("Player1 TurnWin : Player2 TurnLoss");
 				
 			}
 			
+			//server.sendToAllClients("Player1 TurnScore " + player1turnscore + ": Player2 TurnScore " + player2turnscore);
 			
+			// Decided not applicable to send score but turn wins instead
+			
+			server.sendToAllClients("Player1 TurnWin : Player2 TurnLoss");
 			
 			
 		}
+		
 		//at the end of each turn we reset the moves to null; 
 		FirstPlayerMove = null;
 		SecondPlayerMove = null;
 		
+		//Send to the clients who will be going first on the next turn: 
+		player1First = !player1First; 
+		
+		if(player1First)
+		{
+			 server.sendToAllClients("Player1 Turn : Player2 Wait");
+
+		}else
+		{
+			server.sendToAllClients("Player1 Wait : Player2 Turn"); 
+		}
+		
 		if(currentTurn == maxTurns)
 		{
-		
 			StartRound();
 		}
 		
