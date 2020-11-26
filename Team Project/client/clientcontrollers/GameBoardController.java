@@ -111,7 +111,14 @@ public class GameBoardController implements ActionListener {
 		// TODO Auto-generated method stub
 		String[] command = message.split(":");
 		String action;
-		if(makefirstmove) {
+		if(message.contains("TurnWin"))
+		{
+			gameBoardPage.setSeverinstructions("You win the bag");
+		}
+		else if(message.contains("TurnLoss")) {
+			gameBoardPage.setSeverinstructions("You lost the bag");
+		}
+		else if(makefirstmove) {
 			action = command[0].substring(7);
 			if(action.contains("Wait")) {
 				isTurn = false;
@@ -121,7 +128,7 @@ public class GameBoardController implements ActionListener {
 				gameBoardPage.setSeverinstructions("Player 1 turn to play card");
 			}
 			else if (action.contains("Display move")) {
-				action = action.substring(15);
+				action = action.substring(14);
 				player2played.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/"+action+".png")));
 			}
 		}
