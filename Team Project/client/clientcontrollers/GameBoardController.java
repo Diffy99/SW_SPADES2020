@@ -109,7 +109,7 @@ public class GameBoardController implements ActionListener {
 	public void recieveCommand(String message) {
 		GameBoardPage gameBoardPage =(GameBoardPage) container.getComponent(6);
 		// TODO Auto-generated method stub
-		String[] command = message.split("|");
+		String[] command = message.split(":");
 		String action;
 		if(makefirstmove) {
 			action = command[0].substring(7);

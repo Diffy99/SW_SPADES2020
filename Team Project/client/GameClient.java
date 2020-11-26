@@ -47,6 +47,7 @@ public class GameClient extends AbstractClient {
 
 		if (arg0 instanceof String) {
 			String message = (String) arg0;
+			System.out.println(message);
 			if (message.equals("Incorrect Username/Password")) {
 				System.out.println("Login fail recieved");
 				lc.loginfail();
