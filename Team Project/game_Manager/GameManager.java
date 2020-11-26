@@ -228,7 +228,7 @@ public class GameManager {
 			e.printStackTrace();
 		}
 		
-		if(CurrentRound == 0 )
+		if(CurrentRound == 1 )
 		{
 			server.sendToAllClients("Player1 Turn : Player2 Wait");
 		}
