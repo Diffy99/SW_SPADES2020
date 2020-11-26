@@ -36,7 +36,7 @@ public class GameBoardController implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		String command = ae.getActionCommand();
 		if (command.contains("Card")) {
-			command.replace("Card", "");
+			command = command.substring(4);
 			if (makefirstmove) {
 				player1played.setIcon(new ImageIcon(GameBoardPage.class
 						.getResource("/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(command)) + ".png")));
