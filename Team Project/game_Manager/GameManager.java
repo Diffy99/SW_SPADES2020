@@ -97,7 +97,7 @@ public class GameManager {
 			FirstPlayerMove = temp;
 			System.out.println("First Player's Move Received");
 			server.sendToAllClients("Player1 Wait : Player2 Display move " + SendMove());
-			server.sendToAllClients("Player1 Wait : Player2 Turn");
+			System.out.println("Player1 Wait : Player2 Display move " + SendMove());
 			
 			
 		}else if(temp.contains("Player2Card")&& SecondPlayerMove == null)
@@ -106,9 +106,10 @@ public class GameManager {
 			SecondPlayerMove = temp;
 			System.out.println("Second Player's Move Received");
 			server.sendToAllClients("Player1 Display move " + SendMove()+ ": Player2 Wait");
-			server.sendToAllClients("Player1 Wait : Player2 Turn");
+			System.out.println("Player1 Display move " + SendMove()+ ": Player2 Wait");
 			//determineTurnWinner();
-		}else 
+		}
+		if(FirstPlayerMove != null && SecondPlayerMove != null)
 		{
 			server.sendToAllClients("Player1 Wait : Player2 Wait");
 			try {
@@ -119,6 +120,18 @@ public class GameManager {
 			}
 			determineTurnWinner();
 		}
+		
+		if(!player1First)
+		{
+			 server.sendToAllClients("Player1 Turn : Player2 Wait");
+			 System.out.println("Player1 Turn : Player2 Wait");
+
+		}else
+		{
+			server.sendToAllClients("Player1 Wait : Player2 Turn"); 
+			System.out.println("Player1 Wait : Player2 Turn");
+		}
+		
 		
 	}
 	
@@ -231,8 +244,8 @@ public class GameManager {
 		if(CurrentRound == 1 )
 		{
 			server.sendToAllClients("Player1 Turn : Player2 Wait");
+			System.out.println("Player1 Turn : Player2 Wait");
 		}
-		
 		
 		
 		
@@ -266,11 +279,15 @@ public class GameManager {
 				if(Integer.parseInt(firstValue) > Integer.parseInt(secondValue))
 				{
 					player1turnscore++;
+					System.out.println("Player 1 turn score:" + player1turnscore++);
 					server.sendToAllClients("Player1 TurnWin : Player2 TurnLoss");
+					System.out.println("Player1 TurnWin : Player2 TurnLoss");
 				}else
 				{
 					player2turnscore++;
+					System.out.println("Player 2 turn score:" + player2turnscore++);
 					server.sendToAllClients("Player1 TurnLoss : Player2 TurnWin");
+					System.out.println("Player1 TurnLoss : Player2 TurnWin");
 				}
 			}else if(firstSuit != secondSuit)
 			{ // This is the not so tricky part. if there is a spade in the values of the suit then i must determine who played the spade
@@ -278,10 +295,14 @@ public class GameManager {
 				if(secondSuit == 'S')
 				{
 					player2turnscore++;
+					System.out.println("Player 2 turn score:" + player2turnscore++);
 					server.sendToAllClients("Player1 TurnLoss : Player2 TurnWin");
+					System.out.println("Player1 TurnLoss : Player2 TurnWin");
 				}else
 					player1turnscore++;
+					System.out.println("Player 1 turn score:" + player1turnscore++);
 					server.sendToAllClients("Player1 TurnWin : Player2 TurnLoss");
+					System.out.println("Player1 TurnWin : Player2 TurnLoss");
 				
 			}
 			
@@ -289,7 +310,7 @@ public class GameManager {
 			
 			// Decided not applicable to send score but turn wins instead
 			
-			server.sendToAllClients("Player1 TurnWin : Player2 TurnLoss");
+			//server.sendToAllClients("Player1 TurnWin : Player2 TurnLoss");
 			
 			
 		}
@@ -304,10 +325,12 @@ public class GameManager {
 		if(player1First)
 		{
 			 server.sendToAllClients("Player1 Turn : Player2 Wait");
+			 System.out.println("Player1 Turn : Player2 Wait");
 
 		}else
 		{
 			server.sendToAllClients("Player1 Wait : Player2 Turn"); 
+			System.out.println("Player1 Wait : Player2 Turn");
 		}
 		
 		if(currentTurn == maxTurns)
