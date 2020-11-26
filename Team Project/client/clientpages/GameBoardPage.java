@@ -33,8 +33,30 @@ public class GameBoardPage extends JPanel {
 	private JButton Card13;
 	private ArrayList<JButton> hand;
 	private JLabel player1Played;
+	
+	
+	
+	
+	
+	public JLabel getPlayer1Played() {
+		return player1Played;
+	}
+
+	public void setPlayer1Played(JLabel player1Played) {
+		this.player1Played = player1Played;
+	}
+
+	public JLabel getPlayer2Played() {
+		return player2Played;
+	}
+
+	public void setPlayer2Played(JLabel player2Played) {
+		this.player2Played = player2Played;
+	}
+
 	private JLabel player2Played;
 	private JLabel Severinstructions;
+	private JSlider betSlider;
 	
 	
 	public JLabel getSeverinstructions() {
@@ -66,7 +88,8 @@ public class GameBoardPage extends JPanel {
 		JLabel placebetLabel = new JLabel("Place Bet");
 		placebetLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		betPanel.add(placebetLabel);
-		JSlider betSlider = new JSlider();
+		betSlider = new JSlider();
+		
 		betSlider.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		betSlider.setPaintLabels(true);
 		betSlider.setBackground(Color.LIGHT_GRAY);
@@ -79,6 +102,7 @@ public class GameBoardPage extends JPanel {
 		
 		betPanel.add(betSlider);
 		JButton confirmBetButton = new JButton("Confirm Bet");
+		confirmBetButton.addActionListener(gbc);
 		confirmBetButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		betPanel.add(confirmBetButton);
 		
@@ -91,43 +115,43 @@ public class GameBoardPage extends JPanel {
 		 
 	
 		
-		Card1 = new JButton();
+		Card1 = new JButton("Card1");
 		displayArea.add(Card1);
 		
-		Card2 = new JButton();
+		Card2 = new JButton("Card2");
 		displayArea.add(Card2);
 		
-		Card3 = new JButton();
+		Card3 = new JButton("Card3");
 		displayArea.add(Card3);
 		
-		Card4 = new JButton();
+		Card4 = new JButton("Card4");
 		displayArea.add(Card4);
 		
-		Card5 = new JButton();
+		Card5 = new JButton("Card5");
 		displayArea.add(Card5);
 		
-		Card6 = new JButton();
+		Card6 = new JButton("Card6");
 		displayArea.add(Card6);
 		
-		Card7 = new JButton();
+		Card7 = new JButton("Card7");
 		displayArea.add(Card7);
 		
-		Card8 = new JButton();
+		Card8 = new JButton("Card8");
 		displayArea.add(Card8);
 		
-		Card9 = new JButton();
+		Card9 = new JButton("Card9");
 		displayArea.add(Card9);
 		
-		Card10 = new JButton();
+		Card10 = new JButton("Card10");
 		displayArea.add(Card10);
 		
-		Card11 = new JButton();
+		Card11 = new JButton("Card11");
 		displayArea.add(Card11);
 		
-		Card12 = new JButton();
+		Card12 = new JButton("Card12");
 		displayArea.add(Card12);
 		
-		Card13 = new JButton();
+		Card13 = new JButton("Card13");
 		displayArea.add(Card13);
 		
 		
@@ -165,9 +189,21 @@ public class GameBoardPage extends JPanel {
 			hand.add(Card11);
 			hand.add(Card12);
 			hand.add(Card13);
+			Card1.addActionListener(gbc);
+			Card2.addActionListener(gbc);
+			Card3.addActionListener(gbc);
+			Card4.addActionListener(gbc);
+			Card5.addActionListener(gbc);
+			Card6.addActionListener(gbc);
+			Card7.addActionListener(gbc);
+			Card8.addActionListener(gbc);
+			Card9.addActionListener(gbc);
+			Card10.addActionListener(gbc);
+			Card11.addActionListener(gbc);
+			Card12.addActionListener(gbc);
+			Card13.addActionListener(gbc);
 			
 
-		
 		
 		
 		
@@ -190,6 +226,14 @@ public class GameBoardPage extends JPanel {
 		
 	}
 	
+	public JSlider getBetSlider() {
+		return betSlider;
+	}
+
+	public void setBetSlider(JSlider betSlider) {
+		this.betSlider = betSlider;
+	}
+
 	public void showUserMove() {
 		
 	}
@@ -213,7 +257,7 @@ public class GameBoardPage extends JPanel {
 	
 	public void setCards(ArrayList<String> cards) {
 		for (int i = 0; i < 13;i++) {
-			hand.get(i).setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/"+cards.get(i) + ".png")));	
+			hand.get(i).setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/" + cards.get(i) + ".png")));	
 		}
 	}
 }

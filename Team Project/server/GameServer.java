@@ -93,7 +93,6 @@ public class GameServer extends AbstractServer {
 						activegame.setPlayer2(temp1);
 						// Start round in game manager or something
 						activegame.StartRound();
-						
 					}
 
 				}
