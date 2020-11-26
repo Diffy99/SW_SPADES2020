@@ -113,10 +113,10 @@ public class GameBoardController implements ActionListener {
 		String action;
 		if(makefirstmove) {
 			action = command[0].substring(7);
-			if(action.equals("Wait")) {
+			if(action.contains("Wait")) {
 				isTurn = false;
 				gameBoardPage.setSeverinstructions("Player 2 turn to play card");
-			} else if (action.equals("Turn")) {
+			} else if (action.contains("Turn")) {
 				isTurn = true;
 				gameBoardPage.setSeverinstructions("Player 1 turn to play card");
 			}
@@ -127,10 +127,10 @@ public class GameBoardController implements ActionListener {
 		}
 		else {
 			action = command[1].substring(7);
-			if(action.equals("Wait")) {
+			if(action.contains("Wait")) {
 				isTurn = false;
 				gameBoardPage.setSeverinstructions("Player 1 turn to play card");
-			} else if (action.equals("Turn")) {
+			} else if (action.contains("Turn")) {
 				isTurn = true;
 				gameBoardPage.setSeverinstructions("Player 2 turn to play card");
 			}
