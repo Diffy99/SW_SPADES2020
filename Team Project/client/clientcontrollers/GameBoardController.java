@@ -8,7 +8,6 @@ import javax.swing.JSlider;
 
 import client.GameClient;
 import client.clientpages.GameBoardPage;
-import client.clientpages.LoginPage;
 
 import java.awt.CardLayout;
 import java.awt.event.*;

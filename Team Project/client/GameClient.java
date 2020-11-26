@@ -68,18 +68,17 @@ public class GameClient extends AbstractClient {
 				System.out.println(message);
 				wfgpc.display();
 				gbc.setMakefirstmove(true);
-
 			} else if (message.equals("Game not found yet")) {
 				System.out.println(message);
-			}else if (message.contains("Player1") || (message.contains("Player2"))) {
+			} else if (message.contains("Player1") || (message.contains("Player2"))) {
 				gbc.recieveCommand(message);
 			}
 		}
-		if (arg0 instanceof UserData) {
+		else if (arg0 instanceof UserData) {
 			System.out.println("UserData Set");
 			userData = (UserData) arg0;
 		}
-		if (arg0 instanceof ArrayList<?>) {
+		else if (arg0 instanceof ArrayList<?>) {
 			ArrayList<ArrayList<String>> temp = (ArrayList<ArrayList<String>>) arg0;
 			gbc.setHand(temp);
 
