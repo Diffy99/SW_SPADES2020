@@ -260,4 +260,5 @@ public class GameBoardPage extends JPanel {
 			hand.get(i).setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/" + cards.get(i) + ".png")));	
 		}
 	}
+
 }

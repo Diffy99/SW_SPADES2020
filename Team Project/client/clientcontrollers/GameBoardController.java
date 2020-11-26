@@ -1,6 +1,7 @@
 package client.clientcontrollers;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -34,15 +35,24 @@ public class GameBoardController implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent ae) {
+		GameBoardPage gameBoardPage = (GameBoardPage) container.getComponent(6);
 		String command = ae.getActionCommand();
 		if (command.contains("Card")) {
 			command = command.substring(4);
 			if (makefirstmove) {
 				player1played.setIcon(new ImageIcon(GameBoardPage.class
 						.getResource("/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(command)-1) + ".png")));
+				currentHand.set((Integer.parseInt(command)-1),"gray_back");
+				 gameBoardPage.setCards(currentHand);
+				 JButton selectedCard = (JButton) ae.getSource();
+				 selectedCard.setEnabled(false);
 			} else {
 				player2played.setIcon(new ImageIcon(GameBoardPage.class
 						.getResource("/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(command)-1) + ".png")));
+				currentHand.set((Integer.parseInt(command)-1),"gray_back");
+				 gameBoardPage.setCards(currentHand);
+				 JButton selectedCard = (JButton) ae.getSource();
+				 selectedCard.setEnabled(false);
 			}
 
 		}
