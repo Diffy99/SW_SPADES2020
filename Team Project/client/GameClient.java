@@ -71,6 +71,8 @@ public class GameClient extends AbstractClient {
 
 			} else if (message.equals("Game not found yet")) {
 				System.out.println(message);
+			}else if (message.contains("Player1") || (message.contains("Player2"))) {
+				gbc.recieveCommand(message);
 			}
 		}
 		if (arg0 instanceof UserData) {

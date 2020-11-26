@@ -81,7 +81,7 @@ public class GameManager {
 		return player2.getConnectionID();
 	}
 	
-	public void ReceiveMove(BoardGameData data)
+	public void ReceiveMove(String temp)
 	{
 		
 		//Essentially a two way setter for the moves of the players,
@@ -89,17 +89,20 @@ public class GameManager {
 		// if firstplayermove is null and this is called then obviously 
 		// it is the first players move and if not null, then it is obviously the second players 
 		
-		if(FirstPlayerMove == null)
+		if(temp.contains("Player1Card"))
 		{
-			FirstPlayerMove = data.getCurrentMove();
+			temp = temp.substring(11);
+			FirstPlayerMove = temp;
 			System.out.println("First Player's Move Received");
-			SendMove();
+			server.sendToAllClients("Player1 Wait | Player2 " + SendMove());
 			
-		}else if(FirstPlayerMove != null)
+			
+		}else if(temp.contains("Player2Card"))
 		{
-			SecondPlayerMove = data.getCurrentMove();
+			temp = temp.substring(11);
+			SecondPlayerMove = temp;
 			System.out.println("Second Player's Move Received");
-			SendMove();
+			server.sendToAllClients("Player1 Display move" + SendMove()+ "  | Player2 Wait");
 			calculateTurnEnd();
 		}
 	}
@@ -202,6 +205,13 @@ public class GameManager {
 		
 		
 		server.sendToAllClients(hands);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		server.sendToAllClients("Player1 Turn | Player2 Wait");
 		
 		
 		

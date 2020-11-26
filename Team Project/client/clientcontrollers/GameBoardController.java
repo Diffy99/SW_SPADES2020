@@ -12,6 +12,7 @@ import client.clientpages.LoginPage;
 
 import java.awt.CardLayout;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GameBoardController implements ActionListener {
@@ -24,6 +25,7 @@ public class GameBoardController implements ActionListener {
 	private JLabel player2played;
 	private ArrayList<String> currentHand;
 	private boolean isTurn;
+	private GameBoardPage gameBoardPage;
 
 	public JSlider getBetSlider() {
 		return betSlider;
@@ -37,38 +39,39 @@ public class GameBoardController implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent ae) {
-		GameBoardPage gameBoardPage = (GameBoardPage) container.getComponent(6);
-		String command = ae.getActionCommand();
-		if (isTurn) {
-			if (command.contains("Card")) {
-				command = command.substring(4);
-				if (makefirstmove) {
-					player1played.setIcon(new ImageIcon(GameBoardPage.class.getResource(
-							"/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(command) - 1) + ".png")));
-					currentHand.set((Integer.parseInt(command) - 1), "gray_back");
-					gameBoardPage.setCards(currentHand);
-					JButton selectedCard = (JButton) ae.getSource();
-					selectedCard.setEnabled(false);
-				} else {
-					player2played.setIcon(new ImageIcon(GameBoardPage.class.getResource(
-							"/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(command) - 1) + ".png")));
-					currentHand.set((Integer.parseInt(command) - 1), "gray_back");
-					gameBoardPage.setCards(currentHand);
-					JButton selectedCard = (JButton) ae.getSource();
-					selectedCard.setEnabled(false);
-				}
+		try {
+			String command = ae.getActionCommand();
+			if (isTurn) {
+				if (command.contains("Card")) {
+					String card = command.substring(4);
+					if (makefirstmove) {
+						player1played.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(card) - 1) + ".png")));
+						JButton selectedCard = (JButton) ae.getSource();
+						selectedCard.setEnabled(false);
+						selectedCard.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
+						gameClient.sendToServer("Player1Card" + currentHand.get(Integer.parseInt(card) - 1));
 
+					} else {
+						player2played.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(card) - 1) + ".png")));
+						JButton selectedCard = (JButton) ae.getSource();
+						selectedCard.setEnabled(false);
+						selectedCard.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
+						gameClient.sendToServer("Player2Card" + currentHand.get(Integer.parseInt(card) - 1));
+					}
+
+				}
+			} else {
+				gameBoardPage.setSeverinstructions("Is not your turn yet");
 			}
-		}
-		else {
-			gameBoardPage.setSeverinstructions("Is not Your turn Yet");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
 	public void display() {
 		CardLayout cardLayout = (CardLayout) container.getLayout();
 		cardLayout.show(container, "6");
-		GameBoardPage gameBoardPage = (GameBoardPage) container.getComponent(6);
 		if (makefirstmove) {
 			gameBoardPage.setSeverinstructions("You are Player 1");
 			// whatever the first move us
@@ -79,6 +82,7 @@ public class GameBoardController implements ActionListener {
 		player1played = gameBoardPage.getPlayer1Played();
 		player2played = gameBoardPage.getPlayer2Played();
 		ArrayList<String> currentHand = new ArrayList<String>();
+		gameBoardPage = (GameBoardPage) container.getComponent(6);
 	}
 
 	public boolean isMakefirstmove() {
@@ -90,7 +94,6 @@ public class GameBoardController implements ActionListener {
 	}
 
 	public void setHand(ArrayList<ArrayList<String>> temp) {
-		GameBoardPage gameBoardPage = (GameBoardPage) container.getComponent(6);
 		if (makefirstmove) {
 			gameBoardPage.setCards(temp.get(0));
 			currentHand = temp.get(0);
@@ -99,5 +102,41 @@ public class GameBoardController implements ActionListener {
 			currentHand = temp.get(1);
 		}
 
+	}
+
+	public void recieveCommand(String message) {
+		// TODO Auto-generated method stub
+		String[] command = message.split("|");
+		String action;
+		if(makefirstmove) {
+			action = command[0].substring(7);
+			if(action.equals("Wait")) {
+				isTurn = false;
+				gameBoardPage.setSeverinstructions("Player 2 turn to play card");
+			} else if (action.equals("Turn")) {
+				isTurn = true;
+				gameBoardPage.setSeverinstructions("Player 1 turn to play card");
+			}
+			else if (action.contains("Display move")) {
+				action = action.substring(11);
+				player2played.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/"+action+".png")));
+			}
+		}
+		else {
+			action = command[1].substring(7);
+			if(action.equals("Wait")) {
+				isTurn = false;
+				gameBoardPage.setSeverinstructions("Player 1 turn to play card");
+			} else if (action.equals("Turn")) {
+				isTurn = true;
+				gameBoardPage.setSeverinstructions("Player 2 turn to play card");
+			}
+			else if (action.contains("Display move")) {
+				action = action.substring(11);
+				player1played.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/"+action+".png")));
+			}
+		}
+				
+		
 	}
 }

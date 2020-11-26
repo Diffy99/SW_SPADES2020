@@ -49,11 +49,9 @@ public class GameServer extends AbstractServer {
 		log.append("Messgage from Client: " + arg1.getId() + "\n");
 		try {
 			// stuff for game manager
-			if (arg0 instanceof BoardGameData) {
+			
 				// Send Data To Game Manager
-				activegame.ReceiveMove((BoardGameData)arg0);
-				
-			} else if (arg0 instanceof PostGameData) {
+			if (arg0 instanceof PostGameData) {
 				// Send Data To GameManager
 				// possible send to User manager to update database
 			}
@@ -95,6 +93,8 @@ public class GameServer extends AbstractServer {
 						activegame.StartRound();
 					}
 
+				}else if (temp.contains("Player1Card") || temp.contains("Player2Card") ) {
+					activegame.ReceiveMove(temp);
 				}
 			}
 		} catch (
@@ -105,22 +105,6 @@ public class GameServer extends AbstractServer {
 		}
 	}
 
-	/*
-	 * private void addToWait(ConnectionToClient arg1) { // TODO Auto-generated
-	 * method stub UserData temp1 = null; UserData temp2 = null; if
-	 * (waitingForGame.isEmpty()) { System.out.println("User added to wait list");
-	 * waitingForGame.add(arg1.getId()); } else {
-	 * System.out.println("Creating Game"); for (UserData clients :
-	 * connectedClients) { if (clients.getConnectionID() == arg1.getId()) { temp1 =
-	 * clients; } else if (clients.getConnectionID() == waitingForGame.get(0)) {
-	 * temp2 = clients; } } GameManager tempgame = new GameManager(temp1, temp2);
-	 * activeGames.add(tempgame); waitingForGame.remove(0); try {
-	 * arg1.sendToClient("Game Ready"); System.out.println("Game Ready Sent to " +
-	 * arg1.getId()); } catch (IOException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } }
-	 * 
-	 * }
-	 */
 	protected void listeningException(Throwable exception) {
 		// Display info about the exception
 		System.out.println("Listening Exception:" + exception);
