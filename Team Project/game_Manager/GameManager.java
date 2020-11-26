@@ -103,10 +103,11 @@ public class GameManager {
 			temp = temp.substring(11);
 			SecondPlayerMove = temp;
 			System.out.println("Second Player's Move Received");
-			server.sendToAllClients("Player1 Display move " + SendMove()+ "  : Player2 Wait");
+			server.sendToAllClients("Player1 Display move " + SendMove()+ ": Player2 Wait");
 			server.sendToAllClients("Player1 Wait : Player2 Turn");
 			calculateTurnEnd();
 		}
+		
 	}
 	
 	public String SendMove()
