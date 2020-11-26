@@ -121,7 +121,7 @@ public class GameBoardController implements ActionListener {
 				gameBoardPage.setSeverinstructions("Player 1 turn to play card");
 			}
 			else if (action.contains("Display move")) {
-				action = action.substring(11);
+				action = action.substring(15);
 				player2played.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/"+action+".png")));
 			}
 		}
@@ -135,11 +135,11 @@ public class GameBoardController implements ActionListener {
 				gameBoardPage.setSeverinstructions("Player 2 turn to play card");
 			}
 			else if (action.contains("Display move")) {
-				action = action.substring(11);
+				action = action.substring(15);
 				player1played.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/"+action+".png")));
 			}
 		}
 				
 		
-	}
+ 	}
 }
