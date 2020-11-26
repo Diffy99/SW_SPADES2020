@@ -27,31 +27,25 @@ public class GameBoardController implements ActionListener {
 		return betSlider;
 	}
 
-	
-
 	public GameBoardController(JPanel container, GameClient gameClient) {
 		this.container = container;
 		this.gameClient = gameClient;
 		makefirstmove = false;
-		GameBoardPage gameBoardPage = (GameBoardPage) container.getComponent(6);	
-		betSlider = gameBoardPage.getBetSlider();
-		player1played = gameBoardPage.getPlayer1Played();
-		player2played = gameBoardPage.getPlayer2Played();
-		ArrayList<String> currentHand = new ArrayList<String>();
 	}
 
 	public void actionPerformed(ActionEvent ae) {
-		 String command = ae.getActionCommand();
-		 if(command.contains("Card")) {
-			 command.replace("Card", "");
-			 if(makefirstmove) {
-				 player1played.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(command)) + ".png")));
-			 }
-			 else {
-				 player2played.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(command)) + ".png")));
-			 }
-			 
-		 }
+		String command = ae.getActionCommand();
+		if (command.contains("Card")) {
+			command.replace("Card", "");
+			if (makefirstmove) {
+				player1played.setIcon(new ImageIcon(GameBoardPage.class
+						.getResource("/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(command)) + ".png")));
+			} else {
+				player2played.setIcon(new ImageIcon(GameBoardPage.class
+						.getResource("/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(command)) + ".png")));
+			}
+
+		}
 	}
 
 	public void display() {
@@ -64,6 +58,10 @@ public class GameBoardController implements ActionListener {
 		} else {
 			gameBoardPage.setSeverinstructions("You are Player 2");
 		}
+		betSlider = gameBoardPage.getBetSlider();
+		player1played = gameBoardPage.getPlayer1Played();
+		player2played = gameBoardPage.getPlayer2Played();
+		ArrayList<String> currentHand = new ArrayList<String>();
 	}
 
 	public boolean isMakefirstmove() {
@@ -83,5 +81,6 @@ public class GameBoardController implements ActionListener {
 			gameBoardPage.setCards(temp.get(1));
 			currentHand = temp.get(1);
 		}
+		
 	}
 }
