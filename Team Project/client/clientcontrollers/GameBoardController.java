@@ -24,6 +24,7 @@ public class GameBoardController implements ActionListener {
 	private JLabel player2played;
 	private ArrayList<String> currentHand;
 	private boolean isTurn;
+	private JButton selectedCard;
  
 
 	public JSlider getBetSlider() {
@@ -43,17 +44,16 @@ public class GameBoardController implements ActionListener {
 			String command = ae.getActionCommand();
 			if (isTurn) {
 				if (command.contains("Card")) {
+					selectedCard = (JButton) ae.getSource();
 					String card = command.substring(4);
 					if (makefirstmove) {
-						player1played.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(card) - 1) + ".png")));
-						JButton selectedCard = (JButton) ae.getSource();
+						player1played.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(card) - 1) + ".png")));						
 						selectedCard.setEnabled(false);
 						selectedCard.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
 						gameClient.sendToServer("Player1Card" + currentHand.get(Integer.parseInt(card) - 1));
 
 					} else {
 						player2played.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(card) - 1) + ".png")));
-						JButton selectedCard = (JButton) ae.getSource();
 						selectedCard.setEnabled(false);
 						selectedCard.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
 						gameClient.sendToServer("Player2Card" + currentHand.get(Integer.parseInt(card) - 1));
@@ -114,9 +114,11 @@ public class GameBoardController implements ActionListener {
 		if(message.contains("TurnWin"))
 		{
 			gameBoardPage.setSeverinstructions("You win the bag");
+			selectedCard.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
 		}
 		else if(message.contains("TurnLoss")) {
 			gameBoardPage.setSeverinstructions("You lost the bag");
+			selectedCard.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
 		}
 		else if(makefirstmove) {
 			action = command[0].substring(7);

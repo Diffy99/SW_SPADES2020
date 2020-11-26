@@ -42,8 +42,8 @@ public class GameManager {
 	
 	
 	//below are the turn scores, AKA: how many bids are won
-	private Integer player1turnscore = null;
-	private Integer player2turnscore = null;
+	private int player1turnscore = 0;
+	private int player2turnscore = 0;
 	
 	
 	
@@ -118,10 +118,9 @@ public class GameManager {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println("Determining turn winner");
 			determineTurnWinner();
-		}
-		
-		if(!player1First)
+		}else if(!player1First)
 		{
 			 server.sendToAllClients("Player1 Turn : Player2 Wait");
 			 System.out.println("Player1 Turn : Player2 Wait");
@@ -202,10 +201,10 @@ public class GameManager {
 		CurrentRound++;
 		FirstPlayerBet = null;
 		FirstPlayerMove = null;
-		player1turnscore = null;
+		player1turnscore = 0;
 		SecondPlayerBet = null;
 		SecondPlayerMove = null;
-		player2turnscore = null;
+		player2turnscore = 0;
 		
 		
 		if(playingDeck.size() > 0)
@@ -272,6 +271,7 @@ public class GameManager {
 			String firstValue = FirstPlayerMove.substring(1);
 			char secondSuit = SecondPlayerMove.charAt(0);
 			String secondValue = SecondPlayerMove.substring(1);
+			System.out.println("Comparing cards: "+firstSuit + firstValue +"  "+ secondSuit + secondValue);
 			
 			if(firstSuit == secondSuit)
 			{
