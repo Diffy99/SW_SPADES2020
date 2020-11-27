@@ -49,8 +49,8 @@ public class GameServer extends AbstractServer {
 		log.append("Messgage from Client: " + arg1.getId() + "\n");
 		try {
 			// stuff for game manager
-			
-				// Send Data To Game Manager
+
+			// Send Data To Game Manager
 			if (arg0 instanceof PostGameData) {
 				// Send Data To GameManager
 				// possible send to User manager to update database
@@ -67,6 +67,7 @@ public class GameServer extends AbstractServer {
 
 			if (arg0 instanceof String) {
 				String temp = (String) arg0;
+				System.out.println(temp);
 				if (temp.equals("Logout")) {
 					// do something on logout
 					System.out.println("Logout recieved for " + arg1.getId());
@@ -81,7 +82,7 @@ public class GameServer extends AbstractServer {
 					}
 					// checking if there is a active game if not create one
 					if (activegame == null) {
-						GameManager game = new GameManager(this,temp1);
+						GameManager game = new GameManager(this, temp1);
 						activegame = game;
 						arg1.sendToClient("Game Created");
 						System.out.println("Game Created");
@@ -93,8 +94,10 @@ public class GameServer extends AbstractServer {
 						activegame.StartRound();
 					}
 
-				}else if (temp.contains("Player1Card") || temp.contains("Player2Card") ) {
+				} else if (temp.contains("Player1Card") || temp.contains("Player2Card")) {
 					activegame.ReceiveMove(temp);
+				} else if (temp.contains("Player1Bet") || temp.contains("Player2Bet")) {
+					activegame.receiveBet(temp);
 				}
 			}
 		} catch (

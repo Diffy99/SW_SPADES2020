@@ -43,10 +43,11 @@ public class GameBoardController implements ActionListener {
 			String command = ae.getActionCommand();
 			if(command.equals("Confirm Bet")) {
 				gameBoardPage.disableBet();
+				int holder = betSlider.getValue();
 				if (makefirstmove) {
-					gameClient.sendToServer("Player1Bet " + betSlider.getValue());
+					gameClient.sendToServer("Player1Bet " + holder);
 				}else {
-					gameClient.sendToServer("Player2Bet " + betSlider.getValue());
+					gameClient.sendToServer("Player2Bet " + holder);
 				}
 				
 			}
@@ -181,5 +182,11 @@ public class GameBoardController implements ActionListener {
 			}
 		}
 
+	}
+
+	public void setRoundScore(String message) {
+		// TODO Auto-generated method stub
+		GameBoardPage gameBoardPage = (GameBoardPage) container.getComponent(6);
+		gameBoardPage.setPlayersscore(message);
 	}
 }

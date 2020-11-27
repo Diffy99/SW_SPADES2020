@@ -147,12 +147,16 @@ public class GameManager {
 		// at the beginning of each round and associate the first player bet with that
 		// player
 		
-		if (bet.contains("Player1bet")) {
+		if (bet.contains("Player1Bet")) {
 			FirstPlayerBet = Integer.parseInt(bet.substring(11));
 			System.out.println("First Player's Bet Received");
-		} else if (bet.contains("Player2bet")) {
+		} else if (bet.contains("Player2Bet")) {
 			SecondPlayerBet = Integer.parseInt(bet.substring(11));
 			System.out.println("Second Player's Bet Received");
+		}
+		
+		if(FirstPlayerBet != null && SecondPlayerBet != null) {
+			startFirstRound();
 		}
 	}
 
@@ -187,7 +191,9 @@ public class GameManager {
 		SecondPlayerBet = null;
 		SecondPlayerMove = null;
 		player2turnscore = 0;
-
+		player1Hand.clear();
+		player2Hand.clear();
+		
 		if (playingDeck.size() > 0) {
 			playingDeck.clear();
 		}
@@ -216,10 +222,8 @@ public class GameManager {
 			e.printStackTrace();
 		}
 		askBet();
-		if (CurrentRound == 1) {
-			server.sendToAllClients("Player1 Turn : Player2 Wait");
-			System.out.println("Player1 Turn : Player2 Wait");
-		}
+		
+		
 
 		// return hands;
 		// Here is where we would request the
@@ -227,19 +231,18 @@ public class GameManager {
 
 	}
 
+	private void startFirstRound() {
+		// TODO Auto-generated method stub
+		if (CurrentRound == 1) {
+			server.sendToAllClients("Player1 Turn : Player2 Wait");
+			System.out.println("Player1 Turn : Player2 Wait");
+		}
+	}
+
 	private void askBet() {
 		
 		server.sendToAllClients("Player1 Bet : Player2 Bet");
 		System.out.println("Player1 Bet : Player2 Bet");
-		while(FirstPlayerBet == null || SecondPlayerBet == null) {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
 	}
 
 	private void determineTurnWinner() {
@@ -352,7 +355,7 @@ public class GameManager {
 		}
 
 		if (currentTurn == maxTurns) {
-			StartRound();
+			calculateRoundScore();
 		}
 
 	}
@@ -374,9 +377,12 @@ public class GameManager {
 		} else {
 			player2Score += SecondPlayerBet * 10;
 		}
-
+		server.sendToAllClients("Player1 Score " + player1Score +"| Player2 Score " + player2Score);
 		if (CurrentRound == MaxRounds) {
 			determineWinner();
+		}
+		else {
+			StartRound();
 		}
 	}
 

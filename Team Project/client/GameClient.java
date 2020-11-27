@@ -74,6 +74,9 @@ public class GameClient extends AbstractClient {
 			} else if (message.contains("Player1") || (message.contains("Player2"))) {
 				gbc.recieveCommand(message);
 			}
+			else if (message.contains("Player1 Score") || (message.contains("Player2 Score"))) {
+				gbc.setRoundScore(message);
+			}
 		}
 		else if (arg0 instanceof UserData) {
 			System.out.println("UserData Set");
