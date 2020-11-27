@@ -151,13 +151,13 @@ public class GameBoardController implements ActionListener {
 				action = action.substring(15);
 				player1played.setIcon(
 						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/" + action + ".png")));
-			} else if (message.contains("TurnWin")) {
+			} else if (message.contains("TWin")) {
 				gameBoardPage.setSeverinstructions("You win the bag");
 				player1played.setIcon(
 						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
 				player2played.setIcon(
 						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
-			} else if (message.contains("TurnLoss")) {
+			} else if (message.contains("TLoss")) {
 				gameBoardPage.setSeverinstructions("You lost the bag");
 				player1played.setIcon(
 						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
