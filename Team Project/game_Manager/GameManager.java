@@ -117,8 +117,7 @@ public class GameManager {
 				server.sendToAllClients("Player1 Wait : Player2 Turn");
 				System.out.println("Player1 Wait : Player2 Turn");
 			}
-		}
-		else {
+		} else {
 			server.sendToAllClients("Player1 Wait : Player2 Wait");
 			System.out.println("Player1 Wait : Player2 Wait");
 		}
@@ -246,34 +245,64 @@ public class GameManager {
 			char secondSuit = SecondPlayerMove.charAt(0);
 			String secondValue = SecondPlayerMove.substring(1);
 			System.out.println("Comparing cards: " + firstSuit + firstValue + "  " + secondSuit + secondValue);
+			if (player1First) {
+				if (firstSuit == secondSuit) {
+					// If they are both the same suit, high card
+					if (Integer.parseInt(firstValue) > Integer.parseInt(secondValue)) {
+						player1turnscore++;
+						System.out.println("Player 1 turn score:" + player1turnscore);
+						server.sendToAllClients("Player1 TWin : Player2 TLoss");
+						System.out.println("Player1 TWin : Player2 TLoss");
+					} else {
+						player2turnscore++;
+						System.out.println("Player 2 turn score:" + player2turnscore);
+						server.sendToAllClients("Player1 TLoss : Player2 TWin");
+						System.out.println("Player1 TLoss : Player2 TWin");
+					}
+				} else if (firstSuit != secondSuit) { // This is the not so tricky part. if there is a spade in the
+														// values
+														// of the suit then i must determine who played the spade
 
-			if (firstSuit == secondSuit) {
-				// If they are both the same suit, high card
-				if (Integer.parseInt(firstValue) > Integer.parseInt(secondValue)) {
-					player1turnscore++;
+					if (secondSuit == 'S') {
+						player2turnscore++;
+						System.out.println("Player 2 turn score:" + player2turnscore);
+						server.sendToAllClients("Player1 TLoss : Player2 TWin");
+						System.out.println("Player1 TLoss : Player2 TWin");
+					} else
+						player1turnscore++;
 					System.out.println("Player 1 turn score:" + player1turnscore);
 					server.sendToAllClients("Player1 TWin : Player2 TLoss");
 					System.out.println("Player1 TWin : Player2 TLoss");
 				} else {
-					player2turnscore++;
-					System.out.println("Player 2 turn score:" + player2turnscore);
-					server.sendToAllClients("Player1 TLoss : Player2 TWin");
-					System.out.println("Player1 TLoss : Player2 TWin");
+					if (firstSuit == secondSuit) {
+						// If they are both the same suit, high card
+						if (Integer.parseInt(firstValue) > Integer.parseInt(secondValue)) {
+							player1turnscore++;
+							System.out.println("Player 1 turn score:" + player1turnscore);
+							server.sendToAllClients("Player1 TWin : Player2 TLoss");
+							System.out.println("Player1 TWin : Player2 TLoss");
+						} else {
+							player2turnscore++;
+							System.out.println("Player 2 turn score:" + player2turnscore);
+							server.sendToAllClients("Player1 TLoss : Player2 TWin");
+							System.out.println("Player1 TLoss : Player2 TWin");
+						}
+					} else if (firstSuit != secondSuit) { // This is the not so tricky part. if there is a spade in the
+															// values
+															// of the suit then i must determine who played the spade
+
+						if (firstSuit == 'S') {
+							player1turnscore++;
+							System.out.println("Player 2 turn score:" + player2turnscore);
+							server.sendToAllClients("Player1 TLoss : Player2 TWin");
+							System.out.println("Player1 TLoss : Player2 TWin");
+						} else
+							player2turnscore++;
+						System.out.println("Player 1 turn score:" + player1turnscore);
+						server.sendToAllClients("Player1 TLoss : Player2 TWin");
+						System.out.println("Player1 TLoss : Player2 TWin");
+					}
 				}
-			} else if (firstSuit != secondSuit) { // This is the not so tricky part. if there is a spade in the values
-													// of the suit then i must determine who played the spade
-
-				if (secondSuit == 'S') {
-					player2turnscore++;
-					System.out.println("Player 2 turn score:" + player2turnscore);
-					server.sendToAllClients("Player1 TLoss : Player2 TWin");
-					System.out.println("Player1 TLoss : Player2 TWin");
-				} else
-					player1turnscore++;
-				System.out.println("Player 1 turn score:" + player1turnscore);
-				server.sendToAllClients("Player1 TWin : Player2 TLoss");
-				System.out.println("Player1 TWin : Player2 TLoss");
-
 			}
 
 			try {
@@ -282,7 +311,7 @@ public class GameManager {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			// server.sendToAllClients("Player1 TurnScore " + player1turnscore + ": Player2
 			// TurnScore " + player2turnscore);
 
