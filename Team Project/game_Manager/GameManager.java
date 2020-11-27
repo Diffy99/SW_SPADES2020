@@ -137,7 +137,7 @@ public class GameManager {
 	 * SecondPlayerMove; }else return "ERROR: NO PLAYER MOVES HAVE BEEN STORED!!!";
 	 * }
 	 */
-	public void receiveBet(BoardGameData data) {
+	public void receiveBet(String bet) {
 		// Similar to the receiving of a move, the boardGameData will hold the players
 		// current
 		// bet regardless of whose turn it is. However, due to the fact that a new round
@@ -146,16 +146,13 @@ public class GameManager {
 		// FirstPlayer to play
 		// at the beginning of each round and associate the first player bet with that
 		// player
-
-		if (FirstPlayerBet == null) {
-			FirstPlayerBet = data.getCurrentBet();
+		
+		if (bet.contains("Player1bet")) {
+			FirstPlayerBet = Integer.parseInt(bet.substring(11));
 			System.out.println("First Player's Bet Received");
-			sendBet();
-
-		} else if (FirstPlayerMove != null) {
-			SecondPlayerBet = data.getCurrentBet();
+		} else if (bet.contains("Player2bet")) {
+			SecondPlayerBet = Integer.parseInt(bet.substring(11));
 			System.out.println("Second Player's Bet Received");
-			sendBet();
 		}
 	}
 
@@ -218,7 +215,7 @@ public class GameManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		askBet();
 		if (CurrentRound == 1) {
 			server.sendToAllClients("Player1 Turn : Player2 Wait");
 			System.out.println("Player1 Turn : Player2 Wait");
@@ -228,6 +225,19 @@ public class GameManager {
 		// Here is where we would request the
 		// bet from first player1, and then player2
 
+	}
+
+	private void askBet() {
+		server.sendToAllClients("Player1 Bet : Player2 Bet");
+		while(FirstPlayerBet == null || SecondPlayerBet == null) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 	private void determineTurnWinner() {

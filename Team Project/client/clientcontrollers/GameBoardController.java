@@ -41,6 +41,15 @@ public class GameBoardController implements ActionListener {
 		GameBoardPage gameBoardPage = (GameBoardPage) container.getComponent(6);
 		try {
 			String command = ae.getActionCommand();
+			if(command.equals("Confirm Bet")) {
+				gameBoardPage.disableBet();
+				if (makefirstmove) {
+					gameClient.sendToServer("Player1Bet " + betSlider.getValue());
+				}else {
+					gameClient.sendToServer("Player2Bet " + betSlider.getValue());
+				}
+				
+			}
 			if (isTurn) {
 				if (command.contains("Card")) {
 					selectedCard = (JButton) ae.getSource();
@@ -138,6 +147,9 @@ public class GameBoardController implements ActionListener {
 						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
 				player2played.setIcon(
 						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
+			} else if (action.contains("Bet")) {
+				gameBoardPage.setSeverinstructions("Place Bet your bet");
+				gameBoardPage.enableBet();
 			}
 		} else {
 			action = command[1].substring(7);
@@ -163,6 +175,9 @@ public class GameBoardController implements ActionListener {
 						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
 				player2played.setIcon(
 						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
+			} else if (action.contains("Bet")) {
+				gameBoardPage.setSeverinstructions("Place Bet your bet");
+				gameBoardPage.enableBet();
 			}
 		}
 
