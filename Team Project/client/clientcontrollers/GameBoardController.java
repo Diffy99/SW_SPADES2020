@@ -25,7 +25,6 @@ public class GameBoardController implements ActionListener {
 	private ArrayList<String> currentHand;
 	private boolean isTurn;
 	private JButton selectedCard;
- 
 
 	public JSlider getBetSlider() {
 		return betSlider;
@@ -39,7 +38,7 @@ public class GameBoardController implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent ae) {
-		GameBoardPage gameBoardPage =(GameBoardPage) container.getComponent(6);
+		GameBoardPage gameBoardPage = (GameBoardPage) container.getComponent(6);
 		try {
 			String command = ae.getActionCommand();
 			if (isTurn) {
@@ -47,15 +46,19 @@ public class GameBoardController implements ActionListener {
 					selectedCard = (JButton) ae.getSource();
 					String card = command.substring(4);
 					if (makefirstmove) {
-						player1played.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(card) - 1) + ".png")));						
+						player1played.setIcon(new ImageIcon(GameBoardPage.class.getResource(
+								"/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(card) - 1) + ".png")));
 						selectedCard.setEnabled(false);
-						selectedCard.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
+						selectedCard.setIcon(
+								new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
 						gameClient.sendToServer("Player1Card" + currentHand.get(Integer.parseInt(card) - 1));
 
 					} else {
-						player2played.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(card) - 1) + ".png")));
+						player2played.setIcon(new ImageIcon(GameBoardPage.class.getResource(
+								"/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(card) - 1) + ".png")));
 						selectedCard.setEnabled(false);
-						selectedCard.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
+						selectedCard.setIcon(
+								new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
 						gameClient.sendToServer("Player2Card" + currentHand.get(Integer.parseInt(card) - 1));
 					}
 
@@ -70,7 +73,7 @@ public class GameBoardController implements ActionListener {
 	}
 
 	public void display() {
-		GameBoardPage gameBoardPage =(GameBoardPage) container.getComponent(6);
+		GameBoardPage gameBoardPage = (GameBoardPage) container.getComponent(6);
 		CardLayout cardLayout = (CardLayout) container.getLayout();
 		cardLayout.show(container, "6");
 		if (makefirstmove) {
@@ -83,7 +86,7 @@ public class GameBoardController implements ActionListener {
 		player1played = gameBoardPage.getPlayer1Played();
 		player2played = gameBoardPage.getPlayer2Played();
 		ArrayList<String> currentHand = new ArrayList<String>();
-		
+
 	}
 
 	public boolean isMakefirstmove() {
@@ -95,7 +98,7 @@ public class GameBoardController implements ActionListener {
 	}
 
 	public void setHand(ArrayList<ArrayList<String>> temp) {
-		GameBoardPage gameBoardPage =(GameBoardPage) container.getComponent(6);
+		GameBoardPage gameBoardPage = (GameBoardPage) container.getComponent(6);
 		if (makefirstmove) {
 			gameBoardPage.setCards(temp.get(0));
 			currentHand = temp.get(0);
@@ -107,48 +110,61 @@ public class GameBoardController implements ActionListener {
 	}
 
 	public void recieveCommand(String message) {
-		GameBoardPage gameBoardPage =(GameBoardPage) container.getComponent(6);
+		GameBoardPage gameBoardPage = (GameBoardPage) container.getComponent(6);
 		// TODO Auto-generated method stub
 		String[] command = message.split(":");
 		String action;
-		if(message.contains("TurnWin"))
-		{
-			gameBoardPage.setSeverinstructions("You win the bag");
-			selectedCard.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
-		}
-		else if(message.contains("TurnLoss")) {
-			gameBoardPage.setSeverinstructions("You lost the bag");
-			selectedCard.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
-		}
-		else if(makefirstmove) {
+		if (makefirstmove) {
 			action = command[0].substring(7);
-			if(action.contains("Wait")) {
+			if (action.contains("Wait")) {
 				isTurn = false;
 				gameBoardPage.setSeverinstructions("Player 2 turn to play card");
 			} else if (action.contains("Turn")) {
 				isTurn = true;
 				gameBoardPage.setSeverinstructions("Player 1 turn to play card");
-			}
-			else if (action.contains("Display move")) {
+			} else if (action.contains("Display move")) {
 				action = action.substring(14);
-				player2played.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/"+action+".png")));
+				player2played.setIcon(
+						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/" + action + ".png")));
+			} else if (message.contains("TurnWin")) {
+				gameBoardPage.setSeverinstructions("You win the bag");
+				player1played.setIcon(
+						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
+				player2played.setIcon(
+						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
+			} else if (message.contains("TurnLoss")) {
+				gameBoardPage.setSeverinstructions("You lost the bag");
+				player1played.setIcon(
+						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
+				player2played.setIcon(
+						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
 			}
-		}
-		else {
+		} else {
 			action = command[1].substring(7);
-			if(action.contains("Wait")) {
+			if (action.contains("Wait")) {
 				isTurn = false;
 				gameBoardPage.setSeverinstructions("Player 1 turn to play card");
 			} else if (action.contains("Turn")) {
 				isTurn = true;
 				gameBoardPage.setSeverinstructions("Player 2 turn to play card");
-			}
-			else if (action.contains("Display move")) {
+			} else if (action.contains("Display move")) {
 				action = action.substring(15);
-				player1played.setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/"+action+".png")));
+				player1played.setIcon(
+						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/" + action + ".png")));
+			} else if (message.contains("TurnWin")) {
+				gameBoardPage.setSeverinstructions("You win the bag");
+				player1played.setIcon(
+						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
+				player2played.setIcon(
+						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
+			} else if (message.contains("TurnLoss")) {
+				gameBoardPage.setSeverinstructions("You lost the bag");
+				player1played.setIcon(
+						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
+				player2played.setIcon(
+						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
 			}
 		}
-				
-		
- 	}
+
+	}
 }
