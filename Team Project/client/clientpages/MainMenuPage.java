@@ -13,15 +13,15 @@ public class MainMenuPage extends JPanel {
 	
 	public MainMenuPage(MainMenuController mmc)
 	  {
-	   
-	   
-	        
-	    // Create a panel for the labels at the top of the GUI.
-		JPanel labelpanel = new JPanel();
-		JLabel playlabel = new JLabel("Press to Play");
-		JLabel adminlabel = new JLabel("Press to View Admin Page");
-		JLabel logout = new JLabel("Press to Logout");
-
+		JPanel titlepanel = new JPanel();
+		titlepanel.setLayout(new GridLayout(1,2,1,0));
+		JLabel mainmenu = new JLabel("Main Menu");
+		mainmenu.setFont(new Font("Vladimir Script", Font.PLAIN, 50));
+		JLabel icon = new JLabel("");
+		icon.setIcon(new ImageIcon(InitialPage.class.getResource("/cards_png_zip/resized/honors_spade-14.png")));
+		
+		titlepanel.add(mainmenu);
+		titlepanel.add(icon);
 	    
 	    
 	    
@@ -38,10 +38,11 @@ public class MainMenuPage extends JPanel {
 	    buttonPanel.add(logoutbutton);
 
 	    // Arrange the three panels in a grid.
-	    JPanel grid = new JPanel(new GridLayout(3, 2, 0, 10));
+	    JPanel grid = new JPanel(new GridLayout(2, 1, 0, 100));
+	    grid.add(titlepanel);
 	    grid.add(buttonPanel);
-	    grid.add(labelpanel);
 	    this.add(grid);
+	    
 	  }
 
 }

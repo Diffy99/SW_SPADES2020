@@ -41,7 +41,7 @@ public class PostGamePage extends JPanel {
 		//gameinfo.add(actOppScore);
 		//gameinfo.add(winnerlabel);
 		//gameinfo.add(winner);
-		page.add(scoreboard);
+		page.add(scoreboardpanel);
 		page.add(gameinfo);
 		
 		next.setLayout(new GridLayout(1,2,5,5));
