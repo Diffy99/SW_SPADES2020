@@ -228,7 +228,9 @@ public class GameManager {
 	}
 
 	private void askBet() {
+		
 		server.sendToAllClients("Player1 Bet : Player2 Bet");
+		System.out.println("Player1 Bet : Player2 Bet");
 		while(FirstPlayerBet == null || SecondPlayerBet == null) {
 			try {
 				Thread.sleep(1000);
