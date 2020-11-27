@@ -268,11 +268,12 @@ public class GameManager {
 						System.out.println("Player 2 turn score:" + player2turnscore);
 						server.sendToAllClients("Player1 TLoss : Player2 TWin");
 						System.out.println("Player1 TLoss : Player2 TWin");
-					} else
+					} else {
 						player1turnscore++;
-					System.out.println("Player 1 turn score:" + player1turnscore);
-					server.sendToAllClients("Player1 TWin : Player2 TLoss");
-					System.out.println("Player1 TWin : Player2 TLoss");
+						System.out.println("Player 1 turn score:" + player1turnscore);
+						server.sendToAllClients("Player1 TWin : Player2 TLoss");
+						System.out.println("Player1 TWin : Player2 TLoss");
+					}
 				}
 			} else {
 				if (firstSuit == secondSuit) {
@@ -297,11 +298,12 @@ public class GameManager {
 						System.out.println("Player 2 turn score:" + player2turnscore);
 						server.sendToAllClients("Player1 TWin : Player2 TLoss");
 						System.out.println("Player1 TWin : Player2 TLoss");
-					} else
+					} else {
 						player2turnscore++;
-					System.out.println("Player 1 turn score:" + player1turnscore);
-					server.sendToAllClients("Player1 TLoss : Player2 TWin");
-					System.out.println("Player1 TLoss : Player2 TWin");
+						System.out.println("Player 1 turn score:" + player1turnscore);
+						server.sendToAllClients("Player1 TLoss : Player2 TWin");
+						System.out.println("Player1 TLoss : Player2 TWin");
+					}
 				}
 			}
 
