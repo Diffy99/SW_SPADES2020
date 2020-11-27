@@ -252,13 +252,13 @@ public class GameManager {
 				if (Integer.parseInt(firstValue) > Integer.parseInt(secondValue)) {
 					player1turnscore++;
 					System.out.println("Player 1 turn score:" + player1turnscore);
-					server.sendToAllClients("Player1 TurnWin : Player2 TurnLoss");
-					System.out.println("Player1 TurnWin : Player2 TurnLoss");
+					server.sendToAllClients("Player1 TWin : Player2 TLoss");
+					System.out.println("Player1 TWin : Player2 TLoss");
 				} else {
 					player2turnscore++;
 					System.out.println("Player 2 turn score:" + player2turnscore);
-					server.sendToAllClients("Player1 TurnLoss : Player2 TurnWin");
-					System.out.println("Player1 TurnLoss : Player2 TurnWin");
+					server.sendToAllClients("Player1 TLoss : Player2 TWin");
+					System.out.println("Player1 TLoss : Player2 TWin");
 				}
 			} else if (firstSuit != secondSuit) { // This is the not so tricky part. if there is a spade in the values
 													// of the suit then i must determine who played the spade
@@ -266,16 +266,23 @@ public class GameManager {
 				if (secondSuit == 'S') {
 					player2turnscore++;
 					System.out.println("Player 2 turn score:" + player2turnscore);
-					server.sendToAllClients("Player1 TurnLoss : Player2 TurnWin");
-					System.out.println("Player1 TurnLoss : Player2 TurnWin");
+					server.sendToAllClients("Player1 TLoss : Player2 TWin");
+					System.out.println("Player1 TLoss : Player2 TWin");
 				} else
 					player1turnscore++;
 				System.out.println("Player 1 turn score:" + player1turnscore);
-				server.sendToAllClients("Player1 TurnWin : Player2 TurnLoss");
-				System.out.println("Player1 TurnWin : Player2 TurnLoss");
+				server.sendToAllClients("Player1 TWin : Player2 TLoss");
+				System.out.println("Player1 TWin : Player2 TLoss");
 
 			}
 
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			// server.sendToAllClients("Player1 TurnScore " + player1turnscore + ": Player2
 			// TurnScore " + player2turnscore);
 
