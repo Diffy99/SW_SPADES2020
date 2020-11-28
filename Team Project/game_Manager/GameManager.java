@@ -28,12 +28,12 @@ public class GameManager {
 	private ArrayList<Integer> PlayerScores;
 	private String FirstPlayerMove = new String();
 	private String SecondPlayerMove = new String();
-	private Integer FirstPlayerBet = null;
-	private Integer SecondPlayerBet = null;
+	private int FirstPlayerBet = 0;
+	private int SecondPlayerBet = 0;
 	private UserData player1 = null;
 	private UserData player2 = null;
-	private Integer player1Score = null; // these are the overall scores
-	private Integer player2Score = null;
+	private int player1Score = 0; // these are the overall scores
+	private int player2Score = 0;
 
 	// below are the blank players hands
 	private ArrayList<String> player1Hand = new ArrayList<String>();
@@ -44,8 +44,8 @@ public class GameManager {
 	private int player2turnscore = 0;
 
 	private ArrayList<Integer> TurnScores = new ArrayList<Integer>();
-	private final Integer maxTurns = 13;
-	private Integer currentTurn = 0;
+	private final int maxTurns = 13;
+	private int currentTurn = 0;
 
 	// Determines who is to go first in the turn
 	private boolean player1First = true;
@@ -102,7 +102,7 @@ public class GameManager {
 			if (FirstPlayerMove != null && SecondPlayerMove != null && currentTurn != 14) {
 				server.sendToAllClients("Player1 Wait : Player2 Wait");
 				try {
-					Thread.sleep(3000);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -155,7 +155,7 @@ public class GameManager {
 			System.out.println("Second Player's Bet Received");
 		}
 		
-		if(FirstPlayerBet != null && SecondPlayerBet != null) {
+		if(FirstPlayerBet != 0 && SecondPlayerBet != 0) {
 			startFirstRound();
 		}
 	}
@@ -165,9 +165,9 @@ public class GameManager {
 		// called is it
 		// will check to ensure what bet is to be sent. Similar to the move being sent
 
-		if (FirstPlayerBet != null && SecondPlayerBet == null) {
+		if (FirstPlayerBet != 0 && SecondPlayerBet == 0) {
 			return FirstPlayerBet;
-		} else if (SecondPlayerBet != null) {
+		} else if (SecondPlayerBet != 0) {
 			return SecondPlayerBet;
 		} else
 			return null;
@@ -185,10 +185,10 @@ public class GameManager {
 
 	public void StartRound() {
 		CurrentRound++;
-		FirstPlayerBet = null;
+		FirstPlayerBet = 0;
 		FirstPlayerMove = null;
 		player1turnscore = 0;
-		SecondPlayerBet = null;
+		SecondPlayerBet = 0;
 		SecondPlayerMove = null;
 		player2turnscore = 0;
 		player1Hand.clear();
@@ -216,7 +216,7 @@ public class GameManager {
 
 		server.sendToAllClients(hands);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -323,7 +323,7 @@ public class GameManager {
 			}
 
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -377,7 +377,7 @@ public class GameManager {
 		} else {
 			player2Score += SecondPlayerBet * 10;
 		}
-		server.sendToAllClients("Player1 Score " + player1Score +"| Player2 Score " + player2Score);
+		server.sendToAllClients("Player1: Score " + player1Score +" : Player2: Score " + player2Score);
 		if (CurrentRound == MaxRounds) {
 			determineWinner();
 		}
