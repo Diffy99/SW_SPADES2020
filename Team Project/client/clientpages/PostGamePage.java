@@ -12,11 +12,11 @@ public class PostGamePage extends JPanel {
 	
 	
 	
-	
+	JLabel winner;
 	public PostGamePage(PostGameController pgc) {
 		
 		JPanel page = new JPanel();
-		page.setLayout(new GridLayout(2,1,0,150));
+		page.setLayout(new GridLayout(3, 1, 0, 0));
 		
 		
 		JPanel titlepanel = new JPanel();
@@ -29,27 +29,41 @@ public class PostGamePage extends JPanel {
 		titlepanel.add(spades);
 		titlepanel.add(icon);
 		page.add(titlepanel);
+		
+		JPanel winnerpanel = new JPanel();
+		winnerpanel.setLayout(new GridLayout(1,1,0,0));
+		winner = new JLabel("");
+		winner.setHorizontalAlignment(SwingConstants.CENTER);
+		winnerpanel.add(winner);
+		page.add(winnerpanel);
+
 
 		
 		
 		JPanel buttonpanel = new JPanel();
 		buttonpanel.setLayout(new GridLayout(1,2,0,10));
-		JButton playagain = new JButton("Play Again");
-		playagain.addActionListener(pgc);
 		JButton quit = new JButton("Quit");
 		quit.addActionListener(pgc);
-		buttonpanel.add(playagain);
 		buttonpanel.add(quit);
+		JButton playagain = new JButton("Play Again");
+		playagain.addActionListener(pgc);
+		buttonpanel.add(playagain);
 		page.add(buttonpanel);
 		
+	
+		
+		this.add(page);
 		
 		
 		
 		
 		
 		
+	}
+	
+	public void setWinner(String winnerstring) {
 		
-		
+		winner.setText(winnerstring);
 		
 	}
 

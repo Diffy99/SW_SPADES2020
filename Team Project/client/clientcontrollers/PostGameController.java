@@ -4,10 +4,13 @@ import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 import client.GameClient;
+import client.clientpages.GameBoardPage;
+import client.clientpages.PostGamePage;
 
 public class PostGameController  implements ActionListener {
 	
@@ -42,6 +45,13 @@ public class PostGameController  implements ActionListener {
 	    
 	    
 	  }
+	  
+	  public void display(String winnerstring) {
+		  	PostGamePage postGamePage = (PostGamePage) container.getComponent(7);
+			CardLayout cardLayout = (CardLayout) container.getLayout();
+			cardLayout.show(container, "7");
+			postGamePage.setWinner(winnerstring);
+		}
 
 
 }
