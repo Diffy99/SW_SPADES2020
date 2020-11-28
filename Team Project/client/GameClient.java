@@ -73,6 +73,7 @@ public class GameClient extends AbstractClient {
 				System.out.println(message);
 			} else if(message.contains("Wins") ||message.contains("Loses!") || message.contains("Draw!"))  {
 				pgc.display(message);
+				gameGui.pack();
 			}
 			else if (message.contains("Player1") || (message.contains("Player2"))) {
 				gbc.recieveCommand(message);
