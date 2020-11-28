@@ -73,7 +73,7 @@ public class GameClient extends AbstractClient {
 				System.out.println(message);
 			} else if (message.contains("Player1") || (message.contains("Player2"))) {
 				gbc.recieveCommand(message);
-			} else if (message.contains("Score")) {
+			} else if (message.contains(": Score")) {
 				gbc.setRoundScore(message);
 			}
 		}

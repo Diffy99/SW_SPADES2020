@@ -4,13 +4,10 @@ import javax.swing.*;
 
 
 import client.clientcontrollers.GameBoardController;
-import game_Manager.GameManager;
-
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
@@ -33,6 +30,11 @@ public class GameBoardPage extends JPanel {
 	private JButton Card13;
 	private ArrayList<JButton> hand;
 	private JLabel player1Played;
+	private JButton confirmBetButton;
+	private JLabel player2Played;
+	private JLabel Severinstructions;
+	private JSlider betSlider;
+	private JLabel Playersscore;
 	
 	
 	
@@ -54,9 +56,7 @@ public class GameBoardPage extends JPanel {
 		this.player2Played = player2Played;
 	}
 
-	private JLabel player2Played;
-	private JLabel Severinstructions;
-	private JSlider betSlider;
+	
 	
 	
 	public JLabel getSeverinstructions() {
@@ -74,7 +74,7 @@ public class GameBoardPage extends JPanel {
 		board.setLayout(new BorderLayout());
 		JPanel Scoreboard = new JPanel();
 		Scoreboard.setLayout(new GridLayout(1,2));
-		JLabel Playersscore = new JLabel("Player 1: 0 | Player 2: 0 ");
+		Playersscore = new JLabel("Player 1: 0 | Player 2: 0 ");
 		Playersscore.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Severinstructions = new JLabel("Game Starting");
 		Severinstructions.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -82,30 +82,33 @@ public class GameBoardPage extends JPanel {
 		Scoreboard.add(Severinstructions);
 		JPanel betPanel = new JPanel();
 		Scoreboard.setLayout(new GridLayout(1,2));
-		betPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		betPanel.setLayout(new GridLayout(1, 3, 0, 0));
 	
 		
 		JLabel placebetLabel = new JLabel("Place Bet");
+		placebetLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		placebetLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		betPanel.add(placebetLabel);
+		confirmBetButton = new JButton("Confirm Bet");
+		confirmBetButton.addActionListener(gbc);
 		betSlider = new JSlider();
+		betSlider.setMajorTickSpacing(1);
+		betSlider.setMinimum(1);
+		betSlider.setMinorTickSpacing(1);
+		betPanel.add(betSlider);
+		betSlider.setPaintLabels(true);
+		betSlider.setPaintTicks(true);
+		betSlider.setSnapToTicks(true);
 		
 		betSlider.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		betSlider.setPaintLabels(true);
-		betSlider.setBackground(Color.LIGHT_GRAY);
-		betSlider.setPaintTicks(true);
+		betSlider.setBackground(Color.WHITE);
 		betSlider.setToolTipText("Set Bet");
 		betSlider.setForeground(Color.DARK_GRAY);
 		betSlider.setMaximum(13);
-		betSlider.setValue(0);
-		betSlider.setSnapToTicks(true);
-		
-		betPanel.add(betSlider);
-		JButton confirmBetButton = new JButton("Confirm Bet");
-		confirmBetButton.addActionListener(gbc);
+		betSlider.setValue(1);
 		confirmBetButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		betPanel.add(confirmBetButton);
-		
+		confirmBetButton.setEnabled(false);
 		JPanel handArea = new JPanel();
 		handArea.setLayout(new GridLayout(1,13));
 		JPanel displayArea = new JPanel();
@@ -226,6 +229,10 @@ public class GameBoardPage extends JPanel {
 		
 	}
 	
+	public void setPlayersscore(String score) {
+		Playersscore.setText(score);
+	}
+
 	public JSlider getBetSlider() {
 		return betSlider;
 	}
@@ -257,8 +264,19 @@ public class GameBoardPage extends JPanel {
 	
 	public void setCards(ArrayList<String> cards) {
 		for (int i = 0; i < 13;i++) {
-			hand.get(i).setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/" + cards.get(i) + ".png")));	
+			hand.get(i).setIcon(new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/" + cards.get(i) + ".png")));
+			hand.get(i).setEnabled(true);
 		}
 	}
+
+	public void enableBet() {
+		// TODO Auto-generated method stub
+		confirmBetButton.setEnabled(true);
+	}
+	public void disableBet() {
+		confirmBetButton.setEnabled(false);
+	}
+
+
 
 }
