@@ -391,15 +391,17 @@ public class GameManager {
 		}
 	}
 
-	public String determineWinner() {
+	public void determineWinner() {
 		// at the end of the seven rounds whomever has the higher score will be declared
 		// the winner of the game
 		if (player1Score > player2Score) {
-			return players.get(0).getUsername() + " WINS!";
+			server.sendToAllClients("Player1 Wins!  : Player2 Loses!");
+		
 		} else if (player1Score < player2Score) {
-			return players.get(1).getUsername() + " WINS!";
-		} else {
-			return "IT'S A DRAW!";
+			server.sendToAllClients("Player1 Loses! : Player2 Wins!");
+			} else {
+				server.sendToAllClients("Player1 Draw! : Player2 Draw!");
+				
 		}
 
 	}
