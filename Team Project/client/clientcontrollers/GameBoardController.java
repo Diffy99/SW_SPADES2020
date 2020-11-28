@@ -151,6 +151,8 @@ public class GameBoardController implements ActionListener {
 			} else if (action.contains("Bet")) {
 				gameBoardPage.setSeverinstructions("Place Bet your bet");
 				gameBoardPage.enableBet();
+			} else if (action.contains("Score")) {
+				setRoundScore(message);
 			}
 		} else {
 			action = command[1].substring(7);
@@ -179,6 +181,8 @@ public class GameBoardController implements ActionListener {
 			} else if (action.contains("Bet")) {
 				gameBoardPage.setSeverinstructions("Place Bet your bet");
 				gameBoardPage.enableBet();
+			}else if (action.contains("Score")) {
+				setRoundScore(message);
 			}
 		}
 

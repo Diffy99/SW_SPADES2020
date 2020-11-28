@@ -377,7 +377,7 @@ public class GameManager {
 		} else {
 			player2Score += SecondPlayerBet * 10;
 		}
-		server.sendToAllClients("Player1: Score " + player1Score +" : Player2: Score " + player2Score);
+		server.sendToAllClients("Player1 Score " + player1Score +" : Player2 Score " + player2Score);
 		if (CurrentRound == MaxRounds) {
 			determineWinner();
 		}
