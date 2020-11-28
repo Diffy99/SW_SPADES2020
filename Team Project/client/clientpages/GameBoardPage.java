@@ -110,9 +110,9 @@ public class GameBoardPage extends JPanel {
 		betPanel.add(confirmBetButton);
 		confirmBetButton.setEnabled(false);
 		JPanel handArea = new JPanel();
-		handArea.setLayout(new GridLayout(1,13));
+		handArea.setLayout(new GridLayout(0,2));
 		JPanel displayArea = new JPanel();
-		displayArea.setLayout(new GridLayout(1,2));
+		displayArea.setLayout(new GridLayout(2,7));
 		JPanel playArea = new JPanel();
 		playArea.setLayout(new GridLayout(2,1));
 		 
