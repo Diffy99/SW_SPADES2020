@@ -21,7 +21,7 @@ public class GameManager {
 	private ArrayList<String> playingDeck = new ArrayList<String>();
 
 	private int CurrentRound = 0;
-	private final int MaxRounds = 2;
+	private final int MaxRounds = 7;
 	private ArrayList<UserData> players;
 	private ConnectionToClient player1connection = null;
 	private ConnectionToClient player2connection = null;
@@ -102,7 +102,7 @@ public class GameManager {
 			if (FirstPlayerMove != null && SecondPlayerMove != null && currentTurn != 14) {
 				server.sendToAllClients("Player1 Wait : Player2 Wait");
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(3000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -219,7 +219,7 @@ public class GameManager {
 
 		server.sendToAllClients(hands);
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -331,7 +331,7 @@ public class GameManager {
 			}
 
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(3000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -402,11 +402,14 @@ public class GameManager {
 		// the winner of the game
 		if (player1Score > player2Score) {
 			server.sendToAllClients("Player1 Wins!  : Player2 Loses!");
+			System.out.println("Player1 Wins!  : Player2 Loses!");
 
 		} else if (player1Score < player2Score) {
 			server.sendToAllClients("Player1 Loses! : Player2 Wins!");
+			System.out.println("Player1 Loses! : Player2 Wins!");
 		} else {
 			server.sendToAllClients("Player1 Draw! : Player2 Draw!");
+			System.out.println("Player1 Draw! : Player2 Draw!");
 
 		}
 
