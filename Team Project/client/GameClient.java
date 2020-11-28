@@ -72,7 +72,7 @@ public class GameClient extends AbstractClient {
 			} else if (message.equals("Game not found yet")) {
 				System.out.println(message);
 			} else if(message.contains("Wins") ||message.contains("Loses!") || message.contains("Draw!"))  {
-				//pgc.display();
+				pgc.display(message);
 			}
 			else if (message.contains("Player1") || (message.contains("Player2"))) {
 				gbc.recieveCommand(message);
