@@ -165,4 +165,10 @@ public class GameServer extends AbstractServer {
 		this.log = log;
 
 	}
+	
+	public void deleteActiveGame() {
+		// TODO Auto-generated method stub
+		activegame = null;
+
+	}
 }

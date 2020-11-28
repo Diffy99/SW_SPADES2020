@@ -412,6 +412,7 @@ public class GameManager {
 			System.out.println("Player1 Draw! : Player2 Draw!");
 
 		}
+		server.deleteActiveGame();
 
 	}
 
