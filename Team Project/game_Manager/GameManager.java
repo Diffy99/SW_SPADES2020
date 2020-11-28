@@ -146,7 +146,7 @@ public class GameManager {
 		// FirstPlayer to play
 		// at the beginning of each round and associate the first player bet with that
 		// player
-		
+
 		if (bet.contains("Player1Bet")) {
 			FirstPlayerBet = Integer.parseInt(bet.substring(11));
 			System.out.println("First Player's Bet Received");
@@ -154,8 +154,8 @@ public class GameManager {
 			SecondPlayerBet = Integer.parseInt(bet.substring(11));
 			System.out.println("Second Player's Bet Received");
 		}
-		
-		if(FirstPlayerBet != 0 && SecondPlayerBet != 0) {
+
+		if (FirstPlayerBet != 0 && SecondPlayerBet != 0) {
 			startFirstRound();
 		}
 	}
@@ -196,8 +196,7 @@ public class GameManager {
 		FirstPlayerBet = 0;
 		SecondPlayerBet = 0;
 		currentTurn = 0;
-		
-		
+
 		if (playingDeck.size() > 0) {
 			playingDeck.clear();
 		}
@@ -226,8 +225,6 @@ public class GameManager {
 			e.printStackTrace();
 		}
 		askBet();
-		
-		
 
 		// return hands;
 		// Here is where we would request the
@@ -237,14 +234,21 @@ public class GameManager {
 
 	private void startFirstRound() {
 		// TODO Auto-generated method stub
-		if (CurrentRound == 1) {
-			server.sendToAllClients("Player1 Turn : Player2 Wait");
-			System.out.println("Player1 Turn : Player2 Wait");
+		if (currentTurn == 0) {
+
+			if (player1First) {
+				server.sendToAllClients("Player1 Turn : Player2 Wait");
+				System.out.println("Player1 Turn : Player2 Wait");
+			} else {
+				server.sendToAllClients("Player1 Wait : Player2 Turn");
+				System.out.println("Player1 Wait : Player2 Turn");
+			}
 		}
+
 	}
 
 	private void askBet() {
-		
+
 		server.sendToAllClients("Player1 Bet : Player2 Bet");
 		System.out.println("Player1 Bet : Player2 Bet");
 	}
@@ -353,6 +357,9 @@ public class GameManager {
 			server.sendToAllClients("Player1 Turn : Player2 Wait");
 			System.out.println("Player1 Turn : Player2 Wait");
 
+		} else if (currentTurn == maxTurns) {
+			server.sendToAllClients("Player1 Wait : Player2 Wait");
+			System.out.println("Player1 Wait : Player2 Wait");
 		} else {
 			server.sendToAllClients("Player1 Wait : Player2 Turn");
 			System.out.println("Player1 Wait : Player2 Turn");
@@ -381,12 +388,11 @@ public class GameManager {
 		} else {
 			player2Score += SecondPlayerBet * 10;
 		}
-		server.sendToAllClients("Player1 Score " + player1Score +" : Player2 Score " + player2Score);
-		
+		server.sendToAllClients("Player1 Score " + player1Score + " : Player2 Score " + player2Score);
+
 		if (CurrentRound == MaxRounds) {
 			determineWinner();
-		}
-		else {
+		} else {
 			StartRound();
 		}
 	}
@@ -396,12 +402,12 @@ public class GameManager {
 		// the winner of the game
 		if (player1Score > player2Score) {
 			server.sendToAllClients("Player1 Wins!  : Player2 Loses!");
-		
+
 		} else if (player1Score < player2Score) {
 			server.sendToAllClients("Player1 Loses! : Player2 Wins!");
-			} else {
-				server.sendToAllClients("Player1 Draw! : Player2 Draw!");
-				
+		} else {
+			server.sendToAllClients("Player1 Draw! : Player2 Draw!");
+
 		}
 
 	}
