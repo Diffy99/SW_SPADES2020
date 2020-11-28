@@ -3,6 +3,7 @@ package client.clientcontrollers;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 
@@ -25,8 +26,13 @@ public class PostGameController  implements ActionListener {
 	    
 	    if(command == "Play Again")
 	    {
-	    	  CardLayout cardLayout = (CardLayout)container.getLayout();
-	          cardLayout.show(container, "6");
+	    	try {
+				gameClient.sendToServer("Waiting for game");
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	    }
 	    else if(command == "Quit")
 	    {

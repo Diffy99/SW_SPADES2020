@@ -16,40 +16,31 @@ public class PostGamePage extends JPanel {
 	public PostGamePage(PostGameController pgc) {
 		
 		JPanel page = new JPanel();
-		JPanel scoreboardpanel = new JPanel();
-		scoreboardpanel.setLayout(new GridLayout(1,1,1,1));
-		JPanel gameinfo = new JPanel();
-		JPanel next = new JPanel();
+		page.setLayout(new GridLayout(2,1,0,150));
+		
+		
+		JPanel titlepanel = new JPanel();
+		titlepanel.setLayout(new GridLayout(1,2,0,0));
+		JLabel spades = new JLabel("Spades");
+		spades.setFont(new Font("Vladimir Script", Font.PLAIN, 89));
+		JLabel icon = new JLabel("");
+		icon.setIcon(new ImageIcon(InitialPage.class.getResource("/cards_png_zip/resized/honors_spade-14.png")));
+		
+		titlepanel.add(spades);
+		titlepanel.add(icon);
+		page.add(titlepanel);
+
+		
+		
+		JPanel buttonpanel = new JPanel();
+		buttonpanel.setLayout(new GridLayout(1,2,0,10));
 		JButton playagain = new JButton("Play Again");
 		playagain.addActionListener(pgc);
 		JButton quit = new JButton("Quit");
 		quit.addActionListener(pgc);
-		JLabel scoreboard = new JLabel("ScoreBoard");
-		JLabel userScore = new JLabel("Your Score");
-		JLabel oppScore = new JLabel("Opponents Score");
-		//JLabel actUserScore= new JLabel(GameBoardData.getScore());
-		//JLabel actOppScore = new JLabel(GameBoardData.getScore());
-		JLabel winnerlabel = new JLabel("The Winner is ");
-		//JLabel winner = new JLabel(GameBoardData.getWinner());
-		
-		scoreboardpanel.add(scoreboard);
-		page.setLayout(new GridLayout(3,1,5,5));
-		gameinfo.setLayout(new GridLayout(3,2,5,5));
-		gameinfo.add(userScore);
-	//	gameinfo.add(actUserScore);
-		gameinfo.add(oppScore);
-		//gameinfo.add(actOppScore);
-		//gameinfo.add(winnerlabel);
-		//gameinfo.add(winner);
-		page.add(scoreboardpanel);
-		page.add(gameinfo);
-		
-		next.setLayout(new GridLayout(1,2,5,5));
-		next.add(playagain);
-		next.add(quit);
-		
-		page.add(next);
-		
+		buttonpanel.add(playagain);
+		buttonpanel.add(quit);
+		page.add(buttonpanel);
 		
 		
 		
