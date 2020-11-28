@@ -41,6 +41,7 @@ public class PostGameController  implements ActionListener {
 	    {
 	    	  CardLayout cardLayout = (CardLayout)container.getLayout();
 	          cardLayout.show(container, "3");
+	          gameClient.setPushedPlay(false);
 	    }
 	    
 	    
