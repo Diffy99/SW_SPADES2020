@@ -24,6 +24,7 @@ public class GameClient extends AbstractClient {
 	InitialPageController ipc;
 	UserData userData;
 	GameGui gameGui;
+	private boolean pushedPlay = false;
 
 	public void setPanels(InitialPageController ipc, LoginController lc, CreateAccountController cac,
 			MainMenuController mmc, AdminController apc, WaitingForGamePageController wfgpc, GameBoardController gbc,
@@ -61,21 +62,21 @@ public class GameClient extends AbstractClient {
 				cac.createaccountfailure();
 			} else if (message.equals("Admin Data")) {
 				apc.setAdminData();
-			} else if (message.equals("Game is ready to join")) {
+			} else if (message.equals("Game is ready to join") && pushedPlay == true) {
 				System.out.println(message);
 				gbc.display();
 				gameGui.pack();
-			} else if (message.equals("Game Created")) {
+			} else if (message.equals("Game Created") && pushedPlay == true) {
 				System.out.println(message);
 				wfgpc.display();
 				gbc.setMakefirstmove(true);
-			} else if (message.equals("Game not found yet")) {
+			} else if (message.equals("Game not found yet") && pushedPlay == true) {
 				System.out.println(message);
-			} else if(message.contains("Wins") ||message.contains("Loses!") || message.contains("Draw!"))  {
+			} else if(message.contains("Wins") ||message.contains("Loses!") || message.contains("Draw!") && pushedPlay == true)  {
 				pgc.display(message);
 				gameGui.pack();
 			}
-			else if (message.contains("Player1") || (message.contains("Player2"))) {
+			else if (message.contains("Player1") || (message.contains("Player2") && pushedPlay == true)) {
 				gbc.recieveCommand(message);
 			}
 		}
@@ -101,6 +102,10 @@ public class GameClient extends AbstractClient {
 
 	public UserData getUser() {
 		return userData;
+	}
+
+	public void setPushedPlay(boolean pushedPlay) {
+		this.pushedPlay = pushedPlay;
 	}
 
 }

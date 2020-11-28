@@ -55,7 +55,7 @@ public class MainMenuController implements ActionListener
          
          try {
 			gameClient.sendToServer("Waiting for game");
-			
+			gameClient.setPushedPlay(true);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
