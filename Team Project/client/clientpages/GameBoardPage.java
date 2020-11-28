@@ -118,43 +118,43 @@ public class GameBoardPage extends JPanel {
 		 
 	
 		
-		Card1 = new JButton("Card1");
+		Card1 = new JButton("Card 1");
 		displayArea.add(Card1);
 		
-		Card2 = new JButton("Card2");
+		Card2 = new JButton("Card 2");
 		displayArea.add(Card2);
 		
-		Card3 = new JButton("Card3");
+		Card3 = new JButton("Card 3");
 		displayArea.add(Card3);
 		
-		Card4 = new JButton("Card4");
+		Card4 = new JButton("Card 4");
 		displayArea.add(Card4);
 		
-		Card5 = new JButton("Card5");
+		Card5 = new JButton("Card 5");
 		displayArea.add(Card5);
 		
-		Card6 = new JButton("Card6");
+		Card6 = new JButton("Card 6");
 		displayArea.add(Card6);
 		
-		Card7 = new JButton("Card7");
+		Card7 = new JButton("Card 7");
 		displayArea.add(Card7);
 		
-		Card8 = new JButton("Card8");
+		Card8 = new JButton("Card 8");
 		displayArea.add(Card8);
 		
-		Card9 = new JButton("Card9");
+		Card9 = new JButton("Card 9");
 		displayArea.add(Card9);
 		
-		Card10 = new JButton("Card10");
+		Card10 = new JButton("Card 10");
 		displayArea.add(Card10);
 		
-		Card11 = new JButton("Card11");
+		Card11 = new JButton("Card 11");
 		displayArea.add(Card11);
 		
-		Card12 = new JButton("Card12");
+		Card12 = new JButton("Card 12");
 		displayArea.add(Card12);
 		
-		Card13 = new JButton("Card13");
+		Card13 = new JButton("Card 13");
 		displayArea.add(Card13);
 		
 		

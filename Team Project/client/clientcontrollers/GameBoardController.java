@@ -54,7 +54,7 @@ public class GameBoardController implements ActionListener {
 			if (isTurn) {
 				if (command.contains("Card")) {
 					selectedCard = (JButton) ae.getSource();
-					String card = command.substring(4);
+					String card = command.substring(5);
 					if (makefirstmove) {
 						player1played.setIcon(new ImageIcon(GameBoardPage.class.getResource(
 								"/cards_png_zip/resized/" + currentHand.get(Integer.parseInt(card) - 1) + ".png")));
