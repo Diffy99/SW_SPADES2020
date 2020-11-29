@@ -21,7 +21,7 @@ public class GameManager {
 	private ArrayList<String> playingDeck = new ArrayList<String>();
 
 	private int CurrentRound = 0;
-	private final int MaxRounds = 7;
+	private final int MaxRounds = 2;
 	private ArrayList<UserData> players;
 	private ConnectionToClient player1connection = null;
 	private ConnectionToClient player2connection = null;

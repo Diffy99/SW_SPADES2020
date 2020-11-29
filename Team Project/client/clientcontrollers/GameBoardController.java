@@ -149,7 +149,7 @@ public class GameBoardController implements ActionListener {
 				player2played.setIcon(
 						new ImageIcon(GameBoardPage.class.getResource("/cards_png_zip/resized/gray_back.png")));
 			} else if (action.contains("Bet")) {
-				gameBoardPage.setSeverinstructions("Place Bet your bet");
+				gameBoardPage.setSeverinstructions("Place your bet");
 				gameBoardPage.enableBet();
 			} else if (action.contains("Score")) {
 				setRoundScore(message);
