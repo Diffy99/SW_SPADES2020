@@ -88,6 +88,9 @@ public class GameClient extends AbstractClient {
 			ArrayList<ArrayList<String>> temp = (ArrayList<ArrayList<String>>) arg0;
 			gbc.setHand(temp);
 
+		}else if(arg0 instanceof String[]) {
+			String[] temp = (String[])arg0;
+			apc.display(temp);
 		}
 
 	}

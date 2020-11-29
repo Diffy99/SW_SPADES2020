@@ -21,10 +21,6 @@ public class GameManager {
 
 	private int CurrentRound = 0;
 	private final int MaxRounds = 2;
-	private ArrayList<UserData> players;
-	private ConnectionToClient player1connection = null;
-	private ConnectionToClient player2connection = null;
-	private ArrayList<Integer> PlayerScores;
 	private String FirstPlayerMove = new String();
 	private String SecondPlayerMove = new String();
 	private int FirstPlayerBet = 0;
@@ -43,7 +39,6 @@ public class GameManager {
 	private int player1turnscore = 0;
 	private int player2turnscore = 0;
 
-	private ArrayList<Integer> TurnScores = new ArrayList<Integer>();
 	private final int maxTurns = 13;
 	private int currentTurn = 0;
 
@@ -60,7 +55,6 @@ public class GameManager {
 		// this.player2 = player2;
 
 		CurrentRound = 0;
-		PlayerScores = new ArrayList<Integer>();
 		currentTurn = 0;
 	}
 

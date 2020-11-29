@@ -64,6 +64,8 @@ public class GameServer extends AbstractServer {
 				if (temp.equals("Logout")) {
 					// do something on logout
 					System.out.println("Logout recieved for " + arg1.getId());
+				}else if(temp.contains("Admin")) {
+					sendUsers(arg1);
 				} else if (temp.equals("Waiting for game")) {
 					UserData temp1 = null;
 					System.out.println(arg1.getId() + " Is waiting for a game");
@@ -96,6 +98,22 @@ public class GameServer extends AbstractServer {
 		} catch (
 
 		IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void sendUsers(ConnectionToClient arg1) {
+		// TODO Auto-generated method stub
+		int i = 0;
+		String[] onlineUsers = new String[connectedClients.size()];
+		for (UserData userData : connectedClients) {
+			onlineUsers[i] = connectedClients.get(i).getUsername() + "\n";
+			i++;
+		}
+		try {
+			arg1.sendToClient(onlineUsers);
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

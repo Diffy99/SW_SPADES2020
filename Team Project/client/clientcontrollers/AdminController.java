@@ -55,4 +55,9 @@ public class AdminController  implements ActionListener {
 		//adminPage.setOnlineUsers("4");
 	}
 
+	public void display(String[] temp) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
