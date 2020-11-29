@@ -7,9 +7,6 @@ import ocsf.server.ConnectionToClient;
 public class UserData implements Serializable
 {
 	private String username;
-	private int wins;
-	private int totalGames;
-	private String Purpose;
 	private Long connectionID;
 	
 	public UserData(String Username, long id) {
@@ -21,9 +18,6 @@ public class UserData implements Serializable
 	public UserData() {
 		// TODO Auto-generated constructor stub
 		username = "";
-		wins = 0;
-		totalGames = 0;
-		Purpose = "";
 		connectionID = null;
 	}
 
@@ -51,38 +45,6 @@ public class UserData implements Serializable
 	public String getPlayAgain() 
 	{
 		return this.username;
-	}
-	
-
-	
-
-	
-	public void setWins(int wins) 
-	{
-		this.wins = wins;
-	}
-	
-	public int getWins() 
-	{
-		return this.wins;
-	}
-	
-	public void setTotalGames(int totalGames) 
-	{
-		this.totalGames = totalGames;
-	}
-	
-	public int getTotalGames() 
-	{
-		return this.totalGames;
-	}
-
-	public String getPurpose() {
-		return Purpose;
-	}
-
-	public void setPurpose(String purpose) {
-		Purpose = purpose;
 	}
 
 	public Long getConnectionID() {
