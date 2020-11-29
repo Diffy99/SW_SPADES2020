@@ -6,7 +6,6 @@ import java.util.Collections;
 
 import ocsf.server.ConnectionToClient;
 import server.GameServer;
-import server.serverdata.BoardGameData;
 import server.serverdata.UserData;
 
 public class GameManager {

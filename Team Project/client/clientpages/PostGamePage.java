@@ -3,7 +3,7 @@ package client.clientpages;
 import javax.swing.*;
 
 import client.clientcontrollers.PostGameController;
-import server.serverdata.PostGameData;
+
 
 import java.awt.*;
 import java.awt.event.*;

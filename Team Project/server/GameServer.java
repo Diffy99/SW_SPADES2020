@@ -11,10 +11,10 @@ import javax.swing.JTextArea;
 import game_Manager.GameManager;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
-import server.serverdata.BoardGameData;
+
 import server.serverdata.CreateAccountData;
 import server.serverdata.LoginData;
-import server.serverdata.PostGameData;
+
 import server.serverdata.UserData;
 
 public class GameServer extends AbstractServer {
@@ -48,13 +48,6 @@ public class GameServer extends AbstractServer {
 	protected void handleMessageFromClient(Object arg0, ConnectionToClient arg1) {
 		log.append("Messgage from Client: " + arg1.getId() + "\n");
 		try {
-			// stuff for game manager
-
-			// Send Data To Game Manager
-			if (arg0 instanceof PostGameData) {
-				// Send Data To GameManager
-				// possible send to User manager to update database
-			}
 
 			// stuff for usermanager
 			if (arg0 instanceof LoginData) {
