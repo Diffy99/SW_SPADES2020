@@ -11,7 +11,7 @@ import client.clientcontrollers.MainMenuController;
 import client.clientcontrollers.PostGameController;
 import client.clientcontrollers.WaitingForGamePageController;
 import ocsf.client.AbstractClient;
-import server.serverdata.UserData;
+import clientServerData.UserData;
 
 public class GameClient extends AbstractClient {
 	LoginController lc;

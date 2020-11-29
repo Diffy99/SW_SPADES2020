@@ -4,9 +4,9 @@ package server;
 import java.io.IOException;
 
 import ocsf.server.ConnectionToClient;
-import server.serverdata.CreateAccountData;
-import server.serverdata.LoginData;
-import server.serverdata.UserData;
+import clientServerData.CreateAccountData;
+import clientServerData.LoginData;
+import clientServerData.UserData;
 
 public class UserManager {
 

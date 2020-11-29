@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+import clientServerData.UserData;
 import ocsf.server.ConnectionToClient;
 import server.GameServer;
-import server.serverdata.UserData;
 
 public class GameManager {
 

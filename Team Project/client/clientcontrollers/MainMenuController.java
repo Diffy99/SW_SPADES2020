@@ -6,7 +6,7 @@ import javax.swing.*;
 
 import client.GameClient;
 import client.clientpages.LoginPage;
-import server.serverdata.UserData;
+import clientServerData.UserData;
 
 import java.awt.event.*;
 import java.io.IOException;

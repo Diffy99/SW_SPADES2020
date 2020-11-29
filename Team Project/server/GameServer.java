@@ -12,10 +12,10 @@ import game_Manager.GameManager;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
 
-import server.serverdata.CreateAccountData;
-import server.serverdata.LoginData;
+import clientServerData.CreateAccountData;
+import clientServerData.LoginData;
 
-import server.serverdata.UserData;
+import clientServerData.UserData;
 
 public class GameServer extends AbstractServer {
 	private static UserManager userManager;

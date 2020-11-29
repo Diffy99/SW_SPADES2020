@@ -1,4 +1,4 @@
-package server.serverdata;
+package clientServerData;
 
 import java.io.Serializable;
 

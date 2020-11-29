@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import game_Manager.GameManager;
-import server.serverdata.UserData;
+import clientServerData.UserData;
 
 public class Database_Test {
 /*
