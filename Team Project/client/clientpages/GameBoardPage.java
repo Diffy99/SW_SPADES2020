@@ -13,8 +13,6 @@ import java.awt.Font;
 
 public class GameBoardPage extends JPanel {
 	
-	private JSpinner UserBet;
-	private int OppBet;
 	private JButton Card1;
 	private JButton Card2;
 	private JButton Card3;
@@ -248,19 +246,7 @@ public class GameBoardPage extends JPanel {
 	public void showOppMove() {
 		
 	}
-	//public int getUserBet() {
-	//	return UserBet;
-	//}
-//	public void setUserBet(int UserBet) {
-	//	this.UserBet = UserBet;
-	//}
-	public int getOppBet() {
-		return OppBet;
-	}
-	public void setOppBet(int OppBet) {
-		this.OppBet = OppBet;
-		
-	}
+
 	
 	public void setCards(ArrayList<String> cards) {
 		for (int i = 0; i < 13;i++) {
