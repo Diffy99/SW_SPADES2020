@@ -57,7 +57,7 @@ public class AdminController  implements ActionListener {
 
 	public void populatePage(String[] temp) {
 		// TODO Auto-generated method stub
-		AdminPage adminpage = (AdminPage)container.getComponent(5);
+		AdminPage adminpage = (AdminPage)container.getComponent(4);
 		adminpage.setOnlineUsers(Integer.valueOf(temp.length));
 		adminpage.setOnlineUsersPane(temp);
 		

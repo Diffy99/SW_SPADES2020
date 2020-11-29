@@ -68,6 +68,12 @@ public class MainMenuController implements ActionListener
     	
     	CardLayout cardLayout = (CardLayout)container.getLayout();
         cardLayout.show(container, "4");
+        try {
+			gameClient.sendToServer("Admin");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
   }
 

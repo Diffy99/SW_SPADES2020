@@ -12,6 +12,7 @@ public class AdminPage extends JPanel {
 
 	public void setOnlineUsersPane(String[] users)
     {
+		this.users.setText("");
 		for (int i = 0; i < users.length; i++) {
 			this.users.setText(this.users.getText() + users[i]);
 		}

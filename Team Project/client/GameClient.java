@@ -52,7 +52,6 @@ public class GameClient extends AbstractClient {
 			if (message.equals("Incorrect Username/Password")) {
 				System.out.println("Login fail recieved");
 				lc.loginfail();
-
 			} else if (message.contains("Login Successful")) {
 				System.out.println("Login successful");
 				lc.loginSuccess(message);

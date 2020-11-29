@@ -13,7 +13,7 @@ import game_Manager.GameManager;
 import clientServerData.UserData;
 
 public class Database_Test {
-/*
+
 	private String[] test_users = {"user1","user2","user3"};
 	private String[] test_passwords = {"password1","password2","password3"};
 	
@@ -143,5 +143,5 @@ public class Database_Test {
 		db.CloseConnection();
 		assertTrue(db.getConnection().isClosed());
 	}
-*/
+
 }
