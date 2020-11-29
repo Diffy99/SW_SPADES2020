@@ -422,14 +422,5 @@ public class GameManager {
 
 	}
 
-	public void receiveData(BoardGameData data) {
-
-		/*
-		 * String purpose = data.getPurpose();
-		 * 
-		 * if(purpose.contentEquals("play") { this.ReceiveMove(data); } else if
-		 * (purpose.contentEquals("bet") { this.ReceiveBet(data); }
-		 */
-	}
 
 }
