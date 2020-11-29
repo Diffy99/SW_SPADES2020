@@ -35,6 +35,7 @@ public class MainMenuPage extends JPanel {
 	    logoutbutton.addActionListener(mmc);
 	    buttonPanel.add(playbutton);
 	    buttonPanel.add(adminbutton);
+	    adminbutton.setEnabled(false);
 	    buttonPanel.add(logoutbutton);
 
 	    // Arrange the three panels in a grid.
