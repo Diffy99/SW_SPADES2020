@@ -13,23 +13,14 @@ public class WaitingForGamePageController implements ActionListener {
 	
 	private JPanel container;
 	private GameClient gameClient;
-	private boolean gamefound;
 	
 	public WaitingForGamePageController(JPanel container,GameClient gameClient) {
 		this.container = container;
 	    this.gameClient = gameClient;
-	    gamefound = false;
+	}
 		
-		
-	}
+	
 
-	public boolean isGamefound() {
-		return gamefound;
-	}
-
-	public void setGamefound(boolean gamefound) {
-		this.gamefound = gamefound;
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
