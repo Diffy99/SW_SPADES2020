@@ -10,7 +10,15 @@ public class Database
   private Connection conn;
   
   public Database()
-  {
+  {	//Properties Object
+	conn = null;
+  }
+  
+  public Connection getConnection() {
+		return conn;
+		  }
+	  
+  public void setConnection() {  
 	//Properties Object
 	Properties prop = new Properties();
 	
@@ -73,7 +81,7 @@ public class Database
   
   public void executeDML(String dml) throws SQLException
   {
-	  Statement stmt;
+	  Statement stmt = null;
 	  
 	  try
 	  {
@@ -131,6 +139,12 @@ public class Database
 	}
 	  
 	  return true;
+  }
+  public String isAdmin(String user) {
+	  String command1 = String.format("select admin from users where username = '%s'", user);
+	  System.out.println(command1);
+	  return query(command1).get(0);
+	  
   }
 
   public void CloseConnection() {

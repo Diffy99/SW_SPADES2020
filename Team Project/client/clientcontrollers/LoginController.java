@@ -5,6 +5,7 @@ import javax.swing.*;
 
 import client.GameClient;
 import client.clientpages.LoginPage;
+import client.clientpages.MainMenuPage;
 import server.serverdata.LoginData;
 
 import java.awt.event.*;
@@ -74,13 +75,17 @@ public class LoginController implements ActionListener
   }
 
   // After the login is successful take user to main menu
-  public void loginSuccess()
+  public void loginSuccess(String message)
   {
-	    
 	  	LoginPage loginPage = (LoginPage)container.getComponent(1);
 	    
 	    CardLayout cardLayout = (CardLayout)container.getLayout();
 	    cardLayout.show(container, "3");
+	    if(message.contains("1")) {
+	    	MainMenuPage mainMenuPage = (MainMenuPage)container.getComponent(3);
+	    	mainMenuPage.enableAdmin();
+		  }
+	    
     
   }
 

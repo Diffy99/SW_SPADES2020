@@ -9,7 +9,10 @@ import client.clientcontrollers.MainMenuController;
 
 import java.awt.event.*;
 
+
+
 public class MainMenuPage extends JPanel {
+	 private JButton adminbutton;
 	
 	public MainMenuPage(MainMenuController mmc)
 	  {
@@ -29,7 +32,7 @@ public class MainMenuPage extends JPanel {
 	    JPanel buttonPanel = new JPanel();
 	    JButton playbutton = new JButton("Play");
 	    playbutton.addActionListener(mmc);
-	    JButton adminbutton = new JButton("Admin Page");
+	    adminbutton = new JButton("Admin Page");
 	    adminbutton.addActionListener(mmc);  
 	    JButton logoutbutton = new JButton("Logout");
 	    logoutbutton.addActionListener(mmc);
@@ -45,5 +48,10 @@ public class MainMenuPage extends JPanel {
 	    this.add(grid);
 	    
 	  }
+
+	public void enableAdmin() {
+		// TODO Auto-generated method stub
+		adminbutton.setEnabled(true);
+	}
 
 }

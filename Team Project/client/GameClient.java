@@ -53,9 +53,9 @@ public class GameClient extends AbstractClient {
 				System.out.println("Login fail recieved");
 				lc.loginfail();
 
-			} else if (message.equals("Login Successful")) {
+			} else if (message.contains("Login Successful")) {
 				System.out.println("Login successful");
-				lc.loginSuccess();
+				lc.loginSuccess(message);
 			} else if (message.equals("Account Created")) {
 				cac.createaccountsucess();
 			} else if (message.equals("Username Already Taken")) {

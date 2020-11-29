@@ -101,6 +101,7 @@ public class ServerGUI extends JFrame
     
     // Set up server side
     Database database = new Database();
+    database.setConnection();
     server = new GameServer(8300);
     UserManager userManager = new UserManager(server);
     userManager.setDatabase(database);
