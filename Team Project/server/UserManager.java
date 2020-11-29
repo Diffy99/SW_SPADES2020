@@ -61,10 +61,12 @@ public class UserManager {
 	
 		}
 
-	public void UpdateTotalGames(ConnectionToClient arg1) {
+	public void UpdateTotalGames(UserData user) {
 		//increase total number of games for recieved user in database
+		db.increaseTotalGames(user.getUsername());
 	}
-	public void UpdateWins(ConnectionToClient arg1) {
+	public void UpdateWins(UserData user) {
 		//increase win number of games for recieved user in database
+		db.increaseWins(user.getUsername());
 	}
 }

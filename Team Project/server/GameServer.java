@@ -171,4 +171,17 @@ public class GameServer extends AbstractServer {
 		activegame = null;
 
 	}
+
+	public void setGameEnd(UserData U1, UserData U2,String endtype) {
+		if(endtype.equals("w")) {
+			userManager.UpdateWins(U1);
+			userManager.UpdateTotalGames(U1);
+			userManager.UpdateTotalGames(U2);
+		}
+		else {
+			userManager.UpdateTotalGames(U1);
+			userManager.UpdateTotalGames(U2);
+		}
+		
+	}
 }

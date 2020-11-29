@@ -121,7 +121,7 @@ public class Database
   {
 	  String command1 = String.format("select username from users where username = '%s'", username);
 	  String command2 = String.format("INSERT INTO users(username, password, admin) VALUES ('%s','%s',0)", username, password);
-	  System.out.println(command2);
+	  String command3 =  String.format("INSERT INTO gamestats(username,totalgames,wins) VALUES ('%s','0',0)",username);
 	  // Stop if this account already exists.
 	  if (!query(command1).isEmpty()) 
 	  {
@@ -132,6 +132,7 @@ public class Database
 	  // Add the new account.
 	  try {
 		executeDML(command2);
+		executeDML(command3);
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -145,6 +146,29 @@ public class Database
 	  System.out.println(command1);
 	  return query(command1).get(0);
 	  
+  }
+  
+  public void increaseTotalGames(String user) {
+	  String command1 = String.format("UPDATE gamestats SET totalgames = totalgames + 1 where username = '%s'", user);
+	  Statement stmt = null;
+	  try {
+		stmt=conn.createStatement();
+		stmt.executeUpdate(command1);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+  }
+  public void increaseWins(String user) {
+	  String command1 = String.format("UPDATE gamestats SET wins = wins + 1 where username = '%s'", user);
+	  Statement stmt = null;
+	  try {
+		stmt=conn.createStatement();
+		stmt.executeUpdate(command1);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
 
   public void CloseConnection() {

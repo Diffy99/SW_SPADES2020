@@ -35,6 +35,7 @@ public class GameManager {
 	private int player1Score = 0; // these are the overall scores
 	private int player2Score = 0;
 
+
 	// below are the blank players hands
 	private ArrayList<String> player1Hand = new ArrayList<String>();
 	private ArrayList<String> player2Hand = new ArrayList<String>();
@@ -401,17 +402,23 @@ public class GameManager {
 		// at the end of the seven rounds whomever has the higher score will be declared
 		// the winner of the game
 		if (player1Score > player2Score) {
+			server.setGameEnd(player1,player2,"w");
 			server.sendToAllClients("Player1 Wins!  : Player2 Loses!");
 			System.out.println("Player1 Wins!  : Player2 Loses!");
 
 		} else if (player1Score < player2Score) {
+			server.setGameEnd(player2,player2,"w");
 			server.sendToAllClients("Player1 Loses! : Player2 Wins!");
 			System.out.println("Player1 Loses! : Player2 Wins!");
 		} else {
+			server.setGameEnd(player1,player2,"d");
 			server.sendToAllClients("Player1 Draw! : Player2 Draw!");
 			System.out.println("Player1 Draw! : Player2 Draw!");
 
 		}
+		
+		
+		
 		server.deleteActiveGame();
 
 	}
