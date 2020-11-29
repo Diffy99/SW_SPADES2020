@@ -90,7 +90,7 @@ public class GameClient extends AbstractClient {
 
 		}else if(arg0 instanceof String[]) {
 			String[] temp = (String[])arg0;
-			apc.display(temp);
+			apc.populatePage(temp);
 		}
 
 	}
