@@ -20,6 +20,10 @@ public class UserManager {
 	public void setDatabase(Database db) {
 		this.db = db;
 	}
+	
+	public Database getDatabase() {
+		return db;
+	}
 
 	public void VerifyLogin(LoginData loginData, ConnectionToClient arg1) throws IOException 
 	{

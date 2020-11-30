@@ -43,6 +43,10 @@ public class GameServer extends AbstractServer {
 	public void setUserManager(UserManager userManager) {
 		this.userManager = userManager;
 	}
+	
+	public UserManager getUserManager() {
+		return userManager;
+	}
 
 	@Override
 	protected void handleMessageFromClient(Object arg0, ConnectionToClient arg1) {
@@ -170,6 +174,10 @@ public class GameServer extends AbstractServer {
 		this.status = status;
 
 	}
+	
+	public String getStatus() {
+		return status.getText();
+	}
 
 	public void setLog(JTextArea log) {
 		// TODO Auto-generated method stub
@@ -177,10 +185,18 @@ public class GameServer extends AbstractServer {
 
 	}
 	
+	public String getLog() {
+		return log.getText();
+	}
+	
 	public void deleteActiveGame() {
 		// TODO Auto-generated method stub
 		activegame = null;
 
+	}
+	
+	public GameManager getActiveGame() {
+		return activegame;
 	}
 
 	public void setGameEnd(UserData U1, UserData U2,String endtype) {
