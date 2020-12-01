@@ -21,7 +21,7 @@ public class WaitingForGamePageController implements ActionListener {
 		
 	
 
-
+//
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		
