@@ -96,6 +96,8 @@ public class GameBoardController implements ActionListener {
 		player1played = gameBoardPage.getPlayer1Played();
 		player2played = gameBoardPage.getPlayer2Played();
 		ArrayList<String> currentHand = new ArrayList<String>();
+		setRoundScore("Player 1: 0 | Player 2: 0");
+		
 
 	}
 
